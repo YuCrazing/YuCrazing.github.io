@@ -1,12 +1,11 @@
 ---
-layout: default
 title: "[LightOJ 1114] Easily Readable 输出问题"
 image: "http://lightoj.com/images/main.png"
 hidden: true
 ---
 ## I/O 效率
 众所周知，C 与 C++ 的 I/O 方法混合使用时，效率是极其低下的。因此一般不建议同时使用（如`cout`和`printf`）。在做题期间听人提起，C++ 为了兼容 C 的 I/O 方法而导致自己的 I/O 效率极其低下，但在程序开始，增加下面两行代码可显著提升 I/O 效率：
-```cpp
+``` cpp
 ios::sync_with_stdio(false);
 cin.tie(NULL);
 ```
@@ -65,7 +64,7 @@ cout << "Case " << ca << ":" << endl;
 
 回到这道题目。对于上面这段 Accepted 代码，你可能会问，为什么输出使用的是`printf`而不是`cout`？——这正是我接下来要谈的。我们先将这段代码恢复成刚开始时可以 Accepted 时的样子。确保`sync_with_stdio(false)`，然后将代码中所有`printf`全部修改为`cout`，再次提交代码，查看返回结果—Time Limit Exceeded。
 
-再来看运行时间，使用`printf`的代码运行时间为`0.316`s，而换成`cout`之后，运行时间达到了`3.096`s！我们看到，这一次，`sync_with_stdio(false)`和`cin.tie(NULL)`都失去了作用，具体原因不得而知。但这告诫我们，对于处理大量字符串的题目，还是使用 C 的 I/O 方法更可靠。以上便是这道题目在 I/O 上的问题，谈完了这一点，我们再来考虑这道题目的做法。
+再来看运行时间，使用`printf`的代码运行时间为$$0.316$$s，而换成`cout`之后，运行时间达到了$$3.096$$s！我们看到，这一次，`sync_with_stdio(false)`和`cin.tie(NULL)`都失去了作用，具体原因不得而知。但这告诫我们，对于处理大量字符串的题目，还是使用 C 的 I/O 方法更可靠。以上便是这道题目在 I/O 上的问题，谈完了这一点，我们再来考虑这道题目的做法。
 
 [返回原文][2]
 

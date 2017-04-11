@@ -1,5 +1,4 @@
 ---
-layout: default
 title: "[LightOJ 1114] Easily Readable "
 image: "http://lightoj.com/images/main.png"
 ---

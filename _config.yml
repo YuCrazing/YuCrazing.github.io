@@ -13,8 +13,8 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Your awesome title
-email: your-email@domain.com
+title: "YuCrazing's Blog"
+email: yuchang@mail.bnu.edu.cn
 description: > # this means to ignore newlines until "baseurl:"
   足迹。
 baseurl: "" # the subpath of your site, e.g. /blog
@@ -22,6 +22,9 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
 # OJ logos
 LightOJlogo: "http://lightoj.com/images/main.png"
+
+collections: 
+- posts
 
 # Build settings
 markdown: kramdown
@@ -32,3 +35,20 @@ exclude:
   - Gemfile
   - Gemfile.lock
 google_analytics: UA-97219789-1
+
+defaults:
+  -
+    scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+      title: "YuCrazing's 博客"
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "default"
+      title: "YuCrazing's 博客"
+

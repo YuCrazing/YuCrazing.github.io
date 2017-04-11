@@ -1,5 +1,4 @@
 ---
-layout: default
 title:  "我的 GitHub Pages"
 image: "/assets/imgs/github-pages.png"
 ---
