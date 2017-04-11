@@ -16,10 +16,9 @@ index: true
 -   ### [{{ post.title }}]({{ post.url }}) 
 
 
-
 {{ post.excerpt }}
 
-<div style="text-align: center;"><p>{{ post.date }}</p></div>
+<div style="text-align: center;"><p>{{ post.date | date_to_long_string }}</p></div>
 <!-- <div style="text-align: center;"><p>______________</p></div> -->
 <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
 {% endunless%}
