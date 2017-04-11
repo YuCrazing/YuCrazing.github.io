@@ -12,12 +12,20 @@ index: true
 
 
 {% for post in site.posts %}
--   [{{ post.title }}]({{ post.url }})
+{% unless post.hidden %}
+-   ### [{{ post.title }}]({{ post.url }}) 
 
-	{{ post.excerpt }}
+
+
+{{ post.excerpt }}
+
+<div style="text-align: center;"><p>{{ post.date }}</p></div>
+<!-- <div style="text-align: center;"><p>______________</p></div> -->
+<!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+{% endunless%}
 {% endfor %}
 
-<!-- [Midnight 介绍](intro) -->
+<!-- [Midnight 介绍](intro)
 
 
 <!-- # [](#header-1)Links
