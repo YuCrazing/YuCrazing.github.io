@@ -53,15 +53,15 @@ if(word.size() > 2)
 
 ### Hash with vector
 
-这是来自 LightOJ 用户 [MIA MUHAMMAD IMRAN ][4] 的方法。该方法先将单词的中间字符串（不含首尾字母）排序，然后选用一个特别大的`MOD`对每个单词进行 hash，hash 结果保存在 vector 中。插入结束后，将 vector 排序，查找每个单词出现的次数只需要查询该单词的 hash 值在 vector 中出现了多少次即可。这个方法在理论上是不严谨的，但是在`MOD`特别大的情况下，发生 hash 冲突的概率是十分微小的，在随机数据下很容易通过。
+这是来自 LightOJ 用户 [MIA MUHAMMAD IMRAN][4]  的方法。该方法先将单词的中间字符串（不含首尾字母）排序，然后选用一个特别大的`MOD`对每个单词进行 hash，hash 结果保存在 vector 中。插入结束后，将 vector 排序，查找每个单词出现的次数只需要查询该单词的 hash 值在 vector 中出现了多少次即可。这个方法在理论上是不严谨的，但是在`MOD`特别大的情况下，发生 hash 冲突的概率是十分微小的，在随机数据下很容易通过。
 
 [代码][5]
 
 ### Hash with unordered_map
 
-这里的方法和上一个方法基本一致，但是保存 hash 值的容器不同。想要保存 hash 值，第一个当然想到 `unordered_map`。`unordered_map`是一个非常好用的容器，然而在 C++11 才加入到标准库中，而且 LightOJ 并不支持 C++11。这是一件令人非常伤感的事。
+这里的方法和上一个方法基本一致，但是保存 hash 值的容器不同。提到保存 hash 值，可能很多人首先会想到 `unordered_map`。`unordered_map`是一个非常好用的容器，然而在 C++11 才加入到标准库中，而且 LightOJ 并不支持 C++11。这是一件令人非常伤感的事。
 
-但是，C++98 有一个叫做`tr1`的扩展，这个扩展中，就实现了我们所需要的 `unordered_map` 。想使用`unordered_map`，在文件中增加下面的代码即可。
+但是，C++98 有一个叫做`tr1`的扩展，其中就实现了我们所需要的 `unordered_map` 。想使用`unordered_map`，在文件中增加下面的代码即可。
 ``` cpp
 #include<bits/stdc++.h>
 #include<tr1/unordered_map>

@@ -14,6 +14,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: "YuCrazing's Blog"
+author: YuCrazing
 email: yuchang@mail.bnu.edu.cn
 description: > # this means to ignore newlines until "baseurl:"
   足迹。
@@ -23,8 +24,6 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 # OJ logos
 LightOJlogo: "http://lightoj.com/images/main.png"
 
-collections: 
-- posts
 
 # Build settings
 markdown: kramdown

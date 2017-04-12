@@ -4,6 +4,7 @@
 # See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 
 index: true
+permalink: "/"
 ---
 
 # [](#header-1)Posts
