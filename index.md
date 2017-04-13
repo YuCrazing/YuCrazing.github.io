@@ -4,10 +4,10 @@
 # See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 
 index: true
-permalink: "/"
----
 
-# [](#header-1)Posts
+---
+<!-- # [](#header-1)Posts -->
+# Posts
 
 {% for post in site.posts %}
 {% unless post.hidden %}
