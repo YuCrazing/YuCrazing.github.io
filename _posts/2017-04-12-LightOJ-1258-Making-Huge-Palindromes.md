@@ -27,7 +27,7 @@ public void search(String original, String find, int next[]) {
     }  
 }  
 ```
-让我们来关注一下代码中的变量`j`。当字符比较进行到文本串的`original[i]`位置时，对`j`进行计算，得到的`j`表示的是文本串 original 中`以original[i]为结尾的后缀`与单词串 find 的`前缀`的最大匹配长度。如下图所示。
+让我们来关注一下代码中的变量`j`。当字符比较进行到文本串 original 的`original[i]`位置时，对`j`进行计算，得到的`j`表示的是文本串 original 中`以original[i]为结尾的后缀`与单词串 find 的`前缀`的最大匹配长度。如下图所示。
 ![][3]
 
 因此，我们可以得到一个结论：当循环运行结束时，最终得到的`j`表示的是`文本串 original 的后缀`与`单词串 find 的前缀`所能匹配的最大长度。如下图所示。
