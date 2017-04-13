@@ -4,7 +4,7 @@ image: "http://lightoj.com/images/main.png"
 ---
 
 ## 题意描述
->在一个字符串的后面最少增加多少个字母，才可以使之成为一个回文串？
+>在一个字符串的后面最少增加多少个字母，才能使之成为一个回文串？
 
 ## 题目分析
 可以想到，我们需要在字符串中找到`包含最后一个字母`的`最长`的回文子串。记这个回文子串的长度为 $$m$$，原字符串的长度为 $$n$$，则在原字符串后面增加 $$n-m$$ 个字母就可以将原字符串变为回文串。$$n-m$$ 就是我们想要的答案。
@@ -17,20 +17,20 @@ image: "http://lightoj.com/images/main.png"
 
 在讨论如何使用 KMP 算法解决这道题目之前，我们先来看一看 KMP 算法的匹配过程：
 ``` java
-public void search(String original, String find, int next[]) {  
+public void search(String text, String word, int next[]) {  
     int j = 0;  
-    for (int i = 0; i < original.length(); i++) {  
-        while (j > 0 && original.charAt(i) != find.charAt(j))  
+    for (int i = 0; i < text.length(); i++) {  
+        while (j > 0 && text.charAt(i) != word.charAt(j))  
             j = next[j];  
-        if (original.charAt(i) == find.charAt(j))  
+        if (text.charAt(i) == word.charAt(j))  
             j++;  
     }  
 }  
 ```
-让我们来关注一下代码中的变量`j`。当字符比较进行到文本串 original 的`original[i]`位置时，对`j`进行计算，得到的`j`表示的是文本串 original 中`以original[i]为结尾的后缀`与单词串 find 的`前缀`的最大匹配长度。如下图所示。
+让我们来关注一下代码中的变量`j`。当字符比较进行到文本串 text 的`text[i]`位置时，对`j`进行计算，得到的`j`表示的是文本串 text 中`以text[i]为结尾的后缀`与单词串 word 的`前缀`的最大匹配长度。如下图所示。
 ![][3]
 
-因此，我们可以得到一个结论：当循环运行结束时，最终得到的`j`表示的是`文本串 original 的后缀`与`单词串 find 的前缀`所能匹配的最大长度。如下图所示。
+因此，我们可以得到一个结论：当循环运行结束时，最终得到的`j`表示的是`文本串 text 的后缀`与`单词串 word 的前缀`所能匹配的最大长度。如下图所示。
 ![][4]
 
 

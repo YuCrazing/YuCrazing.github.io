@@ -61,11 +61,10 @@ if(word.size() > 2)
 
 这里的方法和上一个方法基本一致，但是保存 hash 值的容器不同。提到保存 hash 值，可能很多人首先会想到 `unordered_map`。`unordered_map`是一个非常好用的容器，然而在 C++11 才加入到标准库中，而且 LightOJ 并不支持 C++11。这是一件令人非常伤感的事。
 
-但是，C++98 有一个叫做`tr1`的扩展，其中就实现了我们所需要的 `unordered_map` 。想使用`unordered_map`，在文件中增加下面的代码即可。
+但是，C++98 有一个叫做`tr1 (C++ Technical Report 1)`的扩展。它并不是标准库，但大多数编译器都自带这个库。其中就实现了我们所需要的 `unordered_map` 。想使用`unordered_map`，在文件中增加下面的代码即可。
 ``` cpp
-#include<bits/stdc++.h>
 #include<tr1/unordered_map>
-using namespace tr1;
+using namespace std::tr1;
 unordered_map<XX, XX> mp;
 ```
 使用`unordered_map`我们可以方便地用 hash 方法通过这道题目。
