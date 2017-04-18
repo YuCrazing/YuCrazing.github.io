@@ -38,7 +38,9 @@
         </nav>
       </div> -->
 
+    {% if page.ispost %}
     {% include category.html %}
+    {% endif %}
 
     <div class="wrapper">
 
@@ -73,6 +75,7 @@
 
 
         {% if page.ispost %}
+
         <p style="text-align: right;">{{ page.date | date_to_long_string }}</p>
         {% endif %}
       </section>
@@ -81,9 +84,7 @@
 
 
 
-    {% if page.index %}
-    {% include clustrmaps.html %}
-    {% endif %}
+    {% include clustrmaps.html %} 
 
     {% if page.comments %}
     {% include disqus.html %}

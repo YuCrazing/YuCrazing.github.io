@@ -1,24 +1,90 @@
 <style type="text/css">
-	.category {
-		float: left;
-		position: fixed;
-
-		border-style: solid;
-		border-radius: 5px;
-		border-width: medium;
-		border-color: #e8e8e8;
+	:root{
+		--main-grey:rgba(37, 37, 37, 1.0);
+		--main-grey-tran:rgba(37, 37, 37, 0.7);
+		--main-dark:rgba(12, 12, 12, 1.0);
+		--main-dark-tran:rgba(12, 12, 12, 0.7);
+		--main-white:rgba(232, 232, 232, 1.0);
+		--main-white-tran:rgba(232, 232, 232, 0.7);
+		--main-red:rgba(200, 100, 100, 1.0);
+		--main-red-tran:rgba(200, 100, 100, 0.1);
 	}
+
+	.category {
+		transition: 1s;
+		z-index: 10;
+		/*float: right;*/
+		position: fixed;
+		margin-top: 10%;
+		margin-left: -19.5%;
+		/*padding: 1%;*/
+		width:20%;
+
+		background-color: var(--main-grey-tran);
+		
+		/*border-right-style: solid;*/
+		border-width: thick;
+		border-color: var(--main-dark-tran);
+	}
+
+
+	.category:hover{
+		transition-duration: 1s;
+		margin-left: 0%;
+		background-color: var(--main-dark);
+		border-right-color: black;
+	}
+
+
+	.category h2{
+		transition: 1s;
+		text-align: center;
+		background-color: var(--main-red-tran);
+	}
+
+	.category:hover h2{
+		transition: 1s;
+		background-color: var(--main-red);
+	}
+
+	.category h4{
+		transition: 1s;
+		border-left-style: solid;
+		border-width: thick;
+		border-color: var(--main-red-tran);
+
+		
+		background: -webkit-linear-gradient(left, var(--main-dark-tran) , var(--main-grey-tran)); /* For Safari 5.1 to 6.0 */
+  		background: -o-linear-gradient(right, var(--main-dark-tran), var(--main-grey-tran));  /*For Opera 11.1 to 12.0 */
+  		background: -moz-linear-gradient(right, var(--main-dark-tran), var(--main-grey-tran)); /* For Firefox 3.6 to 15 */
+  		background: linear-gradient(to right, var(--main-dark-tran) , var(--main-grey-tran)); /* Standard syntax */
+
+	}
+
+	.category:hover h4{
+		transition: 1s;
+		border-color: var(--main-red);
+		background: black;
+	}
+
 </style>
-<div class="category">
-{% for category in site.categories %}
-<h4>{{ category | first }} ({{ category | last | size }})</h4>
-<ul class="arc-list">
-    {% for post in category.last %}
-        <li><a href="    {{ post.url }}">{{ post.title }}</a></li>
-        <!-- date格式可以借鉴 -->
-        <!-- <li>{{ post.date | date:"%d/%m/%Y"}} <a href="    {{ post.url }}">{{ post.title }}</a></li> -->
-    {% endfor %}
-</ul>
-{% endfor %}
-</ul>
+
+
+
+<div>
+	<div class="category">
+	<h2>Categories</h2>
+	{% for category in site.categories %}
+	<h4>{{ category | first }} </h4>
+	<ul class="arc-list">
+	    {% for post in category.last %}
+	        {% unless post.hidden %}
+	        <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+	        {% endunless %}
+	        <!-- date格式可以借鉴 -->
+	        <!-- <li>{{ post.date | date:"%d/%m/%Y"}} <a href="    {{ post.url }}">{{ post.title }}</a></li> -->
+	    {% endfor %}
+	</ul>
+	{% endfor %}
+	</div>
 </div>
