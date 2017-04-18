@@ -1,0 +1,10 @@
+    <div id="pageviews" style="text-align: center;"><a href="">pageviews</a></div>
+    <div id="map" hidden="hidden">
+        <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=e8e8e8&t=tt&d=2arKiL3UWNqHRlvGOIB2peBth9SABUeFl7tFUqsD0Qk&co=252525&ct=e8e8e8&w=300&cmo=0e4d0d&cmn=990000'></script>
+    </div>
+    <script type="text/javascript">
+      $("#pageviews").click( function(){
+        event.preventDefault();
+        $("#map").toggle();
+      });
+    </script>
