@@ -26,6 +26,7 @@ LightOJlogo: "http://lightoj.com/images/main.png"
 
 
 # Build settings
+encoding: utf-8
 markdown: kramdown
 theme: jekyll-theme-midnight
 gems:
@@ -48,3 +49,4 @@ defaults:
       type: "posts"
     values:
       layout: "default"
+      comments: true
