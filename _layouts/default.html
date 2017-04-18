@@ -38,6 +38,7 @@
         </nav>
       </div> -->
 
+    {% include category.html %}
 
     <div class="wrapper">
 
@@ -67,8 +68,13 @@
         {% endif %}
 
 
+
         {{ content }}
 
+
+        {% if page.ispost %}
+        <p style="text-align: right;">{{ page.date | date_to_long_string }}</p>
+        {% endif %}
       </section>
 
     </div>
