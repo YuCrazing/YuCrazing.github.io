@@ -52,7 +52,12 @@
           <p>{{ page.description | default: site.github.project_tagline }}</p>
           <hr>
 
-          <span class="credits left"><em>Make Everyday Count !</em></span> 
+          <!-- <span class="credits left"><em>Make Everyday Count !</em></span> -->
+          {% if page.mail %}
+            <span class="credits left"><a href="/Todo"><em>Never Too Late.</em></a></span>
+          {% else %}
+            <span class="credits left"><em>Never Too Late.</em></span>
+          {% endif %}
 
           {% if page.index %}
             <span class="credits right"> <a href="/mail">联系方式</a></span> 
@@ -83,8 +88,8 @@
     </div>
 
 
+    {% include clustrmaps.html %}
 
-    {% include clustrmaps.html %} 
 
     {% if page.comments %}
     {% include disqus.html %}
