@@ -22,10 +22,10 @@ comments: true
 	* drafts to posts automatically
 	* generate posts' date automatically
 * ### css优化
+	* 自适应表格
 	* 自适应目录 &#10004;
 	* 评论流畅自适应 &#10004;
 	* 目录 css 重构
-	* 自适应表格
 	* 字体
 	* [Flexbox][2]
 	* [Grid View][3]
