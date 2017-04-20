@@ -2,7 +2,7 @@
 title:  "我的 GitHub Pages"
 image: "/assets/imgs/github-pages.png"
 category: Internet
-tags: [web, jekyll, Github Pages]
+tags: ["web", "jekyll", "Github Pages"]
 ---
 
 ## GitHub Pages 搭建 (on Windows)

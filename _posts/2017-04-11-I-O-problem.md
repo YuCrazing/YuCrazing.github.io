@@ -1,6 +1,5 @@
 ---
 title: "[LightOJ 1114] Easily Readable 输出问题"
-image: "http://lightoj.com/images/main.png"
 hidden: true
 ---
 ## I/O 效率

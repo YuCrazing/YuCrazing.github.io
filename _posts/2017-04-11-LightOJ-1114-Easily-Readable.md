@@ -1,7 +1,7 @@
 ---
 title: "[LightOJ 1114] Easily Readable"
-image: "http://lightoj.com/images/main.png"
 category: "Algorithm"
+tags: ["Trie", "Hash"]
 ---
 
 ## 题意描述
