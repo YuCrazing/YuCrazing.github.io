@@ -1,7 +1,7 @@
 ---
 title: "[LightOJ 1258] Making Huge Palindromes"
 image: "http://lightoj.com/images/main.png"
-category: "Knuth-Morris-Pratt algorithm"
+category: "Algorithm"
 ---
 
 ## 题意描述
