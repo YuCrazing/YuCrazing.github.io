@@ -1,0 +1,62 @@
+
+/* Theme Colors s*/
+:root{
+	--main-grey:rgba(37, 37, 37, 1.0);
+	--main-grey-tran:rgba(37, 37, 37, 0.7);
+	--main-dark:rgba(12, 12, 12, 1.0);
+	--main-dark-tran:rgba(12, 12, 12, 0.7);
+	--main-white:rgba(232, 232, 232, 1.0);
+	--main-white-tran:rgba(232, 232, 232, 0.7);
+	--main-red:rgba(200, 100, 100, 1.0);
+	--main-red-tran:rgba(200, 100, 100, 0.1);
+}
+
+/* Tables and Equations */
+.responsiveTable {
+	overflow-x: auto;
+}
+
+/* disqus */
+.responsiveDiv {
+      width: 650px;
+}
+
+/* toTop Button */
+#toTopBtn {
+	display: none;
+	position: fixed;
+	bottom: 20px; /* Place the button at the bottom of the page */
+	right: 10%;
+	z-index: 10; /* Make sure it does not overlap */
+
+	width: 50px;
+	height: 50px;
+	/*padding: 15px;*/
+
+	border-style: none;
+	border-radius: 10px;
+
+	cursor: pointer; /* Little hand */
+
+	color: var(--main-white); /* Text Color */
+	background-color: var(--main-red);
+}
+
+#toTopBtn:hover {
+	color: var(--main-red);
+	background-color: var(--main-white);
+}
+
+
+@media only screen and (max-width: 722px) {
+      .responsiveDiv {
+            width: 90%;
+      }
+}
+
+@media only screen and (max-width: 500px) {
+    #toTopBtn {
+		width: 40px;
+		height: 40px;
+	}
+}

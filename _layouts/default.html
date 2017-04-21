@@ -5,8 +5,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>{{ page.title }}</title>
+
     <link rel="shortcut icon" type="image/png" href="/assets/imgs/favicon.png">
+
+    <!-- ??? -->
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+
+    <!-- custom css -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/custom.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="{{ '/assets/js/respond.js' | relative_url }}"></script>
     <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
@@ -54,7 +61,7 @@
 
           <!-- <span class="credits left"><em>Make Everyday Count !</em></span> -->
           {% if page.mail %}
-            <span class="credits left"><a href="/Todo"><em>Never Too Late.</em></a></span>
+            <span class="credits left"><a href="/todo"><em>Never Too Late.</em></a></span>
           {% else %}
             <span class="credits left"><em>Never Too Late.</em></span>
           {% endif %}
@@ -80,13 +87,13 @@
 
 
         {% if page.ispost %}
-
-        <p style="text-align: right;">{{ page.date | date_to_long_string }}</p>
+          <p style="text-align: right;">{{ page.date | date_to_long_string }}</p>
         {% endif %}
       </section>
 
     </div>
 
+    {% include toTop.html %}
 
     {% include clustrmaps.html %}
 

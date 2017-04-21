@@ -13,6 +13,8 @@ comments: true
 		* [Prism][4]
 		* [Other interesting things][5]
 * ### 新增功能
+	* 返回顶部 &#10004;
+	* disqus 选择性加载
 	* 目录滑动
 	* 文章内部目录
 	* 分页
@@ -22,10 +24,12 @@ comments: true
 	* drafts to posts automatically &#10004;
 	* generate posts' date automatically &#10004;
 * ### css优化
-	* 自适应 SVG &#10004;
+	* 自适应公式 &#10004;
 	* 自适应表格 &#10004;
+	* 自适应 SVG &#10004;
 	* 自适应目录 &#10004;
-	* 评论流畅自适应 &#10004;
+	* 自适应评论 &#10004;
+	* scrollbar style
 	* 目录 css 重构
 	* 字体
 	* [Flexbox][2]

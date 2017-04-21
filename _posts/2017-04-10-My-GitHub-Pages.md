@@ -1,5 +1,5 @@
 ---
-title:  "我的 GitHub Pages"
+title:  "My GitHub Pages"
 image: "/assets/imgs/github-pages.png"
 category: Internet
 tags: ["web", "jekyll", "Github Pages"]

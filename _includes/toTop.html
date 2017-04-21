@@ -1,0 +1,22 @@
+<input type="button" id="toTopBtn" value="TOP">
+
+<script type="text/javascript"> 
+
+	var toTopBtn = $("#toTopBtn");
+
+	// interested
+	$(window).on("scroll", function(){
+		// console.log($("body").scrollTop());
+		if($("body").scrollTop() > 100){
+			toTopBtn.show();
+		}else{
+			toTopBtn.hide();
+		}
+	});
+
+	toTopBtn.on("click", function(){
+
+		$(window).scrollTop(0);
+	});
+
+</script>

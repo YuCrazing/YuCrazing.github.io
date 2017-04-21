@@ -26,7 +26,7 @@ tags: ["KMP", "AC自动机", "矩阵快速幂", "DFA"]
 
 
 
-<div style="overflow-x: auto;">
+<div class="responsiveTable">
 	<table>
 		<tr>
 			<th> </th><th>$$dp[i+1][0]$$</th><th>$$dp[i+1][1]$$</th><th>$$dp[i+1][2]$$</th><th>$$dp[i+1][3]$$</th><th>$$dp[i+1][4]$$</th><th>$$dp[i+1][5]$$</th>
@@ -55,15 +55,21 @@ tags: ["KMP", "AC自动机", "矩阵快速幂", "DFA"]
 ## 矩阵快速幂
 知道了动态规划的状态转移,理论上我们就可以解决这道题目了。但是我们还要考虑算法效率，不能直接遍历求解 $$dp[1 \sim n][1 \sim l-1]$$。这里，我们可以使用矩阵[快速幂][4]极大地加快计算速度。根据上述的状态转移规则，我们可以构造出动态规划的转移矩阵：
 
-$$\left[\begin{array}{c*4} a_{11} & a_{12} & \cdots & a_{1l} \\ a_{21} & a_{22} & \cdots & a_{2l} \\ \vdots & \vdots & \ddots & \vdots \\ a_{l1} & a_{l2} & \cdots & a_{ll} \end{array} \right] \cdot \left[ \begin{array}{c} dp[i][0] \\ dp[i][1] \\ \vdots \\ dp[i][l-1]  \end{array} \right] = \left[ \begin{array}{c} dp[i+1][0] \\ dp[i+1][1] \\ \vdots \\ dp[i+1][l-1]  \end{array} \right]$$
+<div class="responsiveTable">
+	$$\left[\begin{array}{c*4} a_{11} & a_{12} & \cdots & a_{1l} \\ a_{21} & a_{22} & \cdots & a_{2l} \\ \vdots & \vdots & \ddots & \vdots \\ a_{l1} & a_{l2} & \cdots & a_{ll} \end{array} \right] \cdot \left[ \begin{array}{c} dp[i][0] \\ dp[i][1] \\ \vdots \\ dp[i][l-1]  \end{array} \right] = \left[ \begin{array}{c} dp[i+1][0] \\ dp[i+1][1] \\ \vdots \\ dp[i+1][l-1]  \end{array} \right]$$
+</div>
 
 以字符集为 "abc"、$$ban$$ 为 "abcab"作为例子。转移矩阵（不包含非法状态）为：
 
-$$\left[ \begin{array}{c*5} 2 & 1 & 1 & 2 & 1 \\ 1 & 1 & 1 & 0 & 1 \\ 0 & 1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 & 0  \end{array} \right] \cdot \left[ \begin{array}{c} dp[i][0] \\ dp[i][1] \\ dp[i][2] \\ dp[i][3] \\ dp[i][4]  \end{array} \right] = \left[ \begin{array}{c} dp[i+1][0] \\ dp[i+1][1] \\ dp[i+1][2] \\ dp[i+1][3] \\ dp[i+1][4]  \end{array} \right]$$
+<div class="responsiveTable">
+	$$\left[ \begin{array}{c*5} 2 & 1 & 1 & 2 & 1 \\ 1 & 1 & 1 & 0 & 1 \\ 0 & 1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 & 0  \end{array} \right] \cdot \left[ \begin{array}{c} dp[i][0] \\ dp[i][1] \\ dp[i][2] \\ dp[i][3] \\ dp[i][4]  \end{array} \right] = \left[ \begin{array}{c} dp[i+1][0] \\ dp[i+1][1] \\ dp[i+1][2] \\ dp[i+1][3] \\ dp[i+1][4]  \end{array} \right]$$
+</div>
 
 转化为矩阵的幂形式为：
 
-$$\left[ \begin{array}{c*5} 2 & 1 & 1 & 2 & 1 \\ 1 & 1 & 1 & 0 & 1 \\ 0 & 1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 & 0  \end{array} \right]^n \cdot \left[ \begin{array}{c} 1 \\ 0 \\ 0 \\ 0 \\ 0  \end{array} \right] = \left[ \begin{array}{c} dp[n][0] \\ dp[n][1] \\ dp[n][2] \\ dp[n][3] \\ dp[n][4]  \end{array} \right]$$
+<div class="responsiveTable">
+	$$\left[ \begin{array}{c*5} 2 & 1 & 1 & 2 & 1 \\ 1 & 1 & 1 & 0 & 1 \\ 0 & 1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 & 0  \end{array} \right]^n \cdot \left[ \begin{array}{c} 1 \\ 0 \\ 0 \\ 0 \\ 0  \end{array} \right] = \left[ \begin{array}{c} dp[n][0] \\ dp[n][1] \\ dp[n][2] \\ dp[n][3] \\ dp[n][4]  \end{array} \right]$$
+</div>
 
 使用矩阵快速幂，便可以很快求解出需要的结果。
 
