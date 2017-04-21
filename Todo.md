@@ -11,7 +11,7 @@ comments: true
 		* Maze &#10004;
 		* Physics
 		* [Prism][4]
-		* [Other interesting things][5] 
+		* [Other interesting things][5]
 * ### 新增功能
 	* 目录滑动
 	* 文章内部目录
@@ -19,10 +19,11 @@ comments: true
 * ### 后端优化
 	* 全局变量
 	* 提高可扩展性
-	* drafts to posts automatically
-	* generate posts' date automatically
+	* drafts to posts automatically &#10004;
+	* generate posts' date automatically &#10004;
 * ### css优化
-	* 自适应表格
+	* 自适应 SVG &#10004;
+	* 自适应表格 &#10004;
 	* 自适应目录 &#10004;
 	* 评论流畅自适应 &#10004;
 	* 目录 css 重构
