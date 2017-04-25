@@ -61,13 +61,13 @@
 
           <!-- <span class="credits left"><em>Make Everyday Count !</em></span> -->
           {% if page.mail %}
-            <span class="credits left"><a href="/todo"><em>Never Too Late.</em></a></span>
+            <span class="credits left"><a href="{{ site.pageDir }}/todo"><em>Never Too Late.</em></a></span>
           {% else %}
             <span class="credits left"><em>Never Too Late.</em></span>
           {% endif %}
 
           {% if page.index %}
-            <span class="credits right"> <a href="/mail">联系方式</a></span> 
+            <span class="credits right"> <a href="{{ site.pageDir }}/mail">联系方式</a></span> 
           {% else %}
             <span class="credits right"> <a href="/">返回首页</a></span>
           {% endif %}
@@ -95,7 +95,7 @@
 
     {% include toTop.html %}
 
-    {% include clustrmaps.html %}
+    <!-- {% include clustrmaps.html %} -->
 
 
     {% if page.comments %}
