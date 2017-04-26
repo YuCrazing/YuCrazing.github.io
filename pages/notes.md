@@ -1,6 +1,9 @@
 ---
 title: "Notes"
 ---
+* 26 April 2017
+	* Music
+		* [Best of - 2016][7]
 * 25 April 2017
 	* Music
 		* [BEST OF MOTIVATIONAL][6]
@@ -23,3 +26,4 @@ title: "Notes"
 [4]: http://fontawesome.io/
 [5]: https://semantic-ui.com/
 [6]: http://www.killertracks.com/#!/themed-playlists.aspx?playlistId=2548
+[7]: http://www.killertracks.com/#!/themed-playlists.aspx?playlistId=2979
