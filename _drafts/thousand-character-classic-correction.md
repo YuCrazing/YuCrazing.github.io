@@ -1,5 +1,7 @@
 ---
-title: "千字文"
+title: "《千字文》争议考证"
+category: "Literature"
+tags: ["Thousand Character Classic"]
 ---
 ## 争议考证
 ###  “律吕调阳” &rarr; “律召调阳”

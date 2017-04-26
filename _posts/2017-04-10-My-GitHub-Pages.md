@@ -1,7 +1,6 @@
 ---
 title:  "My GitHub Pages"
 image: "/assets/imgs/github-pages.png"
-category: Internet
 tags: ["web", "jekyll", "Github Pages"]
 ---
 

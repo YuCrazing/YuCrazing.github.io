@@ -1,7 +1,6 @@
 ---
 title: "TO DO LIST"
 image: "/assets/imgs/To-do-list.jpg"
-comments: true
 ---
 
 <!-- # To-do List -->
