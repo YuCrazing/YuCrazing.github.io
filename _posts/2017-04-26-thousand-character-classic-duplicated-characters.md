@@ -4,7 +4,7 @@ category: "Literature"
 tags: ["Thousand Character Classic"]
 ---
 ## 因汉字简化而重复的字
-<table>
+<table class="responsiveTable">
 	<tr>
 		<th>重复字</th><th>所在短句</th><th>所在短句</th>
 	</tr>
