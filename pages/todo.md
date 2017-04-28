@@ -4,6 +4,7 @@ image: "/assets/imgs/To-do-list.jpg"
 ---
 
 <!-- # To-do List -->
+## 博客
 * ### 新增模块
 	* 千字文计划
 	* JavaScript 游戏
@@ -34,12 +35,29 @@ image: "/assets/imgs/To-do-list.jpg"
 	* [Flexbox][2]
 	* [Grid View][3]
 	* css 重构
-
 * ### 解决/更改
 	* [Liquid tags in YAML Front Matter variables][1]
 	* 目录文章计数
 
+## 算法
+* ### 字符串
+	* KMP 算法 &#10004;
+	* Trie &#10004;
+	* AC 自动机 &#10004;
+	* 后缀数组
+	* 后缀自动机
+* ### 组合数学
+	* 整数拆分
+	* 集合划分（Bell 数）
+	* Stirling 数
+	* Catalan 数
+* ### 动态规划
+	* 状态压缩 DP
+	* 插头 DP
+	* 连通性 DP
+	* 四边形不等式
 
+* ### 群论
 
 
 

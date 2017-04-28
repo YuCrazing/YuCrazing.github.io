@@ -1,5 +1,8 @@
 ---
 title: 联系方式
-image: "/assets/imgs/mail.png"
 mail: true
 ---
+
+<div style="display: none">
+	{% include BNU_name.svg %}
+</div>

@@ -1,6 +1,9 @@
 ---
 title: "Notes"
 ---
+* 28 April 2017
+	* Math
+		* [GAP][8]
 * 26 April 2017
 	* Music
 		* [Best of - 2016][7]
@@ -27,3 +30,4 @@ title: "Notes"
 [5]: https://semantic-ui.com/
 [6]: http://www.killertracks.com/#!/themed-playlists.aspx?playlistId=2548
 [7]: http://www.killertracks.com/#!/themed-playlists.aspx?playlistId=2979
+[8]: https://www.gap-system.org/Doc/Examples/rubik.html
