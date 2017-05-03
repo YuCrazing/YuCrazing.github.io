@@ -3,7 +3,9 @@ title: "Notes"
 ---
 ### 03 May 2017
 * HTML &　CSS
- * [7 CSS Units You Might Not Know About][9]
+	* [7 CSS Units You Might Not Know About][9]
+* Algorithm
+	* [Leonardo Boshell][10]
 
 ### 28 April 2017
 * Group Thoery
@@ -29,6 +31,7 @@ title: "Notes"
 		* [Font Awesome][4]
 		* [Semantic UI][5]
 
+[10]: http://lbv-pc.blogspot.com/
 [9]: https://webdesign.tutsplus.com/articles/7-css-units-you-might-not-know-about--cms-22573
 [8]: https://www.gap-system.org/Doc/Examples/rubik.html
 [7]: http://www.killertracks.com/#!/themed-playlists.aspx?playlistId=2979

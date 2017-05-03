@@ -46,6 +46,7 @@ image: "/assets/imgs/To-do-list.jpg"
 	* AC 自动机 &#10004;
 	* 后缀数组
 	* 后缀自动机
+	* parser
 * ### 组合数学
 	* 整数拆分 &#10004;
 	* 集合划分（Bell 数）&#10004;
@@ -57,6 +58,12 @@ image: "/assets/imgs/To-do-list.jpg"
 	* 插头 DP
 	* 连通性 DP
 	* 四边形不等式
+	* 双调 DP
+* ### 数据结构
+	* K-D tree
+* 图论
+	* 二分图匹配
+	* DAG 最小路径覆盖
 
 * ### 群论
 
