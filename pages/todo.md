@@ -14,8 +14,8 @@ image: "/assets/imgs/To-do-list.jpg"
 		* [Other interesting things][5]
 * ### 新增功能
 	* 返回顶部 &#10004;
+	* 目录滑动 &#10004;
 	* disqus 选择性加载
-	* 目录滑动
 	* 文章内部目录
 	* 分页
 * ### 后端优化
