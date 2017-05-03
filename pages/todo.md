@@ -59,6 +59,7 @@ image: "/assets/imgs/To-do-list.jpg"
 	* 连通性 DP
 	* 四边形不等式
 	* 双调 DP
+	* 数位 DP
 * ### 数据结构
 	* K-D tree
 * 图论
