@@ -47,10 +47,11 @@ image: "/assets/imgs/To-do-list.jpg"
 	* 后缀数组
 	* 后缀自动机
 * ### 组合数学
-	* 整数拆分
-	* 集合划分（Bell 数）
-	* Stirling 数
-	* Catalan 数
+	* 整数拆分 &#10004;
+	* 集合划分（Bell 数）&#10004;
+	* Stirling 数 
+	* Catalan 数 
+	* [Hook length formula][6]
 * ### 动态规划
 	* 状态压缩 DP
 	* 插头 DP
@@ -66,3 +67,4 @@ image: "/assets/imgs/To-do-list.jpg"
 [3]: https://www.w3schools.com/css/css_rwd_grid.asp
 [4]: https://tympanus.net/codrops/2015/03/31/prism-effect-slider-canvas/
 [5]: http://madebyevan.com/
+[6]: https://www.zhihu.com/question/37918846

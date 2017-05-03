@@ -53,7 +53,6 @@ defaults:
       type: "posts"
     values:
       layout: "default"
-      permalink: "/:title"
       category: "Others"
       ispost: true
       comments: true

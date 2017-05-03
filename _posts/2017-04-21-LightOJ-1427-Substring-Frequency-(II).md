@@ -1,7 +1,7 @@
 ---
 title: "[LightOJ 1427] Substring Frequency (II)"
 category: "Algorithm"
-tags: ["AC自动机"]
+tags: ["AC 自动机"]
 ---
 ## 题意描述
 >给定一个长度为 $$10^6$$ 的文本串 $$text$$，和 $$500$$ 个长度为 $$500$$ 的单词，询问每个单词在文本串中出现的次数。

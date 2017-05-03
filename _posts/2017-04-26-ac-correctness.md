@@ -1,6 +1,7 @@
 ---
 title: "AC自动机算法的正确性证明"
 category: "Algorithm"
+tags: ["AC 自动机"]
 ---
 ## AC自动机算法的正确性证明
 <span class="redText">本文适用于：已经了解 AC 自动机算法的实现过程，正试图证明但不能独立证明 AC 自动机算法正确性的学习者。</span>

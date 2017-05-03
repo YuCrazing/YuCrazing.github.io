@@ -1,7 +1,7 @@
 ---
 title: "[LightOJ 1268] Unlucky Strings"
 category: "Algorithm"
-tags: ["KMP", "AC自动机", "矩阵快速幂", "DFA"]
+tags: ["KMP", "AC 自动机", "矩阵快速幂", "DFA"]
 ---
 
 

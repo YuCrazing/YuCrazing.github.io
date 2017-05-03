@@ -5,7 +5,7 @@
 		z-index: 10;
 		/*float: right;*/
 		position: fixed;
-		margin-top: 10%;
+		/*margin-top: 10%;*/
 		/*margin-left: -19.5%;*/
 		/*padding: 1%;*/
 		width: 3%;
@@ -57,8 +57,10 @@
 	}
 
 	.category-content{
-		float: left;
+		/*float: left;*/
 		display: none;
+		overflow-y: auto;
+		height: 70vh;
 	}
 
 
@@ -93,8 +95,12 @@
 		}
 
 		.category-content{
-			width: auto;
 			float: none;
+		}
+	}
+	@media only screen and (max-height: 400px){
+		.category-content{
+			height: 50vh;
 		}
 	}
 
@@ -117,11 +123,11 @@
 		        {% unless post.hidden %}
 		        <li><a href="{{ post.url }}">{{ post.title }}</a></li>
 		        {% endunless %}
-		        <!-- date格式可以借鉴 -->
-		        <!-- <li>{{ post.date | date:"%d/%m/%Y"}} <a href="    {{ post.url }}">{{ post.title }}</a></li> -->
 		    {% endfor %}
 		</ul>
 		{% endfor %}
 	</div>
 
 </div>
+		        <!-- date格式可以借鉴 -->
+		        <!-- <li>{{ post.date | date:"%d/%m/%Y"}} <a href="    {{ post.url }}">{{ post.title }}</a></li> -->
