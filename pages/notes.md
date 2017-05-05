@@ -1,6 +1,16 @@
 ---
 title: "Notes"
 ---
+### 05 May 2017
+* Javascript
+	* [ASCII_ART_GRAYSCALE][14]
+	* [Evan Wallace][15]
+	* [P a u l   B o u r k e][13]
+### 04 May 2017
+* Algorithm
+	* [Introduction to Algorithms][11]
+	* [NOCOW][12]
+
 ### 03 May 2017
 * HTML &　CSS
 	* [7 CSS Units You Might Not Know About][9]
@@ -31,6 +41,11 @@ title: "Notes"
 		* [Font Awesome][4]
 		* [Semantic UI][5]
 
+[15]: http://madebyevan.com/
+[14]: https://people.sc.fsu.edu/~jburkardt/data/ascii_art_grayscale/ascii_art_grayscale.html 
+[13]: http://paulbourke.net/
+[12]: http://www.nocow.cn/index.php/%E9%A6%96%E9%A1%B5
+[11]: http://www.realtechsupport.org/UB/SR/algorithms/Cormen_Algorithms_3rd.pdf
 [10]: http://lbv-pc.blogspot.com/
 [9]: https://webdesign.tutsplus.com/articles/7-css-units-you-might-not-know-about--cms-22573
 [8]: https://www.gap-system.org/Doc/Examples/rubik.html

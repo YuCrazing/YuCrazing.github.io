@@ -10,8 +10,8 @@ image: "/assets/imgs/To-do-list.jpg"
 	* JavaScript 游戏
 		* Maze &#10004;
 		* Physics
+		* [ASCII art][7]
 		* [Prism][4]
-		* [Other interesting things][5]
 * ### 新增功能
 	* 返回顶部 &#10004;
 	* 目录滑动 &#10004;
@@ -42,6 +42,7 @@ image: "/assets/imgs/To-do-list.jpg"
 ## 算法
 * ### 字符串
 	* KMP 算法 &#10004;
+	* 扩展 KMP 算法
 	* Trie &#10004;
 	* AC 自动机 &#10004;
 	* 后缀数组
@@ -65,6 +66,10 @@ image: "/assets/imgs/To-do-list.jpg"
 * 图论
 	* 二分图匹配
 	* DAG 最小路径覆盖
+	* 网络流
+* 数学
+	* 牛顿法求根
+	* FFT
 
 * ### 群论
 
@@ -74,5 +79,5 @@ image: "/assets/imgs/To-do-list.jpg"
 [2]: http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html
 [3]: https://www.w3schools.com/css/css_rwd_grid.asp
 [4]: https://tympanus.net/codrops/2015/03/31/prism-effect-slider-canvas/
-[5]: http://madebyevan.com/
 [6]: https://www.zhihu.com/question/37918846
+[7]: https://en.wikipedia.org/wiki/ASCII_art
