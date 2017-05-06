@@ -52,7 +52,8 @@
 	background-color: var(--main-white);
 }
 
-#toTopBtn:focus {
+/* no blue border when button is focused */
+input:focus {
 	outline: 0;
 }
 
