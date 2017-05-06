@@ -1,6 +1,9 @@
 ---
 title: "Notes"
 ---
+### 06 May 2017
+* English
+	* [Gray or Grey?][16]
 ### 05 May 2017
 * Javascript
 	* [ASCII_ART_GRAYSCALE][14]
@@ -41,6 +44,7 @@ title: "Notes"
 		* [Font Awesome][4]
 		* [Semantic UI][5]
 
+[16]: http://blog.dictionary.com/gray-or-grey/
 [15]: http://madebyevan.com/
 [14]: https://people.sc.fsu.edu/~jburkardt/data/ascii_art_grayscale/ascii_art_grayscale.html 
 [13]: http://paulbourke.net/
