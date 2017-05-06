@@ -6,3 +6,4 @@ mail: true
 <div style="display: none">
 	{% include BNU_name.svg %}
 </div>
+{% include mail.svg %}
