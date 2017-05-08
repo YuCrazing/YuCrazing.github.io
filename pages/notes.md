@@ -4,11 +4,13 @@ title: "Notes"
 ### 06 May 2017
 * English
 	* [Gray or Grey?][16]
+
 ### 05 May 2017
 * Javascript
 	* [ASCII_ART_GRAYSCALE][14]
 	* [Evan Wallace][15]
 	* [P a u l   B o u r k e][13]
+	
 ### 04 May 2017
 * Algorithm
 	* [Introduction to Algorithms][11]
