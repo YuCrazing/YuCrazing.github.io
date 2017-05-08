@@ -22,7 +22,7 @@ tags: ["Geometry", "Math"]
 	* <span class="redText">线段 $$AB$$，$$CD$$ 之间距离为：</span> $$0$$。
 3. 若不满足 2，则：
 	* 结论：线段 $$AB$$，$$CD$$ 不相交。
-	* <span class="redText">线段 $$AB$$，$$CD$$ 之间距离为：</span> $$min(dis(A, CD), dis(B, CD), dis(C, AB), dis(D, AB))$$。 其中 $$dis(P, Seg)$$ 表示点 $$P$$ 到线段 $$Seg$$ 的距离。（证明略）
+	* <span class="redText">线段 $$AB$$，$$CD$$ 之间距离为：</span> $$min(dis(A, CD), \ \  dis(B, CD), dis(C, AB), dis(D, AB))$$。 其中 $$dis(P, Seg)$$ 表示点 $$P$$ 到线段 $$Seg$$ 的距离。（证明略）
 
 ### 三维空间
 

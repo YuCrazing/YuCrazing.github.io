@@ -68,6 +68,16 @@ canvas {
 	color: rgb(200, 100, 100);
 }
 
+/* To responsive MathJax */
+li{
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+
+
+
+
+
 @media only screen and (max-width: 722px) {
       .responsiveDiv {
             width: 90%;
