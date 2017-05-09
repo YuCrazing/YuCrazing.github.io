@@ -65,11 +65,11 @@ image: "/assets/imgs/To-do-list.jpg"
 	* 数位 DP
 * ### 数据结构
 	* K-D tree
-* 图论
+* ### 图论
 	* 二分图匹配
 	* DAG 最小路径覆盖
 	* 网络流
-* 数学
+* ### 数学
 	* 牛顿法求根
 	* FFT
 
