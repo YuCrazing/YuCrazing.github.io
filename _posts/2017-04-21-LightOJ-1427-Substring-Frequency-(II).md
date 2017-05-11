@@ -50,7 +50,7 @@ while(tmp) { // important but slowly.
 
 可以发现，这两处代码是非常耗时的。这个写法的 AC 自动机，即使只考虑`search`函数，时间复杂度也有 $$O(max \cdot n)$$。比如，当文本串为`"aaa...aaa"`，单词分别为`{"a", "aa", "aaa", ..., "aaa...aaa"}`的时候，构造出的 AC 自动机如下图所示。
 
-{% include ac.svg %}
+{% include SVG/ac.svg %}
 
 这样的结构会使得在`计算匹配次数`的过程中，每次`while`循环都会遍历树上的所有节点。匹配到文本串任意位置 $$text[i]$$ 时，都有执行这样一次`while`循环，因此时间复杂度为 $$O(max \cdot n)$$。
 

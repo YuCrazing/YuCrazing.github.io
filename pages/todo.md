@@ -64,7 +64,9 @@ image: "/assets/imgs/To-do-list.jpg"
 	* 双调 DP
 	* 数位 DP
 * ### 数据结构
+    * [RMQ][8] &#10004;
 	* K-D tree
+	* 二维线段树
 * ### 图论
 	* 二分图匹配
 	* DAG 最小路径覆盖
@@ -83,3 +85,4 @@ image: "/assets/imgs/To-do-list.jpg"
 [4]: https://tympanus.net/codrops/2015/03/31/prism-effect-slider-canvas/
 [6]: https://www.zhihu.com/question/37918846
 [7]: https://en.wikipedia.org/wiki/ASCII_art
+[8]: https://www.topcoder.com/community/data-science/data-science-tutorials/range-minimum-query-and-lowest-common-ancestor/#Lowest%20Common%20Ancestor%20(LCA)

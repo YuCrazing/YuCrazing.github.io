@@ -1,6 +1,9 @@
 ---
 title: "Notes"
 ---
+### 10 May 2017
+* WebGL
+    * [WebGL: Thing to avoid][17]
 ### 06 May 2017
 * English
 	* [Gray or Grey?][16]
@@ -46,6 +49,8 @@ title: "Notes"
 		* [Font Awesome][4]
 		* [Semantic UI][5]
 
+
+[17]: https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/WebGL_best_practices
 [16]: http://blog.dictionary.com/gray-or-grey/
 [15]: http://madebyevan.com/
 [14]: https://people.sc.fsu.edu/~jburkardt/data/ascii_art_grayscale/ascii_art_grayscale.html 
