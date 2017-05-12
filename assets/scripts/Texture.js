@@ -4,19 +4,15 @@
 var key = new Array();
 for(var i = 0; i < 1024; i ++) key[i] = false;
 
+
 var th = THREE;
 scene = new THREE.Scene();
 renderer = new THREE.WebGLRenderer({
     antialias: true,
     alpha: true
 });
-
 var camera = {};
 function init(windowWidth, windowHeight){
-
-    /* Texture */
-    // var img =
-
     renderer.autoClear = false;
     renderer.setPixelRatio(window.devicePixelRatio); //
     renderer.setClearColor(new THREE.Color(255, 255, 255), 0.0);
@@ -55,23 +51,39 @@ if(cosyaw > 0) yaw = Math.asin(sinyaw);
 else yaw = Math.PI - Math.asin(sinyaw);
 
 function StencilTesting() {
-    var cube = new Array();
-    var geometry = new th.CubeGeometry(1, 1, 1);
-    var material = new th.MeshStandardMaterial({color: "rgb(200, 100, 100)"});
-    var Edge = new th.MeshBasicMaterial({color: "rgb(255, 255, 255)"});
-    cube[0] = new th.Mesh(geometry, material);
-    cube[1] = new th.Mesh(geometry, material);
+    var stuff = new Array();
+    var geometry = new th.BoxGeometry(1, 1, 1);
+    // var loader = new THREE.CubeTextureLoader();
+    // loader.setPath("/assets/imgs/");
+    // var cubeTexture = loader.load([
+    //         'awesomeface.png',
+    //         'awesomeface.png',
+    //         'awesomeface.png',
+    //         'awesomeface.png',
+    //         'awesomeface.png',
+    //         'awesomeface.png'
+    //     ]);
+    var texture = new THREE.TextureLoader().load("/assets/imgs/awesomeface.png");
+    var material = new th.MeshPhongMaterial({map: texture, transparent: true, side: THREE.DoubleSide});
+    // var material = new th.MeshBasicMaterial({color: "rgb(200, 100, 100)", envMap: cubeTexture});
+    // var material = new th.MeshPhongMaterial({color: "rgb(200, 100, 100)", transparent: true, opacity: 0.9});
+    stuff[0] = new th.Mesh(geometry, material);
+    stuff[1] = new th.Mesh(geometry, material);
 
-    cube[1].position.set(-2, 0, 0);
 
-    var geo = new th.SphereGeometry(1, 50, 50, 0, Math.PI * 2, 0, Math.PI * 2);
-    var mat = new th.MeshPhongMaterial({color: "rgb(200, 100, 100)"});
-    var sphere = new th.Mesh(geo, mat);
-    sphere.position.set(0, 0, -6);
 
-    scene.add(cube[0]);
-    scene.add(cube[1]);
-    scene.add(sphere);
+    stuff[1].position.set(-2, 0, 0);
+
+    var geo = new th.SphereGeometry(1, 50, 50);
+    // var geo = new th.SphereGeometry(1, 50, 50, 0, Math.PI * 2, 0, Math.PI * 2);
+    // var mat = new th.MeshPhongMaterial({wireframe: true});
+    var mat = new th.MeshPhongMaterial({color: "rgb(200, 100, 100)", side: THREE.DoubleSide});
+    stuff[2] = new th.Mesh(geo, mat);
+    stuff[2].position.set(0, 0, -6);
+
+    for(var i in stuff){
+        scene.add(stuff[i]);
+    }
 
     var axisScene = new th.Scene();
     axisScene.add(new th.AxisHelper(3));
@@ -84,12 +96,6 @@ function StencilTesting() {
 
     var gl = renderer.context;
 
-    var scale = {
-        x: 1.05,
-        y: 1.05,
-        z: 1.05
-    };
-
     gl.enable(gl.STENCIL_TEST);
     gl.enable(gl.DEPTH_TEST);
     function render() {
@@ -97,48 +103,11 @@ function StencilTesting() {
         cameraRotate();
         cameraZoom();
 
-        cube[0].rotation.x += 0.01;
-        cube[0].rotation.y += 0.01;
-
-        gl.stencilFunc(gl.ALWAYS, 1, 0xFF);
-        gl.stencilOp(gl.KEEP, gl.KEEP, gl.REPLACE);
+        stuff[0].rotation.x += 0.01;
+        stuff[0].rotation.y += 0.01;
 
         renderer.render(scene, camera);
-
-        for(var i = 0; i < 2; i++){
-            cube[i].scale.x *= scale.x;
-            cube[i].scale.y *= scale.y;
-            cube[i].scale.z *= scale.z;
-        }
-
-        sphere.scale.x *= scale.x;
-        sphere.scale.y *= scale.y;
-        sphere.scale.z *= scale.z;
-
-        // cube.material.color.setRGB(0.4, 0.8, 0.4); // WTF !!!
-
-        gl.stencilOp(gl.KEEP, gl.KEEP, gl.KEEP);
-        gl.stencilFunc(gl.NOTEQUAL, 1, 0xFF);
-        gl.disable(gl.DEPTH_TEST);
         renderer.render(axisScene, camera);
-        cube[0].material = Edge;
-        cube[1].material = Edge;
-        sphere.material = Edge;
-        renderer.render(scene, camera);
-        cube[0].material = material;
-        cube[1].material = material;
-        sphere.material = material;
-        gl.enable(gl.DEPTH_TEST);
-
-        for(var i = 0; i < 2; i++){
-            cube[i].scale.x /= scale.x;
-            cube[i].scale.y /= scale.y;
-            cube[i].scale.z /= scale.z;
-        }
-
-        sphere.scale.x /= scale.x;
-        sphere.scale.y /= scale.y;
-        sphere.scale.z /= scale.z;
 
         requestAnimationFrame(render);
     }
@@ -344,6 +313,7 @@ function onTouchStart(e){
 function onTouchEnd() {
     touch = false;
 }
+
 
 window.addEventListener("mousemove", onMouseMove, false);
 window.addEventListener("mousedown", onMouseDown, false);

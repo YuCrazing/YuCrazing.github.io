@@ -1,9 +1,11 @@
 ---
 title: "Notes"
 ---
-### 10 May 2017
-* WebGL
-    * [WebGL: Thing to avoid][17]
+### 12 May 2017
+* WEbGL
+    * [OpenGL/VRML Materials (GFW outside)][17]
+
+
 ### 06 May 2017
 * English
 	* [Gray or Grey?][16]
@@ -50,7 +52,7 @@ title: "Notes"
 		* [Semantic UI][5]
 
 
-[17]: https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/WebGL_best_practices
+[17]: http://devernay.free.fr/cours/opengl/materials.html
 [16]: http://blog.dictionary.com/gray-or-grey/
 [15]: http://madebyevan.com/
 [14]: https://people.sc.fsu.edu/~jburkardt/data/ascii_art_grayscale/ascii_art_grayscale.html 

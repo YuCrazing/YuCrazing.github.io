@@ -13,6 +13,7 @@ renderer = new THREE.WebGLRenderer({
     antialias: true,
     alpha: true
 });
+
 var camera = {};
 function init(windowWidth, windowHeight){
     renderer.autoClear = false;
@@ -57,29 +58,26 @@ var intersects = raycaster.intersectObjects(scene.children);
 
 function StencilTesting() {
     var stuff = new Array();
-    var geometry = new th.CubeGeometry(1, 1, 1);
-    var material = new th.MeshPhongMaterial({color: "rgb(200, 100, 100)"});
-    // var material = new th.MeshPhongMaterial({color: "rgb(200, 100, 100)", transparent: true, opacity: 0.9});
+    var geometry = new th.BoxGeometry(1, 1, 1);
+    var material = new th.MeshPhongMaterial({color: "rgb(200, 100, 100)", side: THREE.DoubleSide});
     var Edge = new th.MeshBasicMaterial({color: "rgb(255, 255, 255)"});
     stuff[0] = new th.Mesh(geometry, material);
     stuff[1] = new th.Mesh(geometry, material);
 
     stuff[1].position.set(-2, 0, 0);
 
-    var geo = new th.SphereGeometry(1, 50, 50, 0, Math.PI * 2, 0, Math.PI * 2);
+    var geo = new th.SphereGeometry(0.5, 50, 50, 0);
     stuff[2] = new th.Mesh(geo, material);
-    stuff[2].position.set(0, 0, -6);
+    stuff[2].position.set(1, 0, -2);
 
     for(var i in stuff){
         scene.add(stuff[i]);
     }
-
     var axisScene = new th.Scene();
     axisScene.add(new th.AxisHelper(3));
 
     var DirLight = new THREE.DirectionalLight(0xffffff, 1);
     DirLight.position.set(10, 8, 4);
-
     scene.add(DirLight);
     scene.add(new THREE.DirectionalLightHelper(DirLight, 3));
 
