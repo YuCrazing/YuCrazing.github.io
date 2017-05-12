@@ -1,7 +1,7 @@
 ---
 layout: none
 title: "Stencil Testing"
-category: Game
+category: "WebGL"
 tags: ["WebGL", "Stencil Testing"]
 ---
 <script src='{{ site.JSDir }}/Stencil-Testing.js' type="text/javascript"></script>

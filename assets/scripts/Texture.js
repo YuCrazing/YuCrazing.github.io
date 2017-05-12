@@ -4,17 +4,19 @@
 var key = new Array();
 for(var i = 0; i < 1024; i ++) key[i] = false;
 
-var mouse = new THREE.Vector2(-1, -1);
-var raycaster = new THREE.Raycaster();
-
 var th = THREE;
 scene = new THREE.Scene();
 renderer = new THREE.WebGLRenderer({
     antialias: true,
     alpha: true
 });
+
 var camera = {};
 function init(windowWidth, windowHeight){
+
+    /* Texture */
+    // var img =
+
     renderer.autoClear = false;
     renderer.setPixelRatio(window.devicePixelRatio); //
     renderer.setClearColor(new THREE.Color(255, 255, 255), 0.0);
@@ -52,27 +54,24 @@ var sinyaw = pos.z / Math.cos(pitch);
 if(cosyaw > 0) yaw = Math.asin(sinyaw);
 else yaw = Math.PI - Math.asin(sinyaw);
 
-var isClicked = false;
-var intersects = raycaster.intersectObjects(scene.children);
-
 function StencilTesting() {
-    var stuff = new Array();
+    var cube = new Array();
     var geometry = new th.CubeGeometry(1, 1, 1);
-    var material = new th.MeshPhongMaterial({color: "rgb(200, 100, 100)"});
-    // var material = new th.MeshPhongMaterial({color: "rgb(200, 100, 100)", transparent: true, opacity: 0.9});
+    var material = new th.MeshStandardMaterial({color: "rgb(200, 100, 100)"});
     var Edge = new th.MeshBasicMaterial({color: "rgb(255, 255, 255)"});
-    stuff[0] = new th.Mesh(geometry, material);
-    stuff[1] = new th.Mesh(geometry, material);
+    cube[0] = new th.Mesh(geometry, material);
+    cube[1] = new th.Mesh(geometry, material);
 
-    stuff[1].position.set(-2, 0, 0);
+    cube[1].position.set(-2, 0, 0);
 
     var geo = new th.SphereGeometry(1, 50, 50, 0, Math.PI * 2, 0, Math.PI * 2);
-    stuff[2] = new th.Mesh(geo, material);
-    stuff[2].position.set(0, 0, -6);
+    var mat = new th.MeshPhongMaterial({color: "rgb(200, 100, 100)"});
+    var sphere = new th.Mesh(geo, mat);
+    sphere.position.set(0, 0, -6);
 
-    for(var i in stuff){
-        scene.add(stuff[i]);
-    }
+    scene.add(cube[0]);
+    scene.add(cube[1]);
+    scene.add(sphere);
 
     var axisScene = new th.Scene();
     axisScene.add(new th.AxisHelper(3));
@@ -86,9 +85,9 @@ function StencilTesting() {
     var gl = renderer.context;
 
     var scale = {
-        x: 1.1,
-        y: 1.1,
-        z: 1.1
+        x: 1.05,
+        y: 1.05,
+        z: 1.05
     };
 
     gl.enable(gl.STENCIL_TEST);
@@ -98,66 +97,48 @@ function StencilTesting() {
         cameraRotate();
         cameraZoom();
 
-        stuff[0].rotation.x += 0.01;
-        stuff[0].rotation.y += 0.01;
+        cube[0].rotation.x += 0.01;
+        cube[0].rotation.y += 0.01;
 
-        raycaster.setFromCamera(mouse, camera);
-        if(isClicked) {
-            intersects = raycaster.intersectObjects(scene.children);
-            isClicked = false;
+        gl.stencilFunc(gl.ALWAYS, 1, 0xFF);
+        gl.stencilOp(gl.KEEP, gl.KEEP, gl.REPLACE);
+
+        renderer.render(scene, camera);
+
+        for(var i = 0; i < 2; i++){
+            cube[i].scale.x *= scale.x;
+            cube[i].scale.y *= scale.y;
+            cube[i].scale.z *= scale.z;
         }
 
-        var selected;
-        if(intersects.length > 0) selected = true;
-        else selected = false;
+        sphere.scale.x *= scale.x;
+        sphere.scale.y *= scale.y;
+        sphere.scale.z *= scale.z;
 
-        if(selected === true){
-            for(var i in stuff){
-                if(intersects[0].object !== stuff[i]) scene.remove(stuff[i]);
-            }
+        // cube.material.color.setRGB(0.4, 0.8, 0.4); // WTF !!!
 
-            /* Mark object to be outlined. */
-            gl.stencilFunc(gl.ALWAYS, 1, 0xFF);
-            gl.stencilOp(gl.KEEP, gl.KEEP, gl.REPLACE);
-            renderer.render(scene, camera);
+        gl.stencilOp(gl.KEEP, gl.KEEP, gl.KEEP);
+        gl.stencilFunc(gl.NOTEQUAL, 1, 0xFF);
+        gl.disable(gl.DEPTH_TEST);
+        renderer.render(axisScene, camera);
+        cube[0].material = Edge;
+        cube[1].material = Edge;
+        sphere.material = Edge;
+        renderer.render(scene, camera);
+        cube[0].material = material;
+        cube[1].material = material;
+        sphere.material = material;
+        gl.enable(gl.DEPTH_TEST);
 
-            // cube.material.color.setRGB(0.4, 0.8, 0.4); // WTF !!!
-
-            /* Draw other objects normally. */
-            scene.remove(intersects[0].object);
-            for(var i in stuff){
-                if(intersects[0].object !== stuff[i]) scene.add(stuff[i]);
-            }
-            gl.stencilOp(gl.KEEP, gl.KEEP, gl.KEEP);
-            renderer.render(scene, camera);
-            renderer.render(axisScene, camera);
-
-            /* Disable depth and scale object to outline it. */
-            for(var i in stuff){
-                if(intersects[0].object !== stuff[i]) scene.remove(stuff[i]);
-            }
-            scene.add(intersects[0].object);
-            intersects[0].object.scale.x *= scale.x;
-            intersects[0].object.scale.y *= scale.y;
-            intersects[0].object.scale.z *= scale.z;
-            intersects[0].object.material = Edge;
-
-            gl.stencilFunc(gl.NOTEQUAL, 1, 0xFF);
-            gl.disable(gl.DEPTH_TEST);
-            renderer.render(scene, camera);
-            gl.enable(gl.DEPTH_TEST);
-
-            for(var i in stuff){
-                if(intersects[0].object !== stuff[i]) scene.add(stuff[i]);
-            }
-            intersects[0].object.material = material;
-            intersects[0].object.scale.x /= scale.x;
-            intersects[0].object.scale.y /= scale.y;
-            intersects[0].object.scale.z /= scale.z;
-        }else{
-            renderer.render(scene, camera);
-            renderer.render(axisScene, camera);
+        for(var i = 0; i < 2; i++){
+            cube[i].scale.x /= scale.x;
+            cube[i].scale.y /= scale.y;
+            cube[i].scale.z /= scale.z;
         }
+
+        sphere.scale.x /= scale.x;
+        sphere.scale.y /= scale.y;
+        sphere.scale.z /= scale.z;
 
         requestAnimationFrame(render);
     }
@@ -364,17 +345,10 @@ function onTouchEnd() {
     touch = false;
 }
 
-function onClick(e){
-    mouse.x = e.clientX / window.innerWidth * 2 - 1;
-    mouse.y = -(e.clientY / window.innerHeight * 2 - 1);
-    isClicked = true;
-}
-
 window.addEventListener("mousemove", onMouseMove, false);
 window.addEventListener("mousedown", onMouseDown, false);
 window.addEventListener("mouseup", onMouseUp, false);
 window.addEventListener("wheel", onWheel, false);
-window.addEventListener("click", onClick, false);
 
 window.addEventListener("touchmove", onTouchMove, passiveSupported
     ? { passive: true } : false);
