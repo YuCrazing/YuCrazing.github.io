@@ -80,6 +80,13 @@ image: "/assets/imgs/To-do-list.jpg"
 ## 研究
 * 热传导方程
 
+## WebGL
+* infinite plane
+* gif texture
+* transparent texture bug
+* smooth shadow edge
+* texture on sphere
+
 
 
 [1]: http://stackoverflow.com/questions/22392186/using-liquid-tags-in-yaml-front-matter-variables

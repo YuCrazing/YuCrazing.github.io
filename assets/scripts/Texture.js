@@ -1,17 +1,22 @@
 /**
- * Created by YuCrazing on 2017/5/9.
+ * Created by YuChang on 2017/5/13.
  */
+
+/* Todo: round radian to [0, 2*pi] */
+function update() {
+
+}
+
 var key = new Array();
 for(var i = 0; i < 1024; i ++) key[i] = false;
 
-
-var th = THREE;
 scene = new THREE.Scene();
 renderer = new THREE.WebGLRenderer({
     antialias: true,
     alpha: true
 });
 var camera = {};
+
 function init(windowWidth, windowHeight){
     renderer.autoClear = false;
     renderer.setPixelRatio(window.devicePixelRatio); //
@@ -39,65 +44,93 @@ function init(windowWidth, windowHeight){
 }
 init(window.innerWidth, window.innerHeight);
 
+/* Camera zoom */
+var zoom = camera.fov;
+
 /* For mobile touch */
-var pitch = 0.0, yaw = 0.0, len = 0.0;
-var pos = camera.position.clone();
-len = pos.length();
-pos.normalize();
-pitch = Math.asin(pos.y);
-var cosyaw = pos.x / Math.cos(pitch);
-var sinyaw = pos.z / Math.cos(pitch);
-if(cosyaw > 0) yaw = Math.asin(sinyaw);
-else yaw = Math.PI - Math.asin(sinyaw);
+var camPos = {};
+function initCamPos(pos){
+    camPos.pitch = camPos.yaw = 0.0;
+    camPos.len = pos.length();
+    pos.normalize();
+
+    camPos.pitch = Math.asin(pos.y);
+    camPos.cosyaw = pos.x / Math.cos(camPos.pitch);
+    camPos.sinyaw = pos.z / Math.cos(camPos.pitch);
+    if(camPos.cosyaw > 0) camPos.yaw = Math.asin(camPos.sinyaw);
+    else camPos.yaw = Math.PI - Math.asin(camPos.sinyaw);
+}
+initCamPos(camera.position.clone());
 
 function StencilTesting() {
-    var stuff = new Array();
-    var geometry = new th.BoxGeometry(1, 1, 1);
-    // var loader = new THREE.CubeTextureLoader();
-    // loader.setPath("/assets/imgs/");
-    // var cubeTexture = loader.load([
-    //         'awesomeface.png',
-    //         'awesomeface.png',
-    //         'awesomeface.png',
-    //         'awesomeface.png',
-    //         'awesomeface.png',
-    //         'awesomeface.png'
-    //     ]);
-    var texture = new THREE.TextureLoader().load("/assets/imgs/awesomeface.png");
-    var material = new th.MeshPhongMaterial({map: texture, transparent: true, side: THREE.DoubleSide});
-    // var material = new th.MeshBasicMaterial({color: "rgb(200, 100, 100)", envMap: cubeTexture});
-    // var material = new th.MeshPhongMaterial({color: "rgb(200, 100, 100)", transparent: true, opacity: 0.9});
-    stuff[0] = new th.Mesh(geometry, material);
-    stuff[1] = new th.Mesh(geometry, material);
+    var stuff = [];
+    var geometry = [
+        new THREE.PlaneGeometry(50, 50),
+        new THREE.BoxGeometry(1, 1, 1),
+        new THREE.SphereGeometry(0.5, 50, 50)
+    ];
+    var texture = [
+        new THREE.TextureLoader().load("/assets/imgs/horse.jpg"),
+        new THREE.TextureLoader().load("/assets/imgs/awesomeface.png"),
+        new THREE.TextureLoader().load("/assets/imgs/face.gif"),
+        new THREE.TextureLoader().load("/assets/imgs/couple.jpg")
+    ];
+    texture[0].wrapS = texture[0].wrapT = THREE.RepeatWrapping;
+    texture[0].repeat.set(5, 5);
+    var material = [
+        new THREE.MeshPhongMaterial({map: texture[0], side: THREE.DoubleSide, wireframe: false}),
+        new THREE.MeshPhongMaterial({map: texture[1], transparent: true, opacity: 1, side: THREE.DoubleSide}),
+        new THREE.MeshPhongMaterial({color: "rgb(200, 100, 100)", side: THREE.DoubleSide}),
+        new THREE.MeshPhongMaterial({map: texture[2], side: THREE.DoubleSide}),
+        new THREE.MeshPhongMaterial({map: texture[3], side: THREE.DoubleSide})
+    ];
+    // material[3].map.needsUpdate = true; ???
 
+    /* Add plane */
+    var plane = new THREE.Mesh(geometry[0], material[0]);
+    plane.position.y -= 0.5 + 0.0001;
+    plane.rotation.x = Math.PI / 2;
+    plane.receiveShadow = true;
+    scene.add(plane);
 
-
+    /* Add Boxes */
+    stuff[0] = new THREE.Mesh(geometry[1], material[1]);
+    stuff[1] = new THREE.Mesh(geometry[1], material[4]);
     stuff[1].position.set(-2, 0, 0);
 
-    var geo = new th.SphereGeometry(1, 50, 50);
-    // var geo = new th.SphereGeometry(1, 50, 50, 0, Math.PI * 2, 0, Math.PI * 2);
-    // var mat = new th.MeshPhongMaterial({wireframe: true});
-    var mat = new th.MeshPhongMaterial({color: "rgb(200, 100, 100)", side: THREE.DoubleSide});
-    stuff[2] = new th.Mesh(geo, mat);
-    stuff[2].position.set(0, 0, -6);
+    /* Add sphere */
+    stuff[2] = new THREE.Mesh(geometry[2], material[2]);
+    stuff[2].position.set(0, 0, -2);
+    for(var i in stuff) scene.add(stuff[i]);
 
-    for(var i in stuff){
-        scene.add(stuff[i]);
-    }
+    /* Add axisHelper */
+    scene.add(new THREE.AxisHelper(3));
 
-    var axisScene = new th.Scene();
-    axisScene.add(new th.AxisHelper(3));
-
+    /* Add Light */
+    scene.add(new THREE.AmbientLight(0x202020));
     var DirLight = new THREE.DirectionalLight(0xffffff, 1);
     DirLight.position.set(10, 8, 4);
-
     scene.add(DirLight);
     scene.add(new THREE.DirectionalLightHelper(DirLight, 3));
+    scene.add(new THREE.CameraHelper(DirLight.shadow.camera));
+
+    /* Shadow */
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFShadowMap; //
+    DirLight.castShadow = true;
+
+    DirLight.shadow.mapSize.width = 512;
+    DirLight.shadow.mapSize.height = 512;
+    DirLight.shadow.camera.near = 0.1;
+    DirLight.shadow.camera.far = 500;
+    for(var i in stuff) {
+        stuff[i].castShadow = true;
+        stuff[i].receiveShadow = true;
+    }
+    // plane.receiveShadow = true;
 
     var gl = renderer.context;
 
-    gl.enable(gl.STENCIL_TEST);
-    gl.enable(gl.DEPTH_TEST);
     function render() {
         cameraMove();
         cameraRotate();
@@ -105,70 +138,69 @@ function StencilTesting() {
 
         stuff[0].rotation.x += 0.01;
         stuff[0].rotation.y += 0.01;
+        if(stuff[0].x > Math.PI * 2) stuff[0].x -= Math.PI * 2;
+        if(stuff[0].y > Math.PI * 2) stuff[0].y -= Math.PI * 2;
 
         renderer.render(scene, camera);
-        renderer.render(axisScene, camera);
 
         requestAnimationFrame(render);
     }
     render();
 }
 
-function onWindowResize(){
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-}
-window.addEventListener("resize", onWindowResize, false);
-
+/* Camera controls */
 function cameraMove(){
-    var scale = 0.05;
+    var scale = 0.2;
     if(key[KEY['W']]) {
-        var FRONT = new THREE.Vector3();
-        FRONT.addScaledVector(camera.FRONT, scale);
-
-        camera.position.add(FRONT);
+        camera.position.addScaledVector(camera.FRONT, scale);
     }
     if(key[KEY['S']]){
-        var BACK = new THREE.Vector3();
-        BACK.addScaledVector(camera.FRONT, scale);
+        var BACK = camera.FRONT.clone();
         BACK.negate();
-
-        camera.position.add(BACK);
+        camera.position.addScaledVector(BACK, scale);
     }
     if(key[KEY['A']]){
         var LEFT = new THREE.Vector3();
         LEFT.crossVectors(camera.UP, camera.FRONT);
         LEFT.normalize();
-        LEFT.multiplyScalar(scale);
-
-        camera.position.add(LEFT);
+        camera.position.addScaledVector(LEFT, scale);
     }
     if(key[KEY['D']]){
         var RIGHT = new THREE.Vector3();
         RIGHT.crossVectors(camera.UP, camera.FRONT);
         RIGHT.normalize();
-        RIGHT.multiplyScalar(scale);
         RIGHT.negate();
 
-        camera.position.add(RIGHT);
+        camera.position.addScaledVector(RIGHT, scale);
     }
     if(key[KEY['SHIFT']]){
         var DOWN = camera.UP.clone();
-        DOWN.multiplyScalar(scale);
         DOWN.negate();
-
-        camera.position.add(DOWN);
+        camera.position.addScaledVector(DOWN, scale);
     }
     if(key[KEY['SPACE']]){
         var UP = camera.UP.clone();
-        UP.multiplyScalar(scale);
-
-        camera.position.add(UP);
+        camera.position.addScaledVector(UP, scale);
     }
-    // camera.lookAt(new THREE.Vector3(0, 0, 0));
 }
 
+function cameraRotate() {
+    if(isMobile === false){
+        var tar = new THREE.Vector3();
+        tar.addVectors(camera.position , camera.FRONT);
+        camera.lookAt(tar);
+    }else{
+        camera.position.set(camPos.len * Math.cos(camPos.pitch) * Math.cos(camPos.yaw), camPos.len * Math.sin(camPos.pitch), camPos.len * Math.cos(camPos.pitch) * Math.sin(camPos.yaw));
+        camera.lookAt(new THREE.Vector3(0, 0, 0));
+    }
+}
+
+function cameraZoom(){
+    camera.fov = zoom;
+    camera.updateProjectionMatrix(); // necessarily
+}
+
+/* Keyboard event */
 function onKeyDown(e) {
     key[e.keyCode] = true;
 }
@@ -177,26 +209,10 @@ function  onKeyUp(e) {
     key[e.keyCode] = false;
 }
 
-window.addEventListener("keydown", onKeyDown, false);
-window.addEventListener("keyup", onKeyUp, false);
-
-
-function cameraRotate() {
-    if(isMobile === false){
-        var tar = new THREE.Vector3(
-            camera.position.x + camera.FRONT.x,
-            camera.position.y + camera.FRONT.y,
-            camera.position.z + camera.FRONT.z
-        );
-        camera.lookAt(tar);
-    }else{
-        camera.position.set(len * Math.cos(pitch) * Math.cos(yaw), len * Math.sin(pitch), len * Math.cos(pitch) * Math.sin(yaw));
-        camera.lookAt(new THREE.Vector3(0, 0, 0));
-    }
-}
-
+/* Mouse drag event */
 var drag = false;
 var last = {}, delta = {};
+
 function onMouseMove(e) {
     if(drag){
         delta.x = e.clientX - last.x;
@@ -231,24 +247,10 @@ function onMouseUp(){
     drag = false;
 }
 
-var zoom = camera.fov;
-function cameraZoom(){
-    camera.fov = zoom;
-
-    camera.updateProjectionMatrix();
-}
-function onWheel(e) {
-    var speed = 0.01;
-    zoom += e.deltaY * speed;
-    if(zoom > 170.0){
-        zoom = 170.0;
-    }else if(zoom < 1.0){
-        zoom = 1.0;
-    }
-}
-
+/* Mobile touch event */
 var touch = false, dis = 0.0;
 var la = {}, del = {};
+
 function onTouchMove(e) {
     if(touch){
         if(e.touches.length === 1){
@@ -262,17 +264,17 @@ function onTouchMove(e) {
             var MAX_ANGLE = 89.0 / 180 * Math.PI;
 
             pos = camera.position.clone();
-            len = pos.length();
+            camPos.len = pos.length();
             pos.normalize();
-            pitch = Math.asin(pos.y);
-            cosyaw = pos.x / Math.cos(pitch);
-            sinyaw = pos.z / Math.cos(pitch);
-            if(cosyaw > 0) yaw = Math.asin(sinyaw);
-            else yaw = Math.PI - Math.asin(sinyaw);
-            pitch += speed * del.y;
-            yaw += speed * del.x;
-            if(pitch > MAX_ANGLE) pitch = MAX_ANGLE;
-            else if(pitch < -MAX_ANGLE) pitch = -MAX_ANGLE;
+            camPos.pitch = Math.asin(pos.y);
+            camPos.cosyaw = pos.x / Math.cos(camPos.pitch);
+            camPos.sinyaw = pos.z / Math.cos(camPos.pitch);
+            if(camPos.cosyaw > 0) camPos.yaw = Math.asin(camPos.sinyaw);
+            else camPos.yaw = Math.PI - Math.asin(camPos.sinyaw);
+            camPos.pitch += speed * del.y;
+            camPos.yaw += speed * del.x;
+            if(camPos.pitch > MAX_ANGLE) camPos.pitch = MAX_ANGLE;
+            else if(camPos.pitch < -MAX_ANGLE) camPos.pitch = -MAX_ANGLE;
         }
         else if(e.touches.length > 1){
             var x0 = e.touches[0].clientX;
@@ -314,11 +316,30 @@ function onTouchEnd() {
     touch = false;
 }
 
+/* Mouse wheel event */
+function onWheel(e) {
+    var speed = 0.01;
+    zoom += e.deltaY * speed;
+    if(zoom > 170.0){
+        zoom = 170.0;
+    }else if(zoom < 1.0){
+        zoom = 1.0;
+    }
+}
+
+/* Window resize event */
+function onWindowResize(){
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+window.addEventListener("keydown", onKeyDown, false);
+window.addEventListener("keyup", onKeyUp, false);
 
 window.addEventListener("mousemove", onMouseMove, false);
 window.addEventListener("mousedown", onMouseDown, false);
 window.addEventListener("mouseup", onMouseUp, false);
-window.addEventListener("wheel", onWheel, false);
 
 window.addEventListener("touchmove", onTouchMove, passiveSupported
     ? { passive: true } : false);
@@ -326,5 +347,9 @@ window.addEventListener("touchstart", onTouchStart, passiveSupported
     ? { passive: true } : false);
 window.addEventListener("touchend", onTouchEnd, passiveSupported
     ? { passive: true } : false);
+
+window.addEventListener("wheel", onWheel, false);
+
+window.addEventListener("resize", onWindowResize, false);
 
 StencilTesting();
