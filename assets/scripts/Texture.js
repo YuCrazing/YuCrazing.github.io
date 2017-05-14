@@ -65,7 +65,7 @@ initCamPos(camera.position.clone());
 function StencilTesting() {
     var stuff = [];
     var geometry = [
-        new THREE.PlaneGeometry(500, 500),
+        new THREE.PlaneGeometry(200, 200),
         new THREE.BoxGeometry(5, 5, 5),
         new THREE.SphereGeometry(5, 50, 50)
     ];
@@ -81,7 +81,7 @@ function StencilTesting() {
     ];
 
     texture[0].wrapS = texture[0].wrapT = THREE.RepeatWrapping;
-    texture[0].repeat.set(10, 10);
+    texture[0].repeat.set(4, 4);
 
     // texture[5].needsUpdate = true; // ???
     texture[5].magFilter = THREE.NearestFilter; // Sharp edge.
@@ -117,8 +117,8 @@ function StencilTesting() {
     stuff[2].position.set(0, 5, -10);
     stuff[3] = new THREE.Mesh(geometry[2], material[6]);
     stuff[3].position.set(-12, 5, -10);
-    stuff[4] = new THREE.Mesh(geometry[2], material[5]);
-    stuff[4].scale.set(100, 100, 100);
+    // stuff[4] = new THREE.Mesh(geometry[2], material[5]);
+    // stuff[4].scale.set(100, 100, 100);
     for(var i in stuff) scene.add(stuff[i]);
 
     /* Add Light */
@@ -132,8 +132,8 @@ function StencilTesting() {
     renderer.shadowMap.type = THREE.PCFShadowMap; //
     DirLight.castShadow = true;
 
-    DirLight.shadow.mapSize.width = 2048; // shadow quality
-    DirLight.shadow.mapSize.height = 2048;
+    DirLight.shadow.mapSize.width = 512; // shadow quality
+    DirLight.shadow.mapSize.height = 512;
     DirLight.shadow.camera.near = 0.1;
     DirLight.shadow.camera.far = 50;
 
