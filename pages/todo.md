@@ -83,7 +83,7 @@ image: "/assets/imgs/To-do-list.jpg"
 ## WebGL
 * infinite plane
 * gif texture
-* transparent texture bug
+* transparent texture bug: set material alphaText proper value.
 * smooth shadow edge
 * texture on sphere
 

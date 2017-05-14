@@ -27,7 +27,7 @@ function init(windowWidth, windowHeight){
     camera = new THREE.PerspectiveCamera(50, windowWidth / windowHeight, 0.1, 1000);
 
     var target = new THREE.Vector3(0, 0, 0);
-    var position = new THREE.Vector3(1, 1, 5);
+    var position = new THREE.Vector3(-0.7, 35.7, 28.7);
 
     camera.position.set(position.x, position.y, position.z); // Can't use new THREE.Vector3().
     camera.lookAt(target);
@@ -65,69 +65,97 @@ initCamPos(camera.position.clone());
 function StencilTesting() {
     var stuff = [];
     var geometry = [
-        new THREE.PlaneGeometry(50, 50),
-        new THREE.BoxGeometry(1, 1, 1),
-        new THREE.SphereGeometry(0.5, 50, 50)
+        new THREE.PlaneGeometry(500, 500),
+        new THREE.BoxGeometry(5, 5, 5),
+        new THREE.SphereGeometry(5, 50, 50)
     ];
+
     var texture = [
         new THREE.TextureLoader().load("/assets/imgs/horse.jpg"),
         new THREE.TextureLoader().load("/assets/imgs/awesomeface.png"),
         new THREE.TextureLoader().load("/assets/imgs/face.gif"),
-        new THREE.TextureLoader().load("/assets/imgs/couple.jpg")
+        new THREE.TextureLoader().load("/assets/imgs/couple.jpg"),
+        new THREE.TextureLoader().load("/assets/imgs/earth_big.jpg"),
+        new THREE.TextureLoader().load("/assets/imgs/alpha.png"),
+        new THREE.TextureLoader().load("/assets/imgs/normal.jpg")
     ];
+
     texture[0].wrapS = texture[0].wrapT = THREE.RepeatWrapping;
-    texture[0].repeat.set(5, 5);
+    texture[0].repeat.set(10, 10);
+
+    // texture[5].needsUpdate = true; // ???
+    texture[5].magFilter = THREE.NearestFilter; // Sharp edge.
+    texture[5].wrapT = THREE.RepeatWrapping;
+    texture[5].repeat.y = 1;
     var material = [
         new THREE.MeshPhongMaterial({map: texture[0], side: THREE.DoubleSide, wireframe: false}),
-        new THREE.MeshPhongMaterial({map: texture[1], transparent: true, opacity: 1, side: THREE.DoubleSide}),
+        new THREE.MeshPhongMaterial({map: texture[1], transparent: true, alphaTest: 0.5, side: THREE.DoubleSide}),
         new THREE.MeshPhongMaterial({color: "rgb(200, 100, 100)", side: THREE.DoubleSide}),
         new THREE.MeshPhongMaterial({map: texture[2], side: THREE.DoubleSide}),
-        new THREE.MeshPhongMaterial({map: texture[3], side: THREE.DoubleSide})
+        new THREE.MeshPhongMaterial({map: texture[3], side: THREE.DoubleSide}),
+        new THREE.MeshPhongMaterial({map: texture[4], side: THREE.DoubleSide}),
+        new THREE.MeshPhongMaterial({map: texture[4], alphaMap: texture[5], alphaTest: 0.5, side: THREE.DoubleSide}),
+        new THREE.MeshPhongMaterial({map: texture[3], bumpMap: texture[6], side: THREE.DoubleSide})
     ];
     // material[3].map.needsUpdate = true; ???
+    // material[6].needsUpdate = true;
 
     /* Add plane */
     var plane = new THREE.Mesh(geometry[0], material[0]);
     plane.position.y -= 0.5 + 0.0001;
     plane.rotation.x = Math.PI / 2;
-    plane.receiveShadow = true;
     scene.add(plane);
 
     /* Add Boxes */
     stuff[0] = new THREE.Mesh(geometry[1], material[1]);
     stuff[1] = new THREE.Mesh(geometry[1], material[4]);
-    stuff[1].position.set(-2, 0, 0);
+    stuff[0].position.set(0, 3, 0);
+    stuff[1].position.set(-8, 2.5, 0);
 
-    /* Add sphere */
-    stuff[2] = new THREE.Mesh(geometry[2], material[2]);
-    stuff[2].position.set(0, 0, -2);
+    /* Add spheres */
+    stuff[2] = new THREE.Mesh(geometry[2], material[5]);
+    stuff[2].position.set(0, 5, -10);
+    stuff[3] = new THREE.Mesh(geometry[2], material[6]);
+    stuff[3].position.set(-12, 5, -10);
+    stuff[4] = new THREE.Mesh(geometry[2], material[5]);
+    stuff[4].scale.set(100, 100, 100);
     for(var i in stuff) scene.add(stuff[i]);
 
-    /* Add axisHelper */
-    scene.add(new THREE.AxisHelper(3));
-
     /* Add Light */
-    scene.add(new THREE.AmbientLight(0x202020));
+    scene.add(new THREE.AmbientLight(0x303030));
     var DirLight = new THREE.DirectionalLight(0xffffff, 1);
     DirLight.position.set(10, 8, 4);
     scene.add(DirLight);
-    scene.add(new THREE.DirectionalLightHelper(DirLight, 3));
-    scene.add(new THREE.CameraHelper(DirLight.shadow.camera));
 
     /* Shadow */
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFShadowMap; //
     DirLight.castShadow = true;
 
-    DirLight.shadow.mapSize.width = 512;
-    DirLight.shadow.mapSize.height = 512;
+    DirLight.shadow.mapSize.width = 2048; // shadow quality
+    DirLight.shadow.mapSize.height = 2048;
     DirLight.shadow.camera.near = 0.1;
-    DirLight.shadow.camera.far = 500;
+    DirLight.shadow.camera.far = 50;
+
+    // bottom < top && left < right
+    var side = 20;
+    DirLight.shadow.camera.bottom = -side;
+    DirLight.shadow.camera.top = side;
+    DirLight.shadow.camera.left = -side;
+    DirLight.shadow.camera.right = side;
+
+    // DirLight.shadow.camera.updateProjectionMatrix();
+
+    /* Add Helpers */
+    // scene.add(new THREE.AxisHelper(30));
+    // scene.add(new THREE.DirectionalLightHelper(DirLight, 3));
+    // scene.add(new THREE.CameraHelper(DirLight.shadow.camera));
+
     for(var i in stuff) {
         stuff[i].castShadow = true;
         stuff[i].receiveShadow = true;
     }
-    // plane.receiveShadow = true;
+    plane.receiveShadow = true;
 
     var gl = renderer.context;
 
@@ -135,6 +163,9 @@ function StencilTesting() {
         cameraMove();
         cameraRotate();
         cameraZoom();
+
+        texture[5].offset.y += 0.01;
+        // console.log(texture[5].offset.y);
 
         stuff[0].rotation.x += 0.01;
         stuff[0].rotation.y += 0.01;
@@ -182,6 +213,16 @@ function cameraMove(){
         var UP = camera.UP.clone();
         camera.position.addScaledVector(UP, scale);
     }
+    // if(
+    //     key[KEY['W']]
+    //     || key[KEY['S']]
+    //     || key[KEY['A']]
+    //     || key[KEY['D']]
+    //     || key[KEY['SHIFT']]
+    //     || key[KEY['SPACE']]
+    // ) {
+    //     console.log("(" + camera.position.x + ", " + camera.position.y + ", " + camera.position.z + ")");
+    // }
 }
 
 function cameraRotate() {
