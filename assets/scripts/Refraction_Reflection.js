@@ -1,6 +1,11 @@
 /**
- * Created by YuChang on 2017/5/13.
+ * Created by YuChang on 2017/5/14.
  */
+
+/* Todo: round radian to [0, 2*pi] */
+function update() {
+    
+}
 
 var key = [];
 for(var i = 0; i < 1024; i ++) key[i] = false;
@@ -13,6 +18,9 @@ renderer = new THREE.WebGLRenderer({
 var camera = {};
 
 function init(windowWidth, windowHeight){
+
+    scene.fog = new THREE.Fog(0x000000, 10, 100);
+
     renderer.setPixelRatio(window.devicePixelRatio); //
     renderer.setClearColor(new THREE.Color(255, 255, 255), 0.0);
     renderer.setSize(windowWidth, windowHeight);
@@ -154,6 +162,7 @@ function StencilTesting() {
     var gl = renderer.context;
 
     function render() {
+
         cameraMove();
         cameraRotate();
         cameraZoom();

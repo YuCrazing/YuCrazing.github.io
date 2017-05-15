@@ -16,7 +16,7 @@ renderer = new THREE.WebGLRenderer({
 
 var camera = {};
 function init(windowWidth, windowHeight){
-    renderer.autoClear = false;
+    renderer.autoClear = false; // Important when use stencil ???
     renderer.setPixelRatio(window.devicePixelRatio); //
     renderer.setClearColor(new THREE.Color(255, 255, 255), 0.0);
     renderer.setSize(windowWidth, windowHeight);

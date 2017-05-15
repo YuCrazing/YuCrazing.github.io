@@ -76,6 +76,14 @@ li{
 	overflow-y: hidden;
 }
 
+/* Image centered ?????? */
+img {
+	display: block;
+	margin: auto;
+}
+
+
+
 
 
 

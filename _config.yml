@@ -22,7 +22,7 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "YuCrazing.github.com" # the base hostname & protocol for your site, e.g. http://example.com
 
 # path
-imgDir: "/assets/imgs"
+ImgDir: "/assets/imgs"
 JSDir: "/assets/scripts"
 pageDir: "/pages"
 
