@@ -3,14 +3,28 @@ title: "球与盒子"
 category: "Algorithm"
 tags: ["组合数学", "计数", "Stirling 数", "整数拆分", "Bell 数", "集合划分"]
 ---
+本文讨论的内容为：在不同的限制条件下，将$$n$$ 个球放到 $$m$$ 个盒子中（$$n \ge m$$），有多少种放法。
 
-## $$n$$ 个球放到 $$m$$ 个盒子中（$$n \ge m$$）
-
-$$p(n, m)$$ 表示正整数 $$n$$ 拆分成最大分部不超过 $$m$$ 的无序拆分方案数。
-
-$$B(n, m)$$ 表示正整数 $$n$$ 拆分成 $$m$$ 个正整数的无序拆分方案数。
-
-$$S(n, m)$$ 表示大小为 $$n$$ 的集合划分为 $$m$$ 个部分的方案数，即第二类 Stirling 数。
+文中出现的符号含义如下表所示。
+<div class="responsiveTable">
+	<table>
+		<tr>
+			<th>符号</th><th>含义</th>
+		</tr>
+		<tr>
+			<th>$$p(n, m)$$</th>
+			<td>正整数 n 拆分成最大分部不超过 m 的无序拆分方案数。</td>
+		</tr>
+		<tr>
+			<th>$$B(n, m)$$</th>
+			<td>正整数 n 拆分成 m 个正整数的无序拆分方案数。</td>
+		</tr>
+		<tr>
+			<th>$$S(n, m)$$</th>
+			<td>大小为 n 的集合划分为 m 个部分的方案数，即第二类 Stirling 数。</td>
+		</tr>
+	</table>
+</div>
 
 ### <span class="redText">不允许空</span>
 <div class="responsiveTable">
