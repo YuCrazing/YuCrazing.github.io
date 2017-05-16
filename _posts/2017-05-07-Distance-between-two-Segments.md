@@ -20,7 +20,7 @@ tags: ["Geometry", "Math"]
 2. 若 $$C$$，$$D$$位于直线 $$AB$$ 的异侧且 $$A$$，$$B$$ 位于直线 $$CD$$ 的异侧，则：
 	* 结论：线段 $$AB$$，$$CD$$ 相交。
 	* <span class="redText">线段 $$AB$$，$$CD$$ 之间距离为：</span> $$0$$。
-3. 若不满足 2，则：
+3. 若不满足上一条件，则：
 	* 结论：线段 $$AB$$，$$CD$$ 不相交。
 	* <span class="redText">线段 $$AB$$，$$CD$$ 之间距离为：</span> $$min(dis(A, CD), \ \  dis(B, CD), dis(C, AB), dis(D, AB))$$。 其中 $$dis(P, Seg)$$ 表示点 $$P$$ 到线段 $$Seg$$ 的距离。（证明略）
 
@@ -32,7 +32,7 @@ tags: ["Geometry", "Math"]
 4. 若 $$C$$，$$D$$ 位于平面 $$C_1$$ 的异侧 且 $$A$$，$$B$$ 位于平面 $$C_2$$ 的异侧，则：
 	* 结论：存在一条平行于 $$\vec{n}$$ 的直线可以同时经过线段 $$AB$$ 和 $$CD$$。
 	* <span class="redText">线段 $$AB$$，$$CD$$ 之间距离为：</span> $$\vec{AC}$$ （$$A$$ 可替换为线段 $$AB$$ 上任意一点，$$C$$ 可替换为线段 $$CD$$ 上任意一点）在法向量 $$\vec{n}$$ 上的投影。（证明略）
-5. 若不满足 4，则：
+5. 若不满足上一条件，则：
 	* 结论：不存在平行于 $$\vec{n}$$ 的直线可以同时经过线段 $$AB$$ 和 $$CD$$。
 	* <span class="redText">线段 $$AB$$，$$CD$$ 之间距离为：</span> $$min(dis(A, CD), dis(B, CD), dis(C, AB), dis(D, AB))$$。 其中 $$dis(P, Seg)$$ 表示点 $$P$$ 到线段 $$Seg$$ 的距离。（证明略）
 

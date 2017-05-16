@@ -4,6 +4,11 @@ category: "Literature"
 tags: ["Thousand Character Classic", "千字文"]
 ---
 ## 因汉字简化而重复的字
+<style>
+    td {
+        text-align: center;
+    }
+</style>
 <div class="responsiveTable">
 	<table>
 		<tr>

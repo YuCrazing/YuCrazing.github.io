@@ -3,7 +3,11 @@ title: "[LightOJ 1268] Unlucky Strings"
 category: "Algorithm"
 tags: ["KMP", "AC 自动机", "矩阵快速幂", "DFA"]
 ---
-
+<style>
+    td {
+        text-align: center;
+    }
+</style>
 
 ## 题意描述
 >给定一个字符集，和一个非法字符串 $$ban$$。要求只能使用字符集中的字符来生成长度为 $$n$$ 的字符串 $$S$$，且 $$S$$ 的子串中不能含有 $$ban$$ 。询问合法的 $$S$$ 的个数。

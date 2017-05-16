@@ -82,6 +82,12 @@ img {
 	margin: auto;
 }
 
+/* Table head centered */
+th {
+	text-align: center;
+}
+
+
 
 
 
