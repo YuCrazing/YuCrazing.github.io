@@ -1,6 +1,9 @@
 ---
 title: "Notes"
 ---
+### 16 May 2017
+* Algorithm
+    * [erf][19]
 ### 15 May 2017
 * Web
     * [SM.MS][18]
@@ -54,7 +57,7 @@ title: "Notes"
 		* [Font Awesome][4]
 		* [Semantic UI][5]
 
-
+[19]: http://www.cplusplus.com/reference/cmath/erf/
 [18]: https://sm.ms/
 [17]: http://devernay.free.fr/cours/opengl/materials.html
 [16]: http://blog.dictionary.com/gray-or-grey/
