@@ -1,6 +1,8 @@
 ---
 title: Question
 ---
+### BZOJ
+
 ### SPOJ
 * [LCS2 - Longest Common Substring II][1]
 
@@ -16,4 +18,4 @@ title: Question
 
 [1]: http://www.spoj.com/problems/LCS2/
 [2]: http://codeforces.com/contest/805/problem/E
-[3]: E. Prairie Partition
+[3]: http://codeforces.com/contest/807/problem/E

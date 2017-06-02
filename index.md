@@ -7,7 +7,7 @@ index: true
 
 ---
 <!-- # [](#header-1)Posts -->
-# Posts
+
 
 {% for post in site.posts %}
 {% unless post.hidden %}

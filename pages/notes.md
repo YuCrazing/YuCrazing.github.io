@@ -1,9 +1,17 @@
 ---
 title: "Notes"
 ---
+### 21 May 2017
+* ACM-ICPC
+    * [ICPC 2017 World Finals mirror Endagorion+Petr+tourist stream][21]
+
+* Algorithm
+    * [Lucas 定理][20]
+
 ### 16 May 2017
 * Algorithm
     * [erf][19]
+
 ### 15 May 2017
 * Web
     * [SM.MS][18]
@@ -57,6 +65,9 @@ title: "Notes"
 		* [Font Awesome][4]
 		* [Semantic UI][5]
 
+
+[21]: https://www.youtube.com/watch?v=BZo23gj9ksk
+[20]: https://zh.wikipedia.org/wiki/%E5%8D%A2%E5%8D%A1%E6%96%AF%E5%AE%9A%E7%90%86
 [19]: http://www.cplusplus.com/reference/cmath/erf/
 [18]: https://sm.ms/
 [17]: http://devernay.free.fr/cours/opengl/materials.html
