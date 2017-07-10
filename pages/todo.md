@@ -63,6 +63,7 @@ image: "/assets/imgs/To-do-list.jpg"
 	* 四边形不等式
 	* 双调 DP
 	* 数位 DP
+	* 决策单调性
 * ### 数据结构
     * [RMQ][8] &#10004;
 	* K-D tree
@@ -76,6 +77,9 @@ image: "/assets/imgs/To-do-list.jpg"
 	* FFT
 
 * ### 群论
+
+* ### 思想
+    * [尺取法][9]
 
 ## 研究
 * 热传导方程
@@ -96,3 +100,4 @@ image: "/assets/imgs/To-do-list.jpg"
 [6]: https://www.zhihu.com/question/37918846
 [7]: https://en.wikipedia.org/wiki/ASCII_art
 [8]: https://www.topcoder.com/community/data-science/data-science-tutorials/range-minimum-query-and-lowest-common-ancestor/#Lowest%20Common%20Ancestor%20(LCA)
+[9]: https://yuhaomin.github.io/2016/07/31/%E5%85%B3%E4%BA%8E%E5%B0%BA%E5%8F%96%E6%B3%95%E7%9A%84%E6%80%9D%E8%80%83/
