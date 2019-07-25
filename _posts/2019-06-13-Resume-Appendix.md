@@ -5,6 +5,11 @@ category: Resume
 tags: Resume
 ---
 
+## SPH Fluid Simulation
+![](/assets/imgs/Resume-Appendix/SPH-Water/sph-19-07-20-8000-40.gif)
+![](/assets/imgs/Resume-Appendix/SPH-Water/sph-19-07-20-16000-20.gif)
+
+***
 ## Dynamic Disk B-Spline Curves (2019)
 ![](/assets/imgs/Resume-Appendix/D-DBSC/1.png)
 ![](/assets/imgs/Resume-Appendix/D-DBSC/2.png)
@@ -38,7 +43,7 @@ tags: Resume
 
 ***
 ## 3D Ink Simulation Based on SPH (2016)
-![](/assets/imgs/Resume-Appendix/SPH/bunny.png)
-<!-- ![](/assets/imgs/Resume-Appendix/SPH/dragon.png) -->
-<!-- ![](/assets/imgs/Resume-Appendix/SPH/house.png) -->
+![](/assets/imgs/Resume-Appendix/SPH-Ink/bunny.png)
+<!-- ![](/assets/imgs/Resume-Appendix/SPH-Ink/dragon.png) -->
+<!-- ![](/assets/imgs/Resume-Appendix/SPH-Ink/house.png) -->
 
