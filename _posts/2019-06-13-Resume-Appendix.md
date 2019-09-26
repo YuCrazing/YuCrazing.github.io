@@ -6,8 +6,6 @@ tags: Resume
 ---
 
 ## SPH Fluid Simulation (2019)
-<!-- ![](/assets/imgs/Resume-Appendix/SPH-Water/sph-19-07-20-8000-40.gif) -->
-<!-- ![](/assets/imgs/Resume-Appendix/SPH-Water/sph-19-07-20-16000-20.gif) -->
 ![](/assets/imgs/Resume-Appendix/SPH-Water/RealTimeSimulation.gif)
 ![](/assets/imgs/Resume-Appendix/SPH-Water/MCFinalRendering.gif)
 
