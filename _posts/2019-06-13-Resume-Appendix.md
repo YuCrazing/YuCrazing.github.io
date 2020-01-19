@@ -21,7 +21,7 @@ tags: Resume
 
 
 
-[1]: /Fluid%20Simulation/2019/09/01/SPH-Fluid-Simulation
-[2]: /D-DBSC/2019/06/01/Dynamic-Disk-B-Spline-Curves
-[3]: /Computer%20Graphics/2019/06/02/Computer-Graphics-Course-Labs-Design
-[4]: /BBSC/2018/06/01/Vascular-Fitting-System-Based-on-Ball-B-Spline-Curves
+[1]: /fluid%20simulation/2019/09/01/SPH-Fluid-Simulation
+[2]: /d-dbsc/2019/06/01/Dynamic-Disk-B-Spline-Curves
+[3]: /computer%20graphics/2019/06/02/Computer-Graphics-Course-Labs-Design
+[4]: /bbsc/2018/06/01/Vascular-Fitting-System-Based-on-Ball-B-Spline-Curves
