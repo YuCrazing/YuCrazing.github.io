@@ -5,7 +5,7 @@ category: Resume
 tags: Resume
 ---
 
-## [SPH Fluid Simulation (2019)][2019/09/01/SPH-Fluid-Simulation]
+## [SPH Fluid Simulation (2019)][1]
 
 ***
 ## Dynamic Disk B-Spline Curves (2019)
@@ -16,5 +16,9 @@ tags: Resume
 ***
 ## Vascular Fitting System Based on Ball B-Spline Curves (2017)
 
- <!-- *** -->
- <!-- ## 3D Ink Simulation Based on SPH (2016) -->
+<!-- *** -->
+<!-- ## 3D Ink Simulation Based on SPH (2016) -->
+
+
+
+[1]: /2019/09/01/SPH-Fluid-Simulation
