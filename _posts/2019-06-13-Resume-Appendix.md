@@ -5,8 +5,7 @@ category: Resume
 tags: Resume
 ---
 
-## SPH Fluid Simulation (2019)
-[][2017/09/01/SPH-Fluid-Simulation]
+## [SPH Fluid Simulation (2019)][2019/09/01/SPH-Fluid-Simulation]
 
 ***
 ## Dynamic Disk B-Spline Curves (2019)
