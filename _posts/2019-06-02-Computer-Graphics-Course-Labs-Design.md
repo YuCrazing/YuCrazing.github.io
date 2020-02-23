@@ -1,7 +1,7 @@
 ---
 layout: "default"
 title: "Computer Graphics Course Labs Design"
-category: "Computer Graphics"
+category: ""
 tags: "Computer Graphics"
 ---
 

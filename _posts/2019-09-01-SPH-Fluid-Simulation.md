@@ -1,7 +1,7 @@
 ---
 layout: "default"
 title: "SPH Fluid Simulation"
-category: "Fluid Simulation"
+category: ""
 tags: "Fluid Simulation"
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: "default"
 title: "Dynamic Disk B-Spline Curves"
-category: "D-DBSC"
+category: ""
 tags: ["Dynamics", "DBSC", "D-DBSC"]
 ---
 

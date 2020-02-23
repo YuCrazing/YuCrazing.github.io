@@ -1,7 +1,7 @@
 ---
 layout: "default"
 title: "Vascular Fitting System Based on Ball B-Spline Curves"
-category: "BBSC"
+category: ""
 tags: ["BBSC", "Fitting"]
 ---
 
