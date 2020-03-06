@@ -5,5 +5,8 @@ category: ""
 tags: "Fluid Simulation"
 ---
 
-![](/assets/imgs/Resume-Appendix/SPH-Water/RealTimeSimulation.gif)
-![](/assets/imgs/Resume-Appendix/SPH-Water/MCFinalRendering.gif)
+![][1]
+![][2]
+
+[1]: {{ site.ImgDir }}/Resume-Appendix/SPH-Water/RealTimeSimulation.gif
+[2]: {{ site.ImgDir }}/Resume-Appendix/SPH-Water/MCFinalRendering.gif

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Resume Appendix
-category: Resume
+category: ""
 tags: Resume
 ---
 
