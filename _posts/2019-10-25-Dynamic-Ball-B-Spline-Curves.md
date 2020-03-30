@@ -19,7 +19,7 @@ tags: ["Dynamics", "BBSC", "D-BBSC"]
 
 <!-- <iframe width="100%" src="{{ site.ImgDir }}/Resume-Appendix/D-BBSC/D-BBSC-final.avi" frameborder="0" allowfullscreen></iframe> -->
 
-<video width="100%" muted controls preload>
+<video width="100%" controls preload>
     <source src="{{ site.ImgDir }}/Resume-Appendix/D-BBSC/D-BBSC-web.mp4" type="video/mp4">
 </video>
 
