@@ -5,7 +5,7 @@ category: ""
 tags: ["Dynamics", "BBSC", "D-BBSC"]
 ---
 
-![surface][1]{:width="50%" align="left"}![sectional view][2]{:width="50%" align="left"}
+<!-- ![surface][1]{:width="50%" align="left"}![sectional view][2]{:width="50%" align="left"}
 
 ![initial state][3]{:width="25%" align="left"}![deformation][4]{:width="25%" align="left"}![initial state][5]{:width="25%" align="left"}![deformation][6]{:width="25%" align="left"}
 
@@ -13,7 +13,7 @@ tags: ["Dynamics", "BBSC", "D-BBSC"]
 
 ![initial state][11]{:width="25%" align="left"}![deformation][12]{:width="25%" align="left"}![deformation][13]{:width="25%" align="left"}![deformation][14]{:width="25%" align="left"}
 
-![initial state][15]{:width="25%" align="left"}![deformation][16]{:width="25%" align="left"}![deformation][17]{:width="25%" align="left"}![deformation][18]{:width="25%" align="left"}
+![initial state][15]{:width="25%" align="left"}![deformation][16]{:width="25%" align="left"}![deformation][17]{:width="25%" align="left"}![deformation][18]{:width="25%" align="left"} -->
 
 <!-- <video src="{{ site.ImgDir }}/Resume-Appendix/D-BBSC/D-BBSC-final.avi" width="320" height="200" controls preload></video> -->
 

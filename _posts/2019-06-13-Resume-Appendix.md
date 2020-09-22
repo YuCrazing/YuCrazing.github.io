@@ -3,6 +3,7 @@ layout: default
 title: Resume Appendix
 category: ""
 tags: Resume
+hidden: true
 ---
 
 ## [SPH Fluid Simulation (2019)][1]
@@ -11,7 +12,7 @@ tags: Resume
 ## [Dynamic Disk B-Spline Curves (2019)][2]
 
 ***
-## [Computer Graphics Course Labs Design (2018)][3]
+## [Computer Graphics Course Assignments (2018)][3]
 
 ***
 ## [Vascular Fitting System Based on Ball B-Spline Curves (2017)][4]
