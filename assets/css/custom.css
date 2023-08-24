@@ -106,3 +106,23 @@ th {
 		height: 40px;
 	}
 }
+
+/* override */
+
+.customWrapper {
+	max-width:1650px !important;
+	margin:0 auto;
+	position:relative;
+	padding: 0 20px;
+  }
+
+.customSection {
+ max-width: 2000px;
+}
+.customBody {
+	font: 22px/1.5 "OpenSansRegular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h3 {
+	font-size: x-large !important;
+}
