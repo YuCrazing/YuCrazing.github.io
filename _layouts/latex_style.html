@@ -10,8 +10,35 @@
     <!-- <script id="MathJax-script" async
           src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js">
     </script> -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          processEscapes: true
+        }
+      });
+    </script>
     <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        var h1s = document.querySelectorAll("h1:not([class])");
+        for (var i = 0; i < h1s.length; i++) {
+            h1s[i].classList.add("Section");
+        }
+        var h2s = document.querySelectorAll("h2:not([class])");
+        for (var i = 0; i < h2s.length; i++) {
+            h2s[i].classList.add("SubSection");
+        }
+        var h3s = document.querySelectorAll("h3:not([class])");
+        for (var i = 0; i < h3s.length; i++) {
+            h3s[i].classList.add("SubSubSection");
+        }
+        var paragraphs = document.querySelectorAll("p:not([class])");
+        for (var i = 0; i < paragraphs.length; i++) {
+            paragraphs[i].classList.add("BodyText");
+        }
+      });
+  </script>
   </head>
   <body>
     <div class="Margins">

@@ -194,3 +194,13 @@ Body {
 .SubSubSection {
     counter-increment: h3Counter;
 }
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+video {
+    width: 100%;
+    height: auto;
+}
