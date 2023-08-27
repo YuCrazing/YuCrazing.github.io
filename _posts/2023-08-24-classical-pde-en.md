@@ -120,7 +120,7 @@ Here, $u:\bar{U} \rightarrow R$ is the function to be solved, $u=u(\mathbf{x})$.
 
 ## Exact Solution
 
-Several methods can be employed to find the exact solution of Laplace's equation, such as the Green's function method or separation of variables. Due to length constraints, we omit the detailed process. An example of solving Laplace's equation using separation of variables in polar coordinates can be found [Here](https://www.math.usm.edu/lambers/mat417/class0425.pdf).
+Several methods can be employed to find the exact solution of Laplace's equation, such as the Green's function method or separation of variables. Due to length constraints, we omit the detailed process. An example of solving Laplace's equation using separation of variables in polar coordinates can be found [here](https://www.math.usm.edu/lambers/mat417/class0425.pdf).
 
 ## Numerical Solution
 
