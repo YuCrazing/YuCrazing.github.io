@@ -1,9 +1,10 @@
 ---
 layout: latex_style
-title: "Several Classical Partial Differential Equations: Numerical and Exact Solutions"
+title: "数个经典偏微分方程：数值解和精确解"
 author: Yu Zhang
 custom_date: April 2023
-abstract: "We present numerical and exact solutions of several classical PDE: transport equation, Laplace's equation, heat equation, and wave equation. 我们测试了几种"
+abstract: "我们对数个经典偏微分方程进行了分析：传输方程、Laplace方程、热传导方程和波动方程，对比了其在二维空间上的精确解和数值解。"
+hidden: true
 ---
 
 # Introduction
@@ -15,7 +16,7 @@ abstract: "We present numerical and exact solutions of several classical PDE: tr
 # Transport Equation
 
 <p>
-传输方程也叫 Transport Equation 或者 Advection Equation。其初始值问题如下：
+Transport Equation 也叫 Advection Equation。其初始值问题如下：
 $$
 \\
 \begin{cases}
@@ -38,7 +39,7 @@ $$
 
 ## 数值解
 <p>
-对于传输方程，一个最简单的方法数值方法是 forward time-centered space (FTCS) 方法，该方法是一种有限差分方法：使用前向欧拉方法对时域进行离散化，使用中心欧拉方法对空间进行离散化。以二维为例，我们使用 $u^{n}_{i, j}$ 表示函数 $u$ 在 $n$ 时刻在网格点 $(i, j)$ 的数值，时间步长为 $\Delta t$，单个网格边长为 $\Delta x$，则有
+对于求解传输方程，一个最简单的方法数值方法是 forward time-centered space (FTCS) 方法，该方法是一种有限差分方法：使用前向欧拉方法对时域进行离散化，使用中心欧拉方法对空间进行离散化。以二维为例，我们使用 $u^{n}_{i, j}$ 表示函数 $u$ 在 $n$ 时刻在网格点 $(i, j)$ 的数值，时间步长为 $\Delta t$，单个网格边长为 $\Delta x$，则有
 
 $$
 \frac{u^{n+1}_{i, j} - u^n_{i, j}}{\Delta t} + \mathbf{b} \cdot (\frac{u^n_{i+1, j}-u^n_{i-1, j}}{2 \Delta x}， \frac{u^n_{i, j+1}-u^n_{i, j-1}}{2 \Delta x}) = 0
@@ -65,17 +66,17 @@ $$
 这里 $g$ 并不是 $C^1$ 连续的，但是为了实现上更方便，我们选取了一个不连续的函数。
 </p>
 
-其使用 FTCS 方法，上风格式的数值解以及精确解的比较如下：
+数值解和精确解的比较结果如下：
 
 ![Animation][1]
 
-从实验结果中可以看出， FTCS 发生了数值发散。上风格式保持了稳定性。
+其中图1是 FTCS 方法，图2是上风格式，图3是精确解。从实验结果中可以看出， FTCS 发生了数值发散。上风格式保持了稳定性。
 
 
 ## 物理解释
 
 <p>
-传输方程描述的是在欧拉视角下，分布在空间中的每个固定点上的其物理量 $u$ ，在一个速度场的作用，随时间的变化。从分析解可以看出，传输方程的 $b$ 数值即为速度场的速度，这也是为什么上面的案例中，圆形区域向右上角移动的原因。另一方面，传输方程可以与物理导数相关联。物质导数的形式为：
+传输方程描述的是在欧拉视角下，分布在空间中的每个固定点上的其物理量 $u$ 在一个速度场的作用下随时间的变化。从分析解可以看出，传输方程的 $b$ 数值即为速度场的速度，这也是为什么上面的案例中，圆形区域向右上角移动的原因。另一方面，传输方程可以与物理导数相关联。物质导数的形式为：
 
 $$
 \frac{Du}{Dt} = \frac{\partial u}{\partial t} + \mathbf{b} \cdot \nabla u
@@ -107,7 +108,7 @@ $$
 </p>
 
 ## 精确解
-有多种方法可以求解 Laplace's equation 的精确解，包括 Green 函数方法，或者变量分离法。因为过程比较冗长，这里不再赘述。
+有多种方法可以求解 Laplace's equation 的精确解，包括 Green 函数方法，或者变量分离法。因为过程比较冗长，这里不再展开。一个使用分离变量方法在极坐标下的求解过程可以见这个[二维案例](https://www.math.usm.edu/lambers/mat417/class0425.pdf)。
 
 ## 数值解
 <p>
@@ -129,7 +130,7 @@ $$
 ## 案例
 
 <p>
-我们使用 <a href="https://www.math.usm.edu/lambers/mat417/class0425.pdf">The Dirichlet Problem in an Annulus</a> 作为一个案例。在一个二维环面上以极坐标的方法施加如下边界条件：
+我们使用 <a href="https://www.math.usm.edu/lambers/mat417/class0425.pdf">The Dirichlet Problem in an Annulus</a> 作为一个案例。在一个二维环面上以极坐标的方法考虑如下问题：
 $$
 \begin{cases}
     \nabla^2 u = 0, & 1 < r < 2 \\
@@ -158,7 +159,7 @@ $$
 </p>
 
 ## 精确解
-同上，因为热传导方程的精确解形式较为复杂，这里不再展开。
+同上，因为热传导方程的精确解形式过程较为冗长，这里不再展开。
 
 ## 数值解
 <p>
@@ -215,7 +216,7 @@ $$
 </p>
 
 ## 分析解
-同上，因为过于冗长此处省略。
+同上，因为热传导方程的精确解形式过程较为冗长，这里不再展开。
 
 ## 数值解
 <p>
@@ -236,7 +237,8 @@ $$
 一个二维例子：我们取 
 $$
 \begin{aligned}
-g(\mathbf{x}) = 2 e^{-\left(\frac{\mathbf{x}_1^2 + \mathbf{x}_2^2}{16}\right)}
+&c = 1,\\
+&g(\mathbf{x}) = 2 e^{-\left(\frac{\mathbf{x}_1^2 + \mathbf{x}_2^2}{16}\right)}
 \end{aligned}
 \\
 $$
