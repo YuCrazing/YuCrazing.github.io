@@ -34,12 +34,13 @@ $$
 隐式方法通常需要求解一个方程组，如后向欧拉法为
 
 $$
+\begin{equation}
 \begin{aligned}
 \mathbf{v}^{n+1} &= \mathbf{v}^{n} + \frac{\mathbf{f}^{n+1}}{m} \Delta t
 \\
 \mathbf{x}^{n+1} &= \mathbf{x}^{n} + \mathbf{v}^{n+1} \Delta t
 \end{aligned}
-\\
+\end{equation}
 $$
 
 以这两个式子为基础，可以引出全隐式和半隐式方法。
@@ -60,7 +61,7 @@ $$
 
 
 ### 半隐式时间积分
-本文要介绍的半隐式方法是在隐式
+本文要介绍的半隐式方法也是在 公式 1 的基础上得到的。我们使用泰勒公式对 $f_{n+1}$ 进行
 
 
 ## 为什么要使用半隐式时间积分？
