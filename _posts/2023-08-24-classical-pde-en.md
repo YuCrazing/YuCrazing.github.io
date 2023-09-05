@@ -8,7 +8,7 @@ abstract: "Several classical linear partial differential equations, including th
 
 # Introduction
 
-Numerical solutions of partial differential equations (PDE) are often employed in the field of physical simulations. Numerical methods are used for solving these equations because obtaining exact solutions is usually intricate and often requires specific analyses for each form. To demonstrate the differences between numerical and exact solutions, we present examples of classical PDEs in both forms. For the purpose of visualization, we provide examples in two-dimensional space.
+Numerical solutions of partial differential equations (PDE) are often employed in the field of physical simulations. Numerical methods are used for solving these equations because obtaining exact solutions is usually intricate and often requires specific analyses for each form. To demonstrate the differences between numerical and exact solutions, we present examples of classical PDEs in both forms. For the purpose of visualization, we provide examples in two-dimensional space. All code implementations in this article can be found at [Github](https://github.com/YuCrazing/PDE).
 
  
 # Transport Equation
@@ -123,7 +123,9 @@ Here, $u:\bar{U} \rightarrow R$ is the function to be solved, $u=u(\mathbf{x})$.
 Several methods can be employed to find the exact solution of Laplace's equation, such as the Green's function method or separation of variables. Due to length constraints, we omit the detailed process. An example of solving Laplace's equation using separation of variables in polar coordinates can be found [here](https://www.math.usm.edu/lambers/mat417/class0425.pdf).
 
 ## Numerical Solution
+In this section, we present the numerical results of the Laplace equation via the Jacobi iterative method, the Walk-on-spheres method, and the Walk-on-boundary method, respectively.
 
+### Jacobi Method
 <p>
 A simple approach is to use the Jacobi iteration method to converge the equation to its solution, where $u^n$ denotes the result of the $n$-th iteration. Utilizing central difference discretization in space for $\nabla^2 u$, we have
 
@@ -136,6 +138,13 @@ $$
 \nabla u^{n+1}_{i, j} = \frac{u^n_{i+1, j} + u^n_{i-1, j} + u^n_{i, j+1} + u^n_{i, j-1}}{4}
 $$
 </p>
+
+### Walk-On-Spheres (WoS) And Walk-On-Boundary (WoB) Methods
+In the implementation of these two methods, we employed the <i>Temporal Accumulation</i> technique to accumulate results from each frame, making it easier to visualize the process of convergence. For WoS, within each frame's sampling process, for each position in domain, we recursively sample until the sampled points approach the boundary. For WoB, we set the path length per frame to 1, meaning we stop after sampling one point on the boundary. The experimental results are as follows:
+
+![Animation][5]
+
+The first two animations show the convergence process of the WoS method, while the latter two show the convergence process of the WoB method.
 
 ### Convergence Analysis
 Omitted.
@@ -284,3 +293,4 @@ As there is no direct comparison case, we do not show the visualization of the e
 [2]: {{ site.ImgDir }}/PDE/laplace.gif
 [3]: {{ site.ImgDir }}/PDE/heat.gif
 [4]: {{ site.ImgDir }}/PDE/wave_1200_16.gif
+[5]: {{ site.ImgDir }}/PDE/laplace_wos_wob.gif

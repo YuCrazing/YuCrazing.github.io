@@ -10,7 +10,7 @@ hidden: true
 # Introduction
 
 
-物理仿真领域往往涉及到偏微分方程的数值求解，之所以使用数值方法求解偏微分方程是因为偏微分方程的精确求解通常需要按照具体形式单独分析，往往难以显式写出。为了展示数值解和精确解的区别，这里我们来展示数个经典偏微分方程的数值解和精确解。为了方便可视化，我们展示的算例都是二维空间的形式。
+物理仿真领域往往涉及到偏微分方程的数值求解，之所以使用数值方法求解偏微分方程是因为偏微分方程的精确求解通常需要按照具体形式单独分析，往往难以显式写出。为了展示数值解和精确解的区别，这里我们来展示数个经典偏微分方程的数值解和精确解。为了方便可视化，我们展示的算例都是二维空间的形式。所有的代码实现都可以在 [这里](https://github.com/YuCrazing/PDE) 找到。
 
  
 # Transport Equation
@@ -111,6 +111,10 @@ $$
 有多种方法可以求解 Laplace's equation 的精确解，包括 Green 函数方法，或者变量分离法。因为过程比较冗长，这里不再展开。一个使用分离变量方法在极坐标下的求解过程可以见这个[二维案例](https://www.math.usm.edu/lambers/mat417/class0425.pdf)。
 
 ## 数值解
+
+本章节中，我们分别使用 jacobi 迭代法、Walk-on-spheres 方法和 Walk-on-boundary 方法对 Laplace 方程进行求解。
+
+### Jacobi 方法
 <p>
 一个简单的方法是使用 jacobi 迭代法使得方程收敛到最终的解，我们使用 $u^n$ 表示 jacobi 第 $n$ 次迭代的结果。另外我们使用空间中的中心差分方法对 $\nabla^2 u$ 进行离散化，则可以得到
 
@@ -123,6 +127,15 @@ $$
 \nabla u^{n+1}_{i, j} = \frac{u^n_{i+1, j} + u^n_{i-1, j} + u^n_{i, j+1} + u^n_{i, j-1}}{4}
 $$
 </p>
+
+### Walk-On-Spheres (WoS) 方法和 Walk-On-Boundary (WoB) 方法
+WoS 方法和 WoB 方法的介绍可以参考 [WoS](https://en.wikipedia.org/wiki/Walk-on-spheres_method) 和 [WoB](https://rsugimoto.net/WoBforBVPsProject/)。在实现这两种方法的过程中，我们使用了 “Temporal Accumulation” 方法，对积累每帧采样的结果。方便对收敛过程进行可视化。对于 WoS，每帧的采样中，对于每一个位置，我们会不断递归，直到采样点达到边界附近。对于 WoB ，我们每帧的 path length 设置为 1，即在边界上采样 1 个点后即停止。其实验结果如下所示：
+
+![Animation][5]
+
+前两个动画展示了wos方法的收敛过程，后两个动画是wob方法的收敛过程。
+
+
 
 ### 收敛性
 略。
@@ -257,3 +270,4 @@ $$
 [2]: {{ site.ImgDir }}/PDE/laplace.gif
 [3]: {{ site.ImgDir }}/PDE/heat.gif
 [4]: {{ site.ImgDir }}/PDE/wave_1200_16.gif
+[5]: {{ site.ImgDir }}/PDE/laplace_wos_wob.gif
