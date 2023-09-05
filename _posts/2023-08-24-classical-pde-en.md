@@ -142,12 +142,6 @@ $$
 ### Walk-On-Spheres (WoS) And Walk-On-Boundary (WoB) Methods
 A detailed introduction to Wos and WoB can be found on these two websites: [WoS](https://en.wikipedia.org/wiki/Walk-on-spheres_method) and [WoB](https://rsugimoto.net/WoBforBVPsProject/). 
 
-In the implementation of these two methods, we employed the <i>Temporal Accumulation</i> technique to accumulate results from each frame, making it easier to visualize the process of convergence. For WoS, within each frame's sampling process, for each position in domain, we recursively sample until the sampled points approach the boundary. For WoB, we set the path length per frame to 1, meaning we stop after sampling one point on the boundary. The experimental results are as follows:
-
-![Animation][5]
-
-The first two animations show the convergence process of the WoS method, while the latter two show the convergence process of the WoB method.
-
 ### Convergence Analysis
 Omitted.
 
@@ -163,14 +157,22 @@ $$
     u(r, \theta) = \sin \theta, & r = 2
 \end{cases}
 $$
-The numerical results are shown below:
+
+### Jacobi Method
+The numerical result of Jacobi method is shown below:
 
 </p>
 
 ![Animation][2]
 
-Figures 1 and 3 depict the convergence process of the numerical method, while Figures 2 and 4 show the final exact solution.
+Figures 1 and 3 show the convergence process of the numerical method, while Figures 2 and 4 show the final exact solution.
 
+### WoS and WoB
+In the implementation of these two methods, we employed the <i>Temporal Accumulation</i> technique to accumulate results from each frame, making it easier to visualize the process of convergence. For WoS, within each frame's sampling process, for each position in domain, we recursively sample until the sampled points approach the boundary. For WoB, we set the path length per frame to 1, meaning we stop after sampling one point on the boundary. The experimental results are as follows:
+
+![Animation][5]
+
+The first two animations show the convergence process of the WoS method, while the latter two show the convergence process of the WoB method.
 
 # Heat Equation
 
