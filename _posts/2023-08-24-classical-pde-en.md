@@ -126,6 +126,7 @@ Several methods can be employed to find the exact solution of Laplace's equation
 In this section, we present the numerical results of the Laplace equation via the Jacobi iterative method, the Walk-on-spheres method, and the Walk-on-boundary method, respectively.
 
 ### Jacobi Method
+
 <p>
 A simple approach is to use the Jacobi iteration method to converge the equation to its solution, where $u^n$ denotes the result of the $n$-th iteration. Utilizing central difference discretization in space for $\nabla^2 u$, we have
 
@@ -157,11 +158,12 @@ $$
     u(r, \theta) = \sin \theta, & r = 2
 \end{cases}
 $$
+</p>
+
 
 ### Jacobi Method
 The numerical result of Jacobi method is shown below:
 
-</p>
 
 ![Animation][2]
 
