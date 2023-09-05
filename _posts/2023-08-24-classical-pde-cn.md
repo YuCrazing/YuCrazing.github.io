@@ -129,12 +129,7 @@ $$
 </p>
 
 ### Walk-On-Spheres (WoS) 方法和 Walk-On-Boundary (WoB) 方法
-WoS 方法和 WoB 方法的介绍可以参考 [WoS](https://en.wikipedia.org/wiki/Walk-on-spheres_method) 和 [WoB](https://rsugimoto.net/WoBforBVPsProject/)。在实现这两种方法的过程中，我们使用了 “Temporal Accumulation” 方法，对积累每帧采样的结果。方便对收敛过程进行可视化。对于 WoS，每帧的采样中，对于每一个位置，我们会不断递归，直到采样点达到边界附近。对于 WoB ，我们每帧的 path length 设置为 1，即在边界上采样 1 个点后即停止。其实验结果如下所示：
-
-![Animation][5]
-
-前两个动画展示了wos方法的收敛过程，后两个动画是wob方法的收敛过程。
-
+WoS 方法和 WoB 方法的介绍可以参考 [WoS](https://en.wikipedia.org/wiki/Walk-on-spheres_method) 和 [WoB](https://rsugimoto.net/WoBforBVPsProject/)。
 
 
 ### 收敛性
@@ -151,12 +146,21 @@ $$
     u(r, \theta) = \sin \theta, & r = 2
 \end{cases}
 $$
-得到以下的模拟结果：
+得到以下的模拟结果。
 </p>
+
+### Jacobi 方法
 
 ![Animation][2]
 
 其中图1和图3是数值方法的收敛过程，图2和图4是最终的精确解。
+
+### WoS 和 WoB
+在实现这两种方法的过程中，我们使用了 “Temporal Accumulation” 方法，对积累每帧采样的结果。方便对收敛过程进行可视化。对于 WoS，每帧的采样中，对于每一个位置，我们会不断递归，直到采样点达到边界附近。对于 WoB ，我们每帧的 path length 设置为 1，即在边界上采样 1 个点后即停止。其实验结果如下所示：
+
+![Animation][5]
+
+前两个动画展示了wos方法的收敛过程，后两个动画是wob方法的收敛过程。
 
 # Heat Equation
 
