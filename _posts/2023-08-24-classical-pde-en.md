@@ -79,6 +79,7 @@ The comparison between numerical and exact solutions is shown below:
 
 In the figures, Figure 1 depicts the FTCS method, Figure 2 shows the upwind scheme, and Figure 3 presents the exact solution. From the experimental results, we observe numerical divergence with FTCS, while the upwind scheme maintains stability.
 
+[Code](https://github.com/YuCrazing/PDE/blob/main/transport_equation.py)
 
 
 ## Physical Interpretation
@@ -169,12 +170,18 @@ The numerical result of Jacobi method is shown below:
 
 Figures 1 and 3 show the convergence process of the numerical method, while Figures 2 and 4 show the final exact solution.
 
+[Code](https://github.com/YuCrazing/PDE/blob/main/laplace_equation.py)
+
+
 ### WoS and WoB
 In the implementation of these two methods, we employed the <i>Temporal Accumulation</i> technique to accumulate results from each frame, making it easier to visualize the process of convergence. For WoS, within each frame's sampling process, for each position in domain, we recursively sample until the sampled points approach the boundary. For WoB, we set the path length per frame to 1, meaning we stop after sampling one point on the boundary. The experimental results are as follows:
 
 ![Animation][5]
 
 The first two animations show the convergence process of the WoS method, while the latter two show the convergence process of the WoB method.
+
+Code: [WoS](https://github.com/YuCrazing/PDE/blob/main/laplace_equation_wos.py), [WoB](https://github.com/YuCrazing/PDE/blob/main/laplace_equation_wob.py)
+
 
 # Heat Equation
 
@@ -233,7 +240,7 @@ As there is no direct comparison case, we do not show the visualization of the e
 
 ![][3]
 
-
+[Code](https://github.com/YuCrazing/PDE/blob/main/heat_equation.py)
 ## Physical Interpretation
 
 In physical processes, $\alpha$  represents thermal diffusivity, impacting the stability of numerical methods. Its value must be positive. Two questions are left for readers: How would the stability of the numerical method be affected if $\alpha$ were negative? What is the physical interpretation of a negative $\alpha$ ?
@@ -293,6 +300,7 @@ As there is no direct comparison case, we do not show the visualization of the e
 
 ![][4]
 
+[Code](https://github.com/YuCrazing/PDE/blob/main/wave_equation.py)
 
 
 [1]: {{ site.ImgDir }}/PDE/transport.gif
