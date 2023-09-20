@@ -3,6 +3,7 @@ layout: "default"
 title: "Dynamic Ball B-Spline Curves"
 category: ""
 tags: ["Dynamics", "BBSC", "D-BBSC"]
+hidden: true
 ---
 
 <!-- ![surface][1]{:width="50%" align="left"}![sectional view][2]{:width="50%" align="left"}

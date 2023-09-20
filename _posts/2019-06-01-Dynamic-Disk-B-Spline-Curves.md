@@ -3,6 +3,7 @@ layout: "default"
 title: "Dynamic Disk B-Spline Curves"
 category: ""
 tags: ["Dynamics", "DBSC", "D-DBSC"]
+hidden: true
 ---
 ### Disk B-Spline Curves
 ![](/assets/imgs/Resume-Appendix/D-DBSC/1.png){:width="50%" align="left"}
