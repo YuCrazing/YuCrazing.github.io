@@ -62,9 +62,10 @@ $$
 ### 半隐式时间积分
 <p>
 本文要介绍的半隐式方法也是在 公式 1 的基础上得到的。我们使用泰勒公式对 $f_{n+1}$ 进行近似展开再进行求解：
+
 $$
 \begin{aligned}
-\mathbf{f}^{n+1} &= \mathbf{f}(\mathbf{x}^n + \Delta t \mathbf{v}^{n+1})
+\mathbf{f}^{n+1} &= \mathbf{f}(\mathbf{x}^n + \Delta t \mathbf{v}^{n+1}) \\
                  &= \mathbf{f}^n + \Delta t \mathbf{v}^{n+1} \frac{\partial \mathbf{f}}{\partial \mathbf{x}} (\mathbf{x}^n)
 \end{aligned}
 $$
@@ -72,7 +73,7 @@ $$
 
 
 ## 为什么要使用半隐式时间积分？
-在显式时间积分中，在模拟时间步长不变的情况下，当刚度较大时，系统会出现 overshooting 的情况。即速度在数值上会出现很大的震荡，可能会波动到正无穷而导致模拟失败。在显式方法中，只能通过减小时间步长来解决这个问题，但当时间步长非常小时，会导致模拟性能严重下降。而隐式方法可以有效解决这个问题，我们之所以选择半隐式方法是因为在常见的材料刚度范围内，半隐式方法已经足够支持以较大的步长进行稳定模拟，而不需要全隐式方法。
+在显式时间积分中，在模拟时间步长不变的情况下，当刚度较大时，系统会出现 overshooting 的情况。速度在数值上会出现很大的震荡，可能会波动到正/负无穷而导致模拟失败。在显式方法中，只能通过减小时间步长来解决这个问题，但当时间步长非常小时，会导致模拟性能严重下降。而隐式方法可以有效解决这个问题，我们之所以选择半隐式方法是因为在常见的材料刚度范围内，半隐式方法已经足够支持以较大的步长进行稳定模拟，而不需要全隐式方法。
 
 
 # 半隐式方法的推导
@@ -113,13 +114,13 @@ $$
 
 </p>
 
-## 计算 $\frac{\partial^2 \Psi_p}{\partial \mathbf{F}_p \mathbf{F}_p}$
+## 计算  $\frac{\partial^2 \Psi_p}{\partial \mathbf{F}_p \mathbf{F}_p}$ 
 
 <p>
-这一项只与本构模型有关，与算法无关。接下来我们将以 fixed-corotated 模型为例，对$\frac{\partial^2 \Psi_p}{\partial \mathbf{F}_p \mathbf{F}_p}$ 这一项进行推导。对于一个旋转不变且各项同性的本够模型，我们可以使用形变梯度 $\mathbf{F}_p$ 的特征值 $s_1, s_2$ 及其旋转分量分量 $u_1, v_1$ 来建立 $\mathbf{F}_p$ 各个分量与 $\Psi_p$ 之间的关系。对于 2D 的情况，我们可以使用一个 mathematica 程序来计算该项。这个程序基于 jiang 老师 mpm course 里提供的一个类似的 mathematica 程序。不过 jiang 老师的原程序并不能直接满足我们的需求，原程序是计算该项在 $u_1->0, v_1->0$ 时的值。这里直接将修改后的程序提供给大家：
+这一项只与本构模型有关，与算法无关。接下来我们将以 fixed-corotated 模型为例，对$\frac{\partial^2 \Psi_p}{\partial \mathbf{F}_p \mathbf{F}_p}$ 这一项进行推导。对于一个旋转不变且各项同性的本够模型，我们可以使用形变梯度 $\mathbf{F}_p$ 的特征值 $s_1, s_2$ 及其旋转分量分量 $u_1, v_1$ 来建立 $\mathbf{F}_p$ 各个分量与 $\Psi_p$ 之间的关系。对于 2D 的情况，我们可以使用一个 mathematica 程序来计算该项。这个程序基于蒋陈凡夫老师 mpm course 里提供的一个类似的 mathematica 程序。不过蒋陈凡夫老师的原程序并不能直接满足我们的需求，原程序是计算该项在 $u_1->0, v_1->0$ 时的值。这里直接将修改后的程序提供给大家：
 </p>
 
-``` 
+``` Mathematica
 var ={ s1 , s2 , u1 , v1 } ;
 S=DiagonalMatrix [ { s1 , s2 } ] ;
 U= { { Cos [ u1 ] , - Sin [ u1 ] } , { Sin [ u1 ] , Cos [ u1 ] } } ;
@@ -133,6 +134,8 @@ P=U. Phat . Transpose [V ] ;
 dPdS=D[ Flatten [ P ] , { var } ] ;
 dPdF=Simplify[ dPdS . dSdF ] 
 ```
+
+
 这个式子最终计算出来之后大概长这样：
 
 ![][1]
@@ -144,10 +147,10 @@ dPdF=Simplify[ dPdS . dSdF ]
 
 这一项与本构模型无关，与算法的选取有关。对于 mls-mpm 和 traditional-mpm，该项的结果是不同的。该项的推导相对比较简单。这里我们以 mls-mpm 为例，其他 mpm 方法如 traditional mpm 也与此类似。为了方便起见，这里我们也使用 mathematica 来推导：
 
-```
+```Mathematica
 (*constants*)
 id=IdentityMatrix[2];
-Fp = {{F00, F01},{F10, F11}};
+Fp = { {F00, F01},{F10, F11} };
 wi={wi0, wi1};
 wj={wj0, wj1};
 xp = {xp0, xp1};
@@ -171,7 +174,7 @@ dFdxi = FullSimplify[D[Flatten[F],{xi}]]
 ![][2]
 
 ## 组装
-</p>
+<p>
 现在我们有了 $\frac{\partial^2 \Psi_p}{\partial \mathbf{F}_p \mathbf{F}_p}$ 和 $\frac{\partial \mathbf{F}_p}{\partial \mathbf{x}_i} $，便可以在代码中按照如下方式计算 
 
 $$
@@ -179,29 +182,43 @@ $$
 $$
 
 如果你想绕开上面拆分的两步而直接一步得到最终结果 $\frac{\partial^2 \Psi_p}{\partial \mathbf{x}_i \mathbf{x}_j}$ 也是可以的。在 mathematica 里使用下面的代码就可以一步得到 $\frac{\partial^2 \Psi_p}{\partial \mathbf{x}_i \mathbf{x}_j}$ 的公式 （在下面代码中使用 $K$ 来表示该项）：
+
 </p>
 
-```
+``` Mathematica
 dFdxi = FullSimplify[D[Flatten[F],{xi}]]
 dFdxj = FullSimplify[D[Flatten[F],{xj}]];
-A = TensorContract[TensorProduct[dPdF,dFdxi],{{2,3}}];
-K = TensorContract[TensorProduct[A,dFdxj],{{1,3}}]
+A = TensorContract[TensorProduct[dPdF,dFdxi],{ {2,3} }];
+K = TensorContract[TensorProduct[A,dFdxj],{ {1,3} }]
 ```
 
+<p>
 这样虽然可以推到出最终的结果公式，但是我个人不建议这样做，因为分开各项独立计算更方便定位错误，并且能够更方便地将每个模块更换为其他本构模型或者mpm算法。
+</p>
 
 # 实验结果
 在我们的实现中，固体密度设置为1，因此程序中杨式模量E与现实生活中的材料刚度对应时，有1000倍的缩放系数。如我们程序中设置 E=1e4，相当于现实世界中杨式模量为 1e7 的材料。
 
 对于时间步长，我们控制 CFL 系数为 0.4，即保证每个时间步长内粒子不会运动超过 0.4 个网格大小。在此基础上，我们展示了在较大期望步长下（1e-2）模拟硬橡胶、骨头和钻石的效果。注意：这里的实际时间步长 = min(CFL允许的时间步长, 期望时间步长)。试验结果如下所示：
 
-![][3]
+<img style="width:33%;" id="image" src="{{ site.ImgDir }}/MPM/E_1e4.gif">
+<img style="width:33%;" id="image" src="{{ site.ImgDir }}/MPM/E_1e6.gif">
+<img style="width:33%;" id="image" src="{{ site.ImgDir }}/MPM/E_1e9.gif">
+
+<!-- ![][3] -->
+
 E = 1e4，换算后相当于杨式模量为1e6的硬橡胶。
 
-![][4]
+<!-- ![][4] -->
+
+<!-- ![steam-fish-1]({{ site.ImgDir }}/MPM/E_1e6.gif){:width="10%"} -->
+
+
+
 E = 1e6，换算后相当于杨式模量为1e9的骨头。
 
-![][5]
+<!-- ![][5] -->
+
 E = 1e9，换算后相当于杨式模量为1e12的钻石。
 
 
@@ -223,5 +240,6 @@ E = 1e9，换算后相当于杨式模量为1e12的钻石。
 
 [1]: {{ site.ImgDir }}/PDE/transport.gif
 [2]: {{ site.ImgDir }}/PDE/laplace.gif
-[3]: {{ site.ImgDir }}/PDE/heat.gif
-[4]: {{ site.ImgDir }}/PDE/wave_1200_16.gif
+[3]: {{ site.ImgDir }}/MPM/E_1e4.gif
+[4]: {{ site.ImgDir }}/MPM/E_1e6.gif
+[5]: {{ site.ImgDir }}/MPM/E_1e9.gif
