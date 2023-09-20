@@ -4,7 +4,7 @@ title: "二维半隐式mpm时间积分求解器推导"
 author: Yu Zhang
 custom_date: April 2023
 abstract: "本文给出了二维半隐式mpm时间积分求解器的详细推导，并对实验结果进行了分析。"
-hidden: false
+hidden: true
 ---
 
 # Introduction
@@ -117,7 +117,7 @@ $$
 ## 计算  $\frac{\partial^2 \Psi_p}{\partial \mathbf{F}_p \mathbf{F}_p}$ 
 
 <p>
-这一项只与本构模型有关，与算法无关。接下来我们将以 fixed-corotated 模型为例，对$\frac{\partial^2 \Psi_p}{\partial \mathbf{F}_p \mathbf{F}_p}$ 这一项进行推导。对于一个旋转不变且各项同性的本够模型，我们可以使用形变梯度 $\mathbf{F}_p$ 的特征值 $s_1, s_2$ 及其旋转分量分量 $u_1, v_1$ 来建立 $\mathbf{F}_p$ 各个分量与 $\Psi_p$ 之间的关系。对于 2D 的情况，我们可以使用一个 mathematica 程序来计算该项。这个程序基于蒋陈凡夫老师 mpm course 里提供的一个类似的 mathematica 程序。不过蒋陈凡夫老师的原程序并不能直接满足我们的需求，原程序是计算该项在 $u_1->0, v_1->0$ 时的值。这里直接将修改后的程序提供给大家：
+这一项只与本构模型有关，与算法无关。接下来我们将以 fixed-corotated 模型为例，对$\frac{\partial^2 \Psi_p}{\partial \mathbf{F}_p \mathbf{F}_p}$ 这一项进行推导。对于一个旋转不变且各项同性的本够模型，我们可以使用形变梯度 $\mathbf{F}_p$ 的特征值 $s_1, s_2$ 及其旋转分量分量 $u_1, v_1$ 来建立 $\mathbf{F}_p$ 各个分量与 $\Psi_p$ 之间的关系。对于 2D 的情况，我们可以使用一个 Mathematica 程序来计算该项。这个程序基于蒋陈凡夫老师的 <a href="https://www.math.ucla.edu/~cffjiang/research/mpmcourse/mpmcourse.pdf"> mpm course</a> 里提供的一个类似的 Mathematica 程序。不过蒋陈凡夫老师的原程序并不能直接满足我们的需求，原程序是计算该项在 $u_1->0, v_1->0$ 时的值。这里直接将修改后的程序提供给大家：
 </p>
 
 ``` Mathematica
@@ -201,21 +201,12 @@ K = TensorContract[TensorProduct[A,dFdxj],{ {1,3} }]
 
 对于时间步长，我们控制 CFL 系数为 0.4，即保证每个时间步长内粒子不会运动超过 0.4 个网格大小。在此基础上，我们展示了在较大期望步长下（1e-2）模拟硬橡胶、骨头和钻石的效果。注意：这里的实际时间步长 = min(CFL允许的时间步长, 期望时间步长)。试验结果如下所示：
 
-<img style="width:33%;" id="image" src="{{ site.ImgDir }}/MPM/E_1e4.gif">
-<img style="width:33%;" id="image" src="{{ site.ImgDir }}/MPM/E_1e6.gif">
-<img style="width:33%;" id="image" src="{{ site.ImgDir }}/MPM/E_1e9.gif">
+<img style="width:31%;" id="image" src="{{ site.ImgDir }}/MPM/E_1e4.gif">
+<img style="width:31%;" id="image" src="{{ site.ImgDir }}/MPM/E_1e6.gif">
+<img style="width:31%;" id="image" src="{{ site.ImgDir }}/MPM/E_1e9.gif">
 
-<!-- ![][3] -->
 
-E = 1e4，换算后相当于杨式模量为1e6的硬橡胶。
-
-<!-- ![][4] -->
-
-E = 1e6，换算后相当于杨式模量为1e9的骨头。
-
-<!-- ![][5] -->
-
-E = 1e9，换算后相当于杨式模量为1e12的钻石。
+图1中，E = 1e4，换算后相当于杨式模量为1e6的硬橡胶。图2中，E = 1e6，换算后相当于杨式模量为1e9的骨头。 图3中，E = 1e9，换算后相当于杨式模量为1e12的钻石。
 
 
 # 半隐式方法的限制
