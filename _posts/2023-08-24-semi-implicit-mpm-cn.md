@@ -238,8 +238,8 @@ E = 1e9，换算后相当于杨式模量为1e12的钻石。
 为什么会出现这个问题呢？这是因为半隐式方法的外力项 $\mathbf{f}$ 进行了一阶泰勒展开 $\mathbf{f}^{n+1} = \mathbf{f}^n + \Delta t \mathbf{v}^{n+1} \frac{\partial \mathbf{f}}{\partial \mathbf{x}} (\mathbf{x}^n)$ ，并不能保证能量完全守恒。而基于能量的全隐式方法往往会使用多步牛顿法（同时使用 line search 来保证收敛性）来保证能量的守恒。因此与基于能量的方法相比，半隐式方法相当于只做了一步牛顿法，因此确实可能出现模拟结果不准确的情况。
 </p>
 
-[1]: {{ site.ImgDir }}/PDE/transport.gif
-[2]: {{ site.ImgDir }}/PDE/laplace.gif
+[1]: {{ site.ImgDir }}/MPM/dPdF.png
+[2]: {{ site.ImgDir }}/MPM/dFdx.png
 [3]: {{ site.ImgDir }}/MPM/E_1e4.gif
 [4]: {{ site.ImgDir }}/MPM/E_1e6.gif
 [5]: {{ site.ImgDir }}/MPM/E_1e9.gif
