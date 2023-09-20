@@ -23,6 +23,7 @@ url: "YuCrazing.github.com" # the base hostname & protocol for your site, e.g. h
 
 # path
 ImgDir: "/assets/imgs"
+AssetDir: "/assets"
 JSDir: "/assets/scripts"
 pageDir: "/pages"
 
