@@ -1,0 +1,75 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fullscreen WebGL Example</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Removes scrollbar for full screen canvas */
+        }
+        canvas {
+            display: block; /* Removes the margin around the canvas */
+            background: #000; /* Optional: sets a background color */
+        }
+    </style>
+</head>
+<body>
+    <canvas id="webgl-canvas"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/gl-matrix@2.8.1/dist/gl-matrix-min.js"></script>
+    <script src="shader.js"></script>
+    <script src="camera.js"></script>
+    <script src="buffers.js"></script>
+    <script src="utils.js"></script>
+    <script src="webgl_test.js"></script>
+
+    <script>
+        // This function resizes the canvas to fill the browser window.
+        function resizeCanvasToDisplaySize(canvas) {
+            const displayWidth  = window.innerWidth;
+            const displayHeight = window.innerHeight;
+
+            // Check if the canvas is not the same size.
+            if (canvas.width  !== displayWidth ||
+                canvas.height !== displayHeight) {
+
+                // Make the canvas the same size
+                canvas.width  = displayWidth;
+                canvas.height = displayHeight;
+            }
+        }
+
+        // Get the canvas element from the DOM
+        const canvas = document.getElementById('webgl-canvas');
+        
+        // Initialize the WebGL context
+        const gl = canvas.getContext('webgl');
+
+        // Only continue if WebGL is available and working
+        if (!gl) {
+            alert('Unable to initialize WebGL. Your browser or machine may not support it.');
+        }
+
+        // Resize the canvas to the window size
+        resizeCanvasToDisplaySize(canvas);
+
+        // Listen to the resize event
+        window.addEventListener('resize', () => {
+            resizeCanvasToDisplaySize(canvas);
+
+            // When resizing the canvas, you may also need to adjust your viewport settings
+            gl.viewport(0, 0, canvas.width, canvas.height);
+
+            // Optional: Redraw the scene here if needed
+        });
+
+        // Set clear color to black, fully opaque
+        gl.clearColor(0.0, 0.0, 0.0, 1.0);
+
+        // Clear the color buffer with specified clear color
+        gl.clear(gl.COLOR_BUFFER_BIT);
+    </script>
+</body>
+</html>
