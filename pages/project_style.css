@@ -1,0 +1,95 @@
+/* Simple Reset */
+body, h1, h2, h3, p, div {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    padding: 20px;
+    /* background-color: #f4f4f4; */
+}
+
+/* header {
+    background: #333;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+} */
+
+header h1 {
+    margin: 10px 0;
+}
+
+header p {
+    font-style: italic;
+}
+
+/* .introduction {
+    margin: 20px 0;
+    padding: 20px;
+    background: #fff;
+    border-left: 5px solid #333;
+} */
+
+a {
+    /* text-decoration: none; */
+    color: #005fa3;
+}
+
+.projects {
+    margin: 20px 0;
+}
+
+.project-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.project-table tr td:first-child {
+    width: 10%;
+    max-width: 400px;
+}
+
+.project-table td {
+    vertical-align: top;
+    padding: 10px;
+    /* padding-bottom: 10px; */
+    /* border-bottom: 1px solid #ddd; */
+    /* border-top: 1px solid #ddd; */
+}
+
+.project-table img {
+    width: 100%;
+    height: auto; /* Maintain aspect ratio */
+}
+
+.project-table video {
+    width: 100%;
+    height: auto; /* Maintain aspect ratio */
+}
+
+.project-table h3 {
+    margin-top: 0;
+}
+
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px 0;
+    /* background-color: #0077cc; */
+    color: #005fa3;
+    text-decoration: none;
+    border: none;
+    /* border-radius: 5px; */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    color: white;
+    background-color: #005fa3;
+}

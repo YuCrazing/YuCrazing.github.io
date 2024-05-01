@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yu Zhang's Project List</title>
+    <link rel="stylesheet" href="project_style.css">
+    <link rel="icon" type="image/x-icon" href="/assets/imgs/favicon.png" />
+</head>
+<body>
+    <header>
+        <h1>Yu Zhang's Projects</h1>
+    </header>
+    
+    <section class="projects">
+        <table class="project-table">
+
+            <tr>
+                <td>
+                    <video autoplay muted loop>
+                        <source src="/assets/project_images/stable_fluids_3d/ink-animation.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </td>
+                <td>
+                    <h3>
+                        Stable Fluids 3D
+                    </h3>
+                    <p>
+                        A single-file implementation of 3D stable fluids.
+                    </p>
+                    <a href="https://github.com/YuCrazing/stable-fluids-3d" class="button">Github</a>
+                    <a href="https://www.youtube.com/watch?v=yHe8xkoV5y4" class="button">YouTube</a>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <video autoplay muted loop>
+                        <source src="/assets/project_images/soft2d/soft2d.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </td>
+                <td>
+                    <h3>
+                        Soft2D Physics Engine
+                    </h3>
+                    <p>
+                        <a href='https://www.soft2d.tech/'>Soft2D</a> is a 2D multi-material continuum physics engine designed for real-time applications. 
+                        With soft2d, users can simulate various materials such as fluids, sand, snow, and elastic bodies within their applications. Soft2D runs on GPU, and currently supports Vulkan and Metal backends.
+                        For user convenience, we offer a comprehensive suite of easy-to-use interfaces in C language. Please see the <a href='https://docs.soft2d.tech/'>user documentation</a> for more details. 
+                        We also provide a free-to-access unity plugin - <a href='https://github.com/taichi-dev/soft2d-for-unity'>Soft2D for Unity</a>, which allows users to build simulation scenes in a low-code way.
+                    </p>
+                    <a href="https://github.com/taichi-dev/soft2d-release" class="button">Github</a>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>
+                    <img src="/assets/project_images/taichi_particles/statue_compressed.jpg" alt="Project Image">
+                </td>
+                <td>
+                    <h3>
+                        High-Performance PBD Physics Engine
+                    </h3>
+                    <p>
+                        This project aims to develop a high-performance PBD (position-based dynamics) physics engine, which is similar to Houdini Vellum. The engine supports a series of materials' simulation: rigid body, soft body, fluid, cloth, granular material, etc. 
+                        We achieve <a href='https://twitter.com/TaichiGraphics/status/1537193238632599552'>a 60 FPS's 240k particles fluid simulation</a>, and the simulation can be extended to <a href='https://twitter.com/taichi_lang/status/1593148740105568256'>a large-scale scene</a> (there are 20 million particles in the picture on the right side).
+                        To obtain a high-quality fluid surface, we implement a surface reconstruction algorithm based on dual contouring.
+                        In this project, we also use a CCD (Continuous collision detection) algorithm to tackle the tricky collision problem. 
+                    </p>
+                    <!-- <a href="" class="button">Details</a> -->
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <video autoplay muted loop>
+                        <source src="/assets/project_images/sph_ue4/sph_softbody_compressed.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </td>
+                <td>
+                    <h3>
+                        Unreal Engine SPH Plugin
+                    </h3>
+                    <p>
+                        This plugin simulates SPH (smoothed-particle hydrodynamics) linear elasticity deformable objects and fluids in the UE (Unreal Engine) game engine. 
+                        We implement several linear algebra algorithms in (high-level shader language) HLSL, for example, a HLSL version's 3x3 SVD algorithm.
+                        To our knowledge, we are the first ones who implement these algorithms in HLSL.
+                        The major reference for this project is the SPH-related papers mentioned in Jan Bender's SPH Eurographics course.
+                    </p>
+                    <a href="https://github.com/YuCrazing/UE-SPH-Plugin" class="button">Github</a>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <video autoplay muted loop>
+                        <source src="/assets/project_images/stable_fluids_unity/unity_stable_fluids_small.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </td>
+                <td>
+                    <h3>
+                        Unity Stable Fluids Plugin
+                    </h3>
+                    <p>
+                        Inspired by <a href='https://www.unrealengine.com/marketplace/en-US/product/fluidninja-live'> FluidNinja LIVE</a>, this plugin achieves a high-performance stable fluids simulation in the Unity game engine.
+                        Besides fluids, this plugin can also be employed to simulate wind field and magic effects in games.
+                        This plugin is optimized specifically for mobile devices and is able to run at 2ms/frame performance on a mid-range mobile phone.
+                    </p>
+                    <!-- <a href="" class="button">Details</a> -->
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>
+                    <img src="/assets/project_images/path_tracing/binary-spp16-long.jpg" alt="Project Image">
+                </td>
+                <td>
+                    <h3>
+                        Simple Path Tracing Renderer
+                    </h3>
+                    <p>
+                        This project achieves a BRDF model renderer based on path tracing (I am considering expanding this project to the BSSRDF model in the future).
+                        In Monte Carlo integration, uniform sampling is used, and direct/indirect light sources are sampled separately to improve rendering quality.
+                        Moreover, a Russian Roulette scheme is used when casting rays recursively.
+                        In this project, a BVH (bounding volume hierarchy) data structure is used to accelerate querying ray-triangle intersection.
+                        This project is inspired by the course <a href='https://sites.cs.ucsb.edu/~lingqi/teaching/games101.html'> GAMES 101</a>.
+                    </p>
+                    <a href="https://github.com/YuCrazing/Rendering/tree/main/GAMES101/Assignment7-path-tracing" class="button">Github</a>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <video autoplay muted loop>
+                        <source src="/assets/project_images/taichi/fem.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </td>
+                <td>
+                    <h3>
+                        GAMES 201 Course Projects
+                    </h3>
+                    <p>
+                        This project includes algorithm implementations of the course <a href='https://forum.taichi.graphics/'> GAMES 201: 高级物理引擎实战指南2020 </a>.
+                        I complete almost all algorithms mentioned in this course, these algorithms include:
+                        Euler fluid methods; Hybrid fluid methods: PIC (Particle-In-Cell), APIC (Affine Particle-In-Cell), FLIP (Fluid Implicit Particles), MPM (Material Point Method); 3D implicit FEM (Finite Element Method); Vortex methods;
+                        Several numerical methods: Conjugate Gradients, Multigrid Methods. All procedures are written in the Taichi programming language.
+                    </p>
+                    <a href="https://github.com/YuCrazing/Taichi" class="button">Github</a>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <video autoplay muted loop>
+                        <source src="/assets/project_images/sph_pbf/two-3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </td>
+                <td>
+                    <h3>
+                        Real-Time Fluid Simulation in Games
+                    </h3>
+                    <p>
+                        This pre-research project was finished during my internship in NetEase Games, with advisor <a href='https://www.linkedin.com/in/xiaosheng-li-54aa0484/?originalSubdomain=cn'>Xiaosheng Li </a>.
+                        This project aims to explore the possibility of achieving real-time interactive fluid simulations in desktop and mobile games.
+                        Two popular Lagrangian methods, SPH (Smooth Particles Hydrodynamics) and PBF (Position Based Fluids), are achieved on both PC and cell phones, and their performance is compared.
+                        For free-surface rendering, two rendering methods are implemented and compared: Marching Cubes and SSFR (Screen Space Fluid Rendering). 
+                        This project is written by Unity compute shader and fully runs on GPU.
+                    </p>
+                    <!-- <a href="link_to_project" class="button">More Details</a> -->
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <img src="/assets/project_images/vascular_system/vessels_0.jpg" alt="Project Image">
+                </td>
+                <td>
+                    <h3>
+                        Vascular Fitting System
+                    </h3>
+                    <p>
+                        A vascular fitting system for visualizing, editing, and fitting 3D vascular data. This software is developed during my first year of postgraduate, and it is currently used by Virtual Reality and Visualization Lab of Beijing Normal University. This system is based on Dynamic Ball B-Spline Curves and is written in Qt / C++ / OpenGL.
+                    </p>
+                    <a href="/2018/06/01/Vascular-Fitting-System-Based-on-Ball-B-Spline-Curves.html" class="button">More Details</a>            
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <img src="/assets/project_images/course_assistant/3.png" alt="Project Image">
+                </td>
+                <td>
+                    <h3>
+                        Computer Graphics Course Assistant
+                    </h3>
+                    <p>
+                        I design assignments for Beijing Normal University undergraduate computer graphics course. The content includes a modern OpenGL tutorial, basic shading modes, mesh subdivision, curves and surfaces, physical simulation, and simple ray tracing. These procedures are based on Qt C++ framework and use the OpenGL 4.0 APIs.
+                    </p>
+                    <a href="/2019/06/02/Computer-Graphics-Course-Labs-Design.html" class="button">More Details</a>            
+                </td>
+            </tr>
+
+        </table>
+    
+    </section>
+    <section class="introduction">
+        <a href="https://yucrazing.github.io/resume/">Return to Resume</a>
+        <br>
+        <a href="/">Return to Blog</a>
+    </section>
+</body>
+</html>
