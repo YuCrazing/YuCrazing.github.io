@@ -5,8 +5,8 @@ category: ""
 tags: "philosophy"
 ---
 
-![][1]
-![][2]
+## Math Concept Map
+![](/assets/imgs/math-concept-map.png){:width="50%"}
 
-[1]: {{ site.ImgDir }}/math-concept-map.png
-[2]: {{ site.ImgDir }}/mind-concept-map.png
+## Mind Concept Map
+![](/assets/imgs/mind-concept-map.png){:width="50%"}
