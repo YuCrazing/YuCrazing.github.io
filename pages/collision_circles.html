@@ -1,0 +1,164 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONNX Model Inference</title>
+    <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+</head>
+<body>
+    <script>
+        async function runModel() {
+            // Load the ONNX model
+            const session = await ort.InferenceSession.create('collision_model_gelu.onnx');
+
+            // Create a tensor from your input data
+            // Assuming BATCH_SIZE = 1, and input is [float1, float2]
+            const input = new Float32Array([1.0, 2.0]); // Replace with your actual input
+            const tensor = new ort.Tensor('float32', input, [1, 2]);
+
+            // Prepare feeds
+            const feeds = { input: tensor };
+
+            // Run the model
+            const results = await session.run(feeds);
+
+            // Get the output
+            const output = results.output.data;
+            console.log('Model output:', output);
+        }
+
+        runModel().catch(err => console.error(err));
+    </script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas and ONNX Model</title>
+    <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="800" height="800"></canvas>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+        const scene_length = 10.0;
+        const scale = scene_length / canvas.width;
+        const radius = 0.5 / scale;
+        let color = 'black';
+
+        let circle1 = { x: centerX, y: centerY, radius: radius };
+        let circle2 = { x: centerX + 100, y: centerY + 100, radius: radius };
+
+        let isDragging = false;
+
+        function drawCircle(circle) {
+            ctx.beginPath();
+            ctx.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2);
+            ctx.fillStyle = color;
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function draw() {
+            clearCanvas();
+            drawCircle(circle1);
+            drawCircle(circle2);
+        }
+
+        function getMousePos(canvas, evt) {
+            const rect = canvas.getBoundingClientRect();
+            return {
+                x: evt.clientX - rect.left,
+                y: evt.clientY - rect.top
+            };
+        }
+
+        function isInsideCircle(pos, circle) {
+            const distance = Math.sqrt((pos.x - circle.x) ** 2 + (pos.y - circle.y) ** 2);
+            return distance < circle.radius;
+        }
+
+        canvas.addEventListener('mousedown', (evt) => {
+            const mousePos = getMousePos(canvas, evt);
+            if (isInsideCircle(mousePos, circle2)) {
+                isDragging = true;
+            }
+        });
+
+        canvas.addEventListener('mousemove', (evt) => {
+            if (isDragging) {
+                const mousePos = getMousePos(canvas, evt);
+                circle2.x = mousePos.x;
+                circle2.y = mousePos.y;
+                
+                const relativePos = [(circle2.x - circle1.x) * scale, (circle2.y - circle1.y)*scale];
+                
+                // console.log('Relative position:', relativePos);
+                runModel(relativePos);
+                
+                draw();
+            }
+        });
+
+        canvas.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        function collision_detection(relativePos) {
+            const distance = Math.sqrt(relativePos[0] ** 2 + relativePos[1] ** 2);
+            if (distance <= 1) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+
+        async function runModel(relativePos) {
+            try {
+                const session = await ort.InferenceSession.create('/assets/models/collision_model_gelu.onnx');
+                const input = new Float32Array(relativePos);
+                const tensor = new ort.Tensor('float32', input, [1, 2]);
+
+                const feeds = { input: tensor };
+                const results = await session.run(feeds);
+                const output = results.output.data;
+
+                pred_collision = (output[0] > 0.5) ? 1 : 0;
+                real_collision = collision_detection(relativePos);
+                if (pred_collision == 1 && real_collision == 1) {
+                    color = 'green';
+                } else if (pred_collision == 0 && real_collision == 0) {
+                    color = 'black';
+                } else if (pred_collision == 1 && real_collision == 0) {
+                    color = 'yellow';
+                } else {
+                    color = 'red';
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        // Initial draw
+        draw();
+    </script>
+</body>
+</html>
