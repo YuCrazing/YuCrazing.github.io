@@ -1,0 +1,58 @@
+# Author registry — central place for author homepages.
+#
+# Layout will look up each name in publications' `authors:` array against this
+# file. To update an author's homepage, change it here once and every paper
+# that lists them is updated automatically.
+#
+# Fields per entry:
+#   url:  Homepage URL. Use "#" as a placeholder if you don't have one yet.
+#         Omit the url field entirely to render the name as plain text.
+#   bold: Set to true for the site owner; the name is wrapped in <b>.
+#
+# An asterisk suffix on the author name in a publication (e.g. "Zhongke Wu*")
+# is preserved automatically by the layout — keys here should NOT include "*".
+
+"Yu Zhang":
+  bold: true
+
+"Yin Yang":
+  url: "https://yangzzzy.github.io/"
+
+"Tiantian Liu":
+  url: "https://tiantianliu.cn/"
+
+"Xing Shen":
+  url: "https://xingbaji.github.io/"
+
+"Kemeng Huang":
+  url: "https://kemenghuang.github.io/"
+
+"Taku Komura":
+  url: "https://i.cs.hku.hk/~taku/"
+
+"Xingang Pan":
+  url: "https://xingangpan.github.io/"
+
+"Wei Chen":
+  url: "#"
+
+"Lei Lan":
+  url: "https://lanlei.github.io/"
+
+"Tianjia Shao":
+  url: "https://tianjiashao.com/"
+
+"Zixuan Lu":
+  url: "https://zixuanvickylu.github.io/"
+
+"Chenfanfu Jiang":
+  url: "https://www.math.ucla.edu/~cffjiang/index.html"
+
+"Ciyang Zhou":
+  url: "#"
+
+"Zhongke Wu":
+  url: "#"
+
+"Xingce Wang":
+  url: "#"

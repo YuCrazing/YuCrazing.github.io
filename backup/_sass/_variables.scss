@@ -1,0 +1,26 @@
+// Variables (jonbarron.info-style)
+// ---------------------------------------/
+
+$container-width: 800px !default;
+$grid-gutter:     10px !default;
+
+// Colors
+$white:             #fff;
+$black:             #000;
+$muted:             #888;
+$rule:              #e5e5e5;
+$link:              #1772d0;
+$link-hover:        #f09228;
+$highlight:         #ffffd0;
+
+// Styles
+$text_color:        $black;
+
+// Font stack
+$body-font: 'Lato', Verdana, Helvetica, sans-serif !default;
+
+// The base body size
+$body-font-size: 14px !default;
+
+// Monospace font stack
+$mono-font: Consolas, "Liberation Mono", Menlo, Courier, monospace !default;

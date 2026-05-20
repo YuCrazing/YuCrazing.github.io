@@ -1,0 +1,214 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+  <title>{% if page.title %}{{ page.title }} &mdash; {% endif %}{{ site.name }}</title>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <meta name="author" content="{{ site.name }}" />
+  <meta name="description" content="{{ site.description }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css" />
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+  <link rel="icon" type="image/png" href="{{ site.baseurl }}/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+{% if page.sections %}
+  {% assign show_sections = page.sections %}
+{% else %}
+  {% assign show_sections = "news,publications,projects,experience,education" | split: "," %}
+{% endif %}
+{% if page.show_bio == nil %}{% assign show_bio = true %}{% else %}{% assign show_bio = page.show_bio %}{% endif %}
+
+<table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+  <tr style="padding:0px">
+    <td style="padding:0px">
+
+      <!-- Header -->
+      <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+        <tr style="padding:0px">
+          <td style="padding:2.5%;width:72%;vertical-align:middle">
+            <h1>{{ site.name }}</h1>
+
+            {% if show_bio %}
+            {{ site.bio }}
+            {% endif %}
+
+            <p style="text-align:center">
+              {% if page.url != "/" %}<a href="{{ '/' | relative_url }}">Home</a> &nbsp;/&nbsp;{% endif %}
+              {% if site.email %}<a href="mailto:{{ site.email }}">Email</a>{% endif %}
+              {% if site.cv_url %} &nbsp;/&nbsp; <a href="{{ site.cv_url }}">CV</a>{% endif %}
+              {% if site.scholar_url %} &nbsp;/&nbsp; <a href="{{ site.scholar_url }}">Google Scholar</a>{% endif %}
+              {% if site.github_url %} &nbsp;/&nbsp; <a href="{{ site.github_url }}">GitHub</a>{% endif %}
+              {% if site.twitter_url %} &nbsp;/&nbsp; <a href="{{ site.twitter_url }}">Twitter</a>{% endif %}
+              {% if site.linkedin_url %} &nbsp;/&nbsp; <a href="{{ site.linkedin_url }}">LinkedIn</a>{% endif %}
+              {% if page.url == "/" and site.more_url %} &nbsp;/&nbsp; <a href="{{ site.more_url | relative_url }}">More</a>{% endif %}
+            </p>
+          </td>
+          <td style="padding:2.5%;width:28%;max-width:28%;vertical-align:middle">
+            {% if site.avatar %}
+            <a href="{{ site.avatar | relative_url }}"><img style="width:100%;max-width:100%;object-fit:cover;" alt="profile photo" src="{{ site.avatar | relative_url }}"></a>
+            {% endif %}
+          </td>
+        </tr>
+      </table>
+
+      <!-- Research -->
+      {% if show_sections contains "publications" %}
+      <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+        <tr>
+          <td style="padding:2.5%;width:100%;vertical-align:middle">
+            <h2>Research</h2>
+            {% if site.research_interests %}
+            {{ site.research_interests }}
+            {% endif %}
+          </td>
+        </tr>
+      </table>
+      <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+        {% for pub in site.data.publications %}
+        {% if pub.hidden %}{% continue %}{% endif %}
+        <tr{% if pub.highlighted %} bgcolor="#ffffd0"{% endif %}>
+          <td style="padding:2.5%;width:25%;vertical-align:middle;min-width:120px">
+            {% if pub.img %}
+              {% if pub.url %}<a href="{{ pub.url }}">{% endif %}
+              <img src="{{ pub.img | relative_url }}" alt="paper teaser" style="width:auto; height:auto; max-width:100%;" />
+              {% if pub.url %}</a>{% endif %}
+            {% endif %}
+          </td>
+          <td style="padding:2.5%;width:75%;vertical-align:middle">
+            {% if pub.url %}<a href="{{ pub.url }}"><h3>{{ pub.publication }}</h3></a>{% else %}<h3>{{ pub.publication }}</h3>{% endif %}
+            <br>
+            {%- if pub.authors -%}
+              {%- for name in pub.authors -%}
+                {%- assign clean_name = name | remove: "*" -%}
+                {%- assign suffix = "" -%}
+                {%- if name contains "*" -%}{%- assign suffix = "*" -%}{%- endif -%}
+                {%- assign info = site.data.authors[clean_name] -%}
+                {%- if info.bold -%}<b>{%- endif -%}
+                {%- if info.url -%}<a href="{{ info.url }}">{{ clean_name }}{{ suffix }}</a>{%- else -%}{{ clean_name }}{{ suffix }}{%- endif -%}
+                {%- if info.bold -%}</b>{%- endif -%}
+                {%- unless forloop.last -%}, {% endunless -%}
+              {%- endfor -%}
+            {%- else -%}
+              {{ pub.role }}
+            {%- endif %}
+            <br>
+            <em>{{ pub.journal }}</em>
+            {% capture pub_links %}{% if pub.project_url %} / <a href="{{ pub.project_url }}">Project Page</a>{% endif %}{% if pub.arxiv_url %} / <a href="{{ pub.arxiv_url }}">arXiv</a>{% endif %}{% if pub.code_url %} / <a href="{{ pub.code_url }}">Code</a>{% endif %}{% endcapture %}
+            {% assign pub_links = pub_links | strip | remove_first: "/ " %}
+            {% if pub_links != "" %}<br>{{ pub_links }}{% endif %}
+            {% assign desc_stripped = pub.description | default: "" | strip %}
+            {% if desc_stripped != "" %}
+            <p></p>
+            {{ pub.description }}
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+      <br>
+      {% endif %}
+
+      <!-- Selected Projects -->
+      {% if show_sections contains "projects" %}
+      <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+        <tr>
+          <td style="padding:2.5%;width:100%;vertical-align:middle">
+            <h2>Selected Projects{% if site.full_projects_url %} <a style="font-size:14px;font-weight:400;" href="{{ site.full_projects_url }}">(full list)</a>{% endif %}</h2>
+          </td>
+        </tr>
+      </table>
+      <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+        {% for proj in site.data.projects %}
+        {% if proj.hidden %}{% continue %}{% endif %}
+        <tr>
+          <td style="padding:2.5%;width:25%;vertical-align:middle;min-width:120px">
+            {% if proj.img %}<img src="{{ proj.img | relative_url }}" alt="project image" style="width:auto; height:auto; max-width:100%;" />{% endif %}
+            {% if proj.video %}<video autoplay muted loop playsinline style="width:auto; height:auto; max-width:100%;"><source src="{{ proj.video | relative_url }}" type="video/mp4"></video>{% endif %}
+          </td>
+          <td style="padding:2.5%;width:75%;vertical-align:middle">
+            <h3>{{ proj.project }}</h3>
+            {% if proj.role or proj.duration %}
+            <br>
+            <span style="color:#888;">
+              {% if proj.role %}{{ proj.role }}{% endif %}
+              {% if proj.role and proj.duration %} &middot; {% endif %}
+              {% if proj.duration %}{{ proj.duration }}{% endif %}
+            </span>
+            {% endif %}
+            {% if proj.urls %}
+            <br>
+            {{ proj.urls }}
+            {% endif %}
+            <p></p>
+            {{ proj.description }}
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+      <br>
+      {% endif %}
+
+      <!-- Experience -->
+      {% if show_sections contains "experience" %}
+      <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+        <tr>
+          <td style="padding:2.5%;width:100%;vertical-align:middle"><h2>Experience</h2></td>
+        </tr>
+      </table>
+      <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+        {% for job in site.data.experience %}
+        <tr>
+          <td style="padding:0.5% 2.5%;width:100%;vertical-align:middle">
+            {{ job.company }}{% if job.position %}, {{ job.position }}{% endif %}
+            {% if job.duration %}<span style="color:#888;"> &middot; {{ job.duration }}</span>{% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+      <br>
+      {% endif %}
+
+      <!-- Education -->
+      {% if show_sections contains "education" %}
+      <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+        <tr>
+          <td style="padding:2.5%;width:100%;vertical-align:middle"><h2>Education</h2></td>
+        </tr>
+      </table>
+      <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+        {% for edu in site.data.education %}
+        <tr>
+          <td style="padding:0.5% 2.5%;width:100%;vertical-align:middle">
+            <strong>{{ edu.degree }}</strong>, {{ edu.uni }}
+            {% if edu.year %}<span style="color:#888;"> &middot; {{ edu.year }}</span>{% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+      <br>
+      {% endif %}
+
+      <!-- Credit -->
+      <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+        <tr>
+          <td style="padding:0px">
+            <br>
+            <p style="text-align:center;font-size:small;">
+              Design and source code from <a style="font-size:small;" href="https://jonbarron.info">Jon Barron's website</a>
+            </p>
+          </td>
+        </tr>
+      </table>
+
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

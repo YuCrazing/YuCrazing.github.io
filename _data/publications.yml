@@ -1,16 +1,25 @@
 # Publications
 # uncomment the urls if you wish to display them, and add your own URL
 
+- publication: An Efficient Multilevel Preconditioned Nonlinear Conjugate Gradient Method for Incremental Potential Contact
+  url: "https://arxiv.org/abs/2604.19892"
+  arxiv_url: "https://arxiv.org/abs/2604.19892"
+  # project_url: ""
+  # code_url: ""
+  authors: [Yu Zhang, Xing Shen, Kemeng Huang, Wei Chen, Yin Yang, Taku Komura, Tiantian Liu, Xingang Pan]
+  img: "images/publications/pncg_ipc/teaser.png"
+  journal: "arXiv preprint, 2026"
+  description: ""
+
 - publication: 3DGS<sup>2</sup>&#58; Near Second-order Converging 3D Gaussian Splatting
-  role: Lei Lan, Tianjia Shao, Zixuan Lu, <b>Yu Zhang</b>, Chenfanfu Jiang, Yin Yang
+  url: "https://2ndgs.github.io/2ndGS_project_page/"
+  project_url: "https://2ndgs.github.io/2ndGS_project_page/"
+  arxiv_url: "https://arxiv.org/abs/2501.13975"
+  # code_url: ""
+  authors: [Lei Lan, Tianjia Shao, Zixuan Lu, Yu Zhang, Chenfanfu Jiang, Yin Yang]
   # duration: 2018 &mdash; Present
   img: "images/publications/3dgs2/3dgs2.png"
   journal: "SIGGRAPH 2025 (Conference Track)"
-  urls: "
-        <a class='fancy-link' href='https://2ndgs.github.io/2ndGS_project_page/'>Project</a>
-        <a class='fancy-link' href='https://arxiv.org/abs/2501.13975'>Paper</a>
-      "
-
   description: "
 
                       
@@ -19,7 +28,8 @@
 
 
 - publication: Dynamic Ball B-Spline Curves
-  role: Ciyang Zhou, <b>Yu Zhang</b>, Zhongke Wu*, Xingce Wang
+  hidden: true
+  authors: [Ciyang Zhou, Yu Zhang, "Zhongke Wu*", Xingce Wang]
   # duration: 2018 &mdash; Present
   img: "images/publications/D-BBSC/palm-paper-0.jpg"
   journal: "Computer Graphics International 2023 (CGI 2023)"
@@ -34,7 +44,8 @@
                  "
 
 - publication: Dynamic Disk B-Spline Curves
-  role: <b>Yu Zhang</b>, Zhongke Wu*, Xingce Wang
+  hidden: true
+  authors: [Yu Zhang, "Zhongke Wu*", Xingce Wang]
   # duration: 2018 &mdash; Present
   journal: "33rd International Conference on Computer Animation and Social Agents Special Issues (CASA 2020) <br> Published on Computer Animation and Virtual Worlds (CAVW) &nbsp <a  href='https://onlinelibrary.wiley.com/toc/1546427x/2020/31/4-5'>(Selected as the image of inside cover)</a>"
   img: "images/publications/D-DBSC/horse.png"

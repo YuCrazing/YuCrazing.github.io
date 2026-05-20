@@ -1,21 +1,27 @@
-// Variables
-// ---------------------------------------/
 
-$container-width: 980px !default;
-$grid-gutter:     10px !default;
+//
+// VARIABLES
+//
 
 // Colors
-$white:             #fff;
-$black:             #333;
+$blue: #4183C4;
 
-// Styles
-$text_color:        $black;
+// Grays
+$black: #000;
+$darkerGray: #222;
+$darkGray: #333;
+$gray: #666;
+$lightGray: #eee;
+$white: #fff;
 
-// Font stack
-$body-font: Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol" !default;
+// Font stacks
+$helvetica: Helvetica, Arial, sans-serif;
+$helveticaNeue: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$georgia: Georgia, serif;
 
-// The base body size
-$body-font-size: 13px !default;
-
-// Monospace font stack
-$mono-font: Consolas, "Liberation Mono", Menlo, Courier, monospace !default;
+// Mobile breakpoints
+@mixin mobile {
+  @media screen and (max-width: 640px) {
+    @content;
+  }
+}

@@ -1,6 +1,18 @@
 # Projects
 # uncomment the urls if you wish to display them, and add your own URL
 
+- project: "Genesis"
+  role: Collaborator
+  duration: "Oct 2024 — May 2025"   # please confirm/adjust
+  description: "
+    Collaborating with <a href='https://www.zhou-xian.com/'>Xian Zhou</a> and <a href='https://people.csail.mit.edu/ganchuang/'>Prof. Chuang Gan</a> on the <a href='https://genesis-embodied-ai.github.io/'>Genesis</a> project, an open-source physics platform for robotics and embodied AI research.
+  "
+  img: "images/projects/genesis/teaser.png"
+  urls: "
+    <a class='fancy-link' href='https://genesis-embodied-ai.github.io/'>Project Page</a>
+    <a class='fancy-link' href='https://github.com/Genesis-Embodied-AI/Genesis'>Github</a>
+  "
+
 - project: "Baraff-Witkin Cloth Model with IPC Collision Handling"
   role: Personal Project
   duration: Oct, 2024

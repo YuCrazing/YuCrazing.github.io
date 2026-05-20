@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  {% include head.html %}
+
+  <body>
+
+    {% if page.sections %}
+      {% assign show_sections = page.sections %}
+    {% else %}
+      {% assign show_sections = "news,publications,projects,experience,education" | split: "," %}
+    {% endif %}
+    {% if page.show_bio == nil %}{% assign show_bio = true %}{% else %}{% assign show_bio = page.show_bio %}{% endif %}
+
+    <table class="main-table" itemscope itemtype="http://schema.org/Person">
+      <tbody>
+        <tr>
+          <td>
+
+            <!-- ================== Header: bio left, photo right ================== -->
+            <table>
+              <tbody>
+                <tr>
+                  <td style="padding:2.5%; width:72%; vertical-align:middle">
+
+                    <p class="name" style="text-align: center;" itemprop="name">{{ site.resume_name }}</p>
+
+                    {% if site.resume_affiliation %}
+                    <p style="text-align:center; color:#888; margin:6px 0 12px;">{{ site.resume_affiliation }}</p>
+                    {% endif %}
+
+                    {% if show_bio %}
+                    <div class="executive-summary" itemprop="description">
+                      {{ site.resume_header_intro }}
+                    </div>
+                    {% endif %}
+
+                    <p style="text-align:center" class="sep">
+                      {% if page.url != "/" %}<a href="{{ '/' | relative_url }}">Home</a>{% endif %}
+                      {% if site.resume_contact_email %}<a href="mailto:{{ site.resume_contact_email }}" itemprop="email">Email</a>{% endif %}
+                      {% if site.resume_cv_url %}<a href="{{ site.resume_cv_url }}">CV</a>{% endif %}
+                      {% if site.resume_social_links.resume_scholar_url %}<a href="{{ site.resume_social_links.resume_scholar_url }}">Scholar</a>{% endif %}
+                      {% if site.resume_social_links.resume_github_url %}<a href="{{ site.resume_social_links.resume_github_url }}" itemprop="sameAs">Github</a>{% endif %}
+                      {% if site.resume_social_links.resume_twitter_url %}<a href="{{ site.resume_social_links.resume_twitter_url }}" itemprop="sameAs">Twitter</a>{% endif %}
+                      {% if site.resume_social_links.resume_linkedin_url %}<a href="{{ site.resume_social_links.resume_linkedin_url }}" itemprop="sameAs">LinkedIn</a>{% endif %}
+                      {% if page.url == "/" and site.resume_more_url %}<a href="{{ site.resume_more_url | relative_url }}">More</a>{% endif %}
+                    </p>
+
+                  </td>
+                  <td style="padding:2.5%; width:28%; max-width:28%; vertical-align:middle">
+                    {% if site.resume_avatar %}
+                    <a href="{{ site.resume_avatar }}">
+                      <img style="width:100%; max-width:100%; object-fit:cover;"
+                           src="{{ site.resume_avatar }}"
+                           itemprop="image"
+                           alt="{{ site.resume_name }}">
+                    </a>
+                    {% endif %}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- ================== News ================== -->
+            {% if site.resume_section_news and site.data.news and show_sections contains "news" %}
+            <table>
+              <tbody>
+                <tr><td style="padding:20px;width:100%;vertical-align:middle"><h2>News</h2></td></tr>
+              </tbody>
+            </table>
+            <table class="news-table">
+              <tbody>
+                {% for item in site.data.news %}
+                <tr>
+                  <td class="news-date">{{ item.date }}</td>
+                  <td class="news-body">{{ item.body }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            {% endif %}
+
+            <!-- ================== Publications ================== -->
+            {% if site.resume_section_publications and show_sections contains "publications" %}
+            <table>
+              <tbody>
+                <tr><td style="padding:20px;width:100%;vertical-align:middle"><h2>Publications</h2></td></tr>
+              </tbody>
+            </table>
+            <table>
+              <tbody>
+                {% for publication in site.data.publications %}
+                {% if publication.hidden %}{% continue %}{% endif %}
+                <tr>
+                  <td style="padding:20px 16px;width:20%;vertical-align:middle">
+                    {% if publication.img %}
+                      {% if publication.url %}<a href="{{ publication.url }}">{% endif %}
+                      <img src="{{ publication.img }}" alt="" style="width:100%;max-width:100%;">
+                      {% if publication.url %}</a>{% endif %}
+                    {% endif %}
+                  </td>
+                  <td style="padding:20px 8px;width:80%;vertical-align:middle">
+                    {% if publication.url %}
+                      <a href="{{ publication.url }}"><span class="papertitle">{{ publication.publication }}</span></a>
+                    {% else %}
+                      <span class="papertitle">{{ publication.publication }}</span>
+                    {% endif %}
+                    {% if publication.role %}<br>{{ publication.role }}{% endif %}
+                    {% if publication.journal %}<br><em>{{ publication.journal }}</em>{% endif %}
+                    {% if publication.urls %}<br>{{ publication.urls }}{% endif %}
+                    {% assign desc_stripped = publication.description | strip %}
+                    {% if desc_stripped != "" %}
+                    <p>{{ publication.description }}</p>
+                    {% endif %}
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            {% endif %}
+
+            <!-- ================== Selected Projects ================== -->
+            {% if site.resume_section_projects and show_sections contains "projects" %}
+            <table>
+              <tbody>
+                <tr>
+                  <td style="padding:20px;width:100%;vertical-align:middle">
+                    <h2>Selected Projects
+                      {% if site.resume_full_projects_url %}
+                      <span style="font-size:14px;"><a href="{{ site.resume_full_projects_url }}">(full list)</a></span>
+                      {% endif %}
+                    </h2>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table>
+              <tbody>
+                {% for project in site.data.projects %}
+                <tr>
+                  <td style="padding:16px;width:25%;vertical-align:middle">
+                    {% if project.img %}
+                    <img src="{{ project.img }}" alt="" style="width:100%;max-width:100%;">
+                    {% endif %}
+                    {% if project.video %}
+                    <video autoplay muted loop playsinline style="width:100%;max-width:100%;">
+                      <source src="{{ project.video }}" type="video/mp4">
+                    </video>
+                    {% endif %}
+                  </td>
+                  <td style="padding:8px;width:75%;vertical-align:middle">
+                    <span class="papertitle">{{ project.project }}</span>
+                    {% if project.role or project.duration %}
+                    <br><span style="color:#888;">
+                      {% if project.role %}{{ project.role }}{% endif %}
+                      {% if project.role and project.duration %} &middot; {% endif %}
+                      {% if project.duration %}{{ project.duration }}{% endif %}
+                    </span>
+                    {% endif %}
+                    {% if project.urls %}<br>{{ project.urls }}{% endif %}
+                    <p>{{ project.description }}</p>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            {% endif %}
+
+            <!-- ================== Experience ================== -->
+            {% if site.resume_section_experience and show_sections contains "experience" %}
+            <table>
+              <tbody>
+                <tr><td style="padding:20px;width:100%;vertical-align:middle"><h2>Experience</h2></td></tr>
+              </tbody>
+            </table>
+            <table>
+              <tbody>
+                {% for job in site.data.experience %}
+                <tr>
+                  <td style="padding:4px 16px;vertical-align:middle">
+                    {{ job.company }}{% if job.position %}, {{ job.position }}{% endif %}
+                    {% if job.duration %}<span style="color:#888;"> &middot; {{ job.duration }}</span>{% endif %}
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            {% endif %}
+
+            <!-- ================== Education ================== -->
+            {% if site.resume_section_education and show_sections contains "education" %}
+            <table>
+              <tbody>
+                <tr><td style="padding:20px;width:100%;vertical-align:middle"><h2>Education</h2></td></tr>
+              </tbody>
+            </table>
+            <table>
+              <tbody>
+                {% for education in site.data.education %}
+                <tr>
+                  <td style="padding:4px 16px;vertical-align:middle" itemscope itemprop="alumniOf" itemtype="http://schema.org/CollegeOrUniversity">
+                    <strong itemprop="name">{{ education.degree }}</strong>, {{ education.uni }}
+                    {% if education.year %}<span style="color:#888;"> &middot; {{ education.year }}</span>{% endif %}
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            {% endif %}
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </body>
+</html>

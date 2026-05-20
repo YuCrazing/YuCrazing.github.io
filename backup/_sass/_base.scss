@@ -1,0 +1,39 @@
+// Base styles
+// ---------------------------------------/
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: $white;
+}
+
+body {
+  font-family: $body-font;
+  font-size: $body-font-size;
+  color: $text_color;
+  margin: 0;
+  padding: 0;
+}
+
+body, td, th, tr, p, a {
+  font-family: $body-font;
+  font-size: $body-font-size;
+}
+
+strong {
+  font-family: $body-font;
+  font-size: $body-font-size;
+}
+
+a {
+  color: $link;
+  text-decoration: none;
+}
+
+a:focus, a:hover {
+  color: $link-hover;
+  text-decoration: none;
+}
+
+img { border: 0; }

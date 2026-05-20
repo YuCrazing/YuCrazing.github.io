@@ -1,0 +1,81 @@
+# Site settings
+title: "Yu Zhang - Homepage"
+description: "Personal homepage of Yu Zhang"
+
+# Build settings
+markdown: kramdown
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# Resume / homepage settings
+resume_avatar:                  "images/avatar-casual.png"
+resume_name:                    "Yu Zhang (张宇)"
+resume_affiliation:             "Research Assistant, University of Utah"
+
+# Contact
+resume_contact_email:           "yucrazing@mail.bnu.edu.cn"
+resume_contact_telephone:       "#"
+resume_contact_address:         "University of Utah"
+
+# CV link (shown in the header link row)
+resume_cv_url:                  "https://yucrazing.github.io/assets/files/YuZhang_CV_en.pdf"
+
+# Header bio paragraph (HTML allowed)
+resume_header_intro: "
+<p>
+  I am a research assistant in <a href='https://yangzzzy.github.io/'>Prof. Yin Yang</a>'s lab at the University of Utah.
+  I am also collaborating with <a href='https://people.csail.mit.edu/ganchuang/'>Prof. Chuang Gan</a> on the
+  <a href='https://genesis-embodied-ai.github.io/'>Genesis</a> project.
+</p>
+<p>
+  Before joining Yin Yang's lab, I worked at MeshyAI (with <a href='https://tiantianliu.cn/'>Dr. Tiantian Liu</a> and
+  <a href='https://yuanming.taichi.graphics/'>Dr. Yuanming Hu</a>) and Tencent Games, and interned at NetEase Games.
+  I earned both my bachelor's and master's degrees in Computer Science and Technology from Beijing Normal University,
+  advised by Prof. Zhongke Wu.
+</p>
+<p>
+  My research interests include <strong>3D AIGC</strong>, <strong>Computer Graphics</strong>
+  (especially physical simulation), and <strong>Robotics</strong>.
+</p>
+"
+
+# Optional: link next to the "Selected Projects" heading
+resume_full_projects_url:       "https://yucrazing.github.io/pages/projects"
+
+# URL of the "More" page (projects / experience / education).
+# Shown as a link in the header on the home page.
+resume_more_url:                "/more/"
+
+# Sections to display
+resume_section_news:            true
+resume_section_publications:    true
+resume_section_projects:        true
+resume_section_experience:      true
+resume_section_education:       true
+
+# Disabled sections (kept for reference / future re-enable)
+resume_section_skills:          false
+resume_section_recognition:     false
+resume_section_links:           false
+resume_section_associations:    false
+resume_section_interests:       false
+resume_section_applications:    false
+resume_section_gallery:         false
+
+# Social / external links shown in the header row.
+# Uncomment and fill in to display.
+resume_social_links:
+  resume_github_url:            "https://github.com/YuCrazing/"
+  # resume_scholar_url:         "https://scholar.google.com/citations?user=YOUR_ID"
+  # resume_twitter_url:         "https://twitter.com/YOUR_HANDLE"
+  # resume_linkedin_url:        "https://www.linkedin.com/in/YOUR_HANDLE"
+
+resume_print_social_links:      false
+
+# Design settings
+resume_theme:                   default
+
+# Note: when editing locally, remember to restart your Jekyll server
+# when you edit this file. Changes to _config.yml are only recognized
+# when the server starts.

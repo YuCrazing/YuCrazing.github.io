@@ -1,0 +1,96 @@
+// Homepage styles — jonbarron.info-inspired
+// ---------------------------------------/
+
+h2 {
+  margin: 0;
+  font-weight: normal;
+  font-family: $body-font;
+  font-size: 22px;
+}
+
+.papertitle {
+  font-family: $body-font;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.name {
+  padding-top: 20px;
+  margin: 0;
+  font-family: $body-font;
+  font-size: 32px;
+}
+
+// Top-level wrapper used by the layout
+.main-table {
+  width: 100%;
+  max-width: $container-width;
+  margin-right: auto;
+  margin-left: auto;
+  border-spacing: 0px;
+  border-collapse: separate;
+}
+
+// Make every nested table also collapse spacing by default so the layout
+// remains tight in the jonbarron style.
+.main-table table {
+  border-spacing: 0;
+  border-collapse: separate;
+  width: 100%;
+}
+
+// Highlighted publication row tint
+span.highlight,
+.highlight-row > td {
+  background-color: $highlight;
+}
+
+// Inline link separator used in the header & publication link rows.
+// Wrap link clusters with .sep so each <a> is followed by " / ".
+.sep a + a::before {
+  content: " / ";
+  color: $black;
+}
+
+// Override the old fancy-link button style so existing yml that uses
+// <a class="fancy-link"> just renders as a plain text link, then we
+// inject the " / " separator between siblings.
+a.fancy-link {
+  display: inline;
+  background: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  margin: 0;
+  color: $link;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+a.fancy-link:hover {
+  background: none !important;
+  color: $link-hover;
+}
+
+a.fancy-link + a.fancy-link::before {
+  content: " / ";
+  color: $black;
+}
+
+// News list — kept minimal: date on the left, body on the right
+.news-table td {
+  padding: 4px 8px;
+  vertical-align: top;
+}
+
+.news-table .news-date {
+  white-space: nowrap;
+  color: $muted;
+  width: 90px;
+}
+
+// Print
+@media print {
+  body { font-size: 11pt; }
+  a { color: #000; }
+}

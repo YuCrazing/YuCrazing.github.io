@@ -1,0 +1,9 @@
+# News entries — newest first.
+# `date` is shown in the left column; keep it short (e.g. "May 2026").
+# `body` accepts HTML (links, <em>, <strong>).
+
+- date: "Apr 2025"
+  body: "Our paper <em>3DGS<sup>2</sup>: Near Second-order Converging 3D Gaussian Splatting</em> is accepted to <strong>SIGGRAPH 2025</strong> (Conference Track). [<a href='https://2ndgs.github.io/2ndGS_project_page/'>Project</a>] [<a href='https://arxiv.org/abs/2501.13975'>Paper</a>]"
+
+- date: "Oct 2024"
+  body: "Joined <a href='https://yangzzzy.github.io/'>Prof. Yin Yang</a>'s lab at the University of Utah as a research assistant, and started collaborating with <a href='https://people.csail.mit.edu/ganchuang/'>Prof. Chuang Gan</a> on the <a href='https://genesis-embodied-ai.github.io/'>Genesis</a> project."
