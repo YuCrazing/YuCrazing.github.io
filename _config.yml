@@ -3,10 +3,11 @@ name:        "Yu Zhang (张宇)"
 title:       "Yu Zhang"
 description: "Personal homepage of Yu Zhang"
 
-# Deployment URL (GitHub Pages project site).
-# baseurl must match the repo name so paths resolve under the /<repo>/ subpath.
+# Deployment URL — user site, served at the root of yucrazing.github.io.
+# baseurl is empty because this repo is named YuCrazing.github.io (the special
+# GitHub user-pages repo), not a project repo under a sub-path.
 url:         "https://yucrazing.github.io"
-baseurl:     "/me"
+baseurl:     ""
 
 # Short bio paragraph shown in the top header. Raw HTML, kept to one paragraph
 # in the Jon-Barron style — a few concise sentences, no line breaks.
@@ -39,7 +40,7 @@ twitter_url:  "https://x.com/yucrazing"
 more_url:     "/more/"
 
 # Optional link next to the "Selected Projects" heading
-full_projects_url: "https://yucrazing.github.io/pages/projects"
+full_projects_url: "/pages/projects.html"
 
 # Jekyll build settings
 markdown: kramdown
@@ -59,4 +60,14 @@ exclude:
   - "_make_*.sh"
 
 # Permalink style for any posts (unused, but Jekyll needs a default)
-permalink: /:title/
+# Posts inherit category "Others" (matching the old yucrazing.github.io repo)
+# so legacy URLs like /others/2023/08/24/classical-pde-en.html keep resolving.
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      category: "Others"
+
+permalink: /:categories/:year/:month/:day/:title.html
