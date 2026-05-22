@@ -1,0 +1,835 @@
+---
+# Author affiliations are page-local (paper-specific); homepage URLs are
+# pulled from _data/authors.yml at build time so they stay in sync with
+# the rest of the site.
+authors:
+  - { name: "Yu Zhang",     affil: "1" }
+  - { name: "Yidi Shao",    affil: "2" }
+  - { name: "Wenqi Ouyang", affil: "1" }
+  - { name: "Yushi Lan",    affil: "3" }
+  - { name: "Zhexin Liang", affil: "1" }
+  - { name: "Chengrui Wu",  affil: "4" }
+  - { name: "Xudong Xu",    affil: "5" }
+  - { name: "Xingang Pan",  affil: "1,&dagger;" }
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ClothTransformer: Unified Latent-Space Transformers for Scalable Cloth Simulation</title>
+<meta name="description" content="ClothTransformer reformulates cloth simulation as autoregressive sequence modeling in a learned latent space, handling diverse scenarios under a single model." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-soft: #f6f7f9;
+    --bg-card: #fafbfc;
+    --fg: #1a1d23;
+    --fg-soft: #4a5260;
+    --fg-muted: #7c8595;
+    --accent: #1f4e6b;
+    --accent-soft: #e8f0f5;
+    --border: #e4e8ed;
+    --radius: 10px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--fg);
+    background: var(--bg);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* Hero */
+  .hero {
+    padding: 64px 16px 32px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero h1 {
+    font-size: clamp(2.2rem, 3.8vw, 3.0rem);
+    font-weight: 700;
+    letter-spacing: -0.022em;
+    line-height: 1.15;
+    margin: 0 auto 14px;
+    max-width: 1260px;
+  }
+  .hero h1 .product {
+    color: var(--accent);
+  }
+  .hero .subtitle {
+    font-size: 1.18rem;
+    color: var(--fg-soft);
+    margin: 0 auto 28px;
+    max-width: 1180px;
+    line-height: 1.5;
+  }
+  .hero .subtitle b {
+    color: var(--fg);
+    font-weight: 600;
+  }
+
+  .authors {
+    margin: 28px auto 8px;
+    max-width: 1200px;
+    line-height: 1.9;
+  }
+  .authors a {
+    color: var(--fg);
+    text-decoration: none;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .authors a:hover { color: var(--accent); text-decoration: underline; }
+  .sup { font-size: 0.78em; vertical-align: super; color: var(--fg-muted); margin-left: 1px; }
+
+  .affiliations {
+    color: var(--fg-soft);
+    font-size: 0.92rem;
+    max-width: 1200px;
+    margin: 6px auto 0;
+  }
+
+  .venue {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 4px 14px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    border-radius: 999px;
+    text-transform: uppercase;
+  }
+
+  .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 28px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 18px;
+    background: var(--fg);
+    color: var(--bg);
+    border: 1px solid var(--fg);
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 500;
+    transition: all 0.15s ease;
+  }
+  .btn:hover { background: var(--accent); border-color: var(--accent); }
+  .btn.disabled { background: var(--bg-soft); color: var(--fg-muted); border-color: var(--border); cursor: not-allowed; }
+  .btn.disabled:hover { background: var(--bg-soft); border-color: var(--border); }
+  .btn svg { width: 16px; height: 16px; }
+
+  /* Teaser */
+  .teaser {
+    max-width: 1140px;
+    margin: 36px auto 0;
+    padding: 0 24px;
+  }
+  .teaser img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    display: block;
+  }
+  .teaser .caption {
+    margin-top: 14px;
+    font-size: 0.9rem;
+    color: var(--fg-soft);
+    text-align: center;
+  }
+
+  /* Section */
+  section {
+    padding: 56px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  section:last-of-type { border-bottom: none; }
+  section h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0 0 22px;
+    text-align: center;
+  }
+  section h2::after {
+    content: "";
+    display: block;
+    width: 36px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 2px;
+    margin: 10px auto 0;
+  }
+
+  p { margin: 0 0 1em; color: var(--fg-soft); font-size: 1rem; }
+  p.lead { font-size: 1.02rem; max-width: 800px; margin: 0 auto 1em; text-align: justify; }
+
+  /* Video */
+  .video-wrap {
+    max-width: 920px;
+    margin: 0 auto;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: transparent;
+  }
+  .video-wrap video {
+    width: 100%;
+    height: auto;
+    display: block;
+    background: transparent;
+  }
+
+  /* Scenarios grid */
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(31, 78, 107, 0.08);
+  }
+  .card img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    background: var(--bg-soft);
+    display: block;
+  }
+  .card .body { padding: 14px 16px; }
+  .card .label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  .card .name {
+    font-size: 1.02rem;
+    font-weight: 600;
+    margin: 4px 0 4px;
+  }
+  .card .desc {
+    font-size: 0.88rem;
+    color: var(--fg-soft);
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  /* Highlights / contributions */
+  .highlights {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 8px;
+  }
+  .highlight {
+    background: var(--bg-soft);
+    border-radius: var(--radius);
+    padding: 22px 22px;
+  }
+  .highlight .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--accent);
+  }
+  .highlight .title {
+    font-weight: 600;
+    margin: 8px 0 6px;
+    font-size: 1.02rem;
+  }
+  .highlight p { margin: 0; font-size: 0.92rem; line-height: 1.55; }
+
+  /* Method architecture figure */
+  .arch-fig {
+    max-width: 1140px;
+    margin: 8px auto 0;
+    padding: 0;
+  }
+  .arch-fig img {
+    width: 100%;
+    height: auto;
+    display: block;
+    background: #fff;
+  }
+  .arch-fig figcaption {
+    margin-top: 14px;
+    font-size: 0.9rem;
+    color: var(--fg-soft);
+    text-align: center;
+    line-height: 1.6;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .arch-fig figcaption b { color: var(--fg); }
+
+  /* Carousel (Differentiable CCD) — i2vedit-style */
+  .carousel {
+    max-width: 1140px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .carousel-stage-wrap {
+    position: relative;
+  }
+  .carousel-stage {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius);
+  }
+  .carousel-slide {
+    display: none;
+  }
+  .carousel-slide.active {
+    display: block;
+  }
+  .carousel-triptych {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .carousel-cell { text-align: center; }
+  .carousel-cell .col-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    color: var(--fg-muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .carousel-cell .col-label b { color: var(--accent); font-weight: 600; }
+  .carousel-cell img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    background: var(--bg-soft);
+    border-radius: 8px;
+    display: block;
+  }
+  .carousel-slide > video {
+    width: 100%;
+    height: auto;
+    display: block;
+    background: transparent;
+    border-radius: var(--radius);
+  }
+  /* Dataset carousel — half-size videos */
+  #dataset-carousel { max-width: 940px; }
+
+  /* Arrow buttons overlaid on left/right of the stage */
+  .carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(15, 23, 42, 0.55);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    transition: all 0.18s ease;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  }
+  .carousel-arrow:hover {
+    background: rgba(15, 23, 42, 0.85);
+    transform: translateY(-50%) scale(1.08);
+  }
+  .carousel-arrow:active { transform: translateY(-50%) scale(0.96); }
+  .carousel-arrow svg {
+    width: 22px;
+    height: 22px;
+    stroke: #fff;
+    stroke-width: 2.4;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .carousel-arrow-prev { left: -22px; }
+  .carousel-arrow-next { right: -22px; }
+
+  .carousel-title {
+    text-align: center;
+    margin: 22px 0 6px;
+    font-size: 1.04rem;
+    font-weight: 600;
+    color: var(--fg);
+  }
+  .carousel-caption {
+    margin: 0 auto;
+    font-size: 0.92rem;
+    color: var(--fg-soft);
+    text-align: center;
+    line-height: 1.55;
+    min-height: 48px;
+    max-width: 920px;
+  }
+  .carousel-caption b { color: var(--fg); }
+
+  .carousel-dots {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 14px;
+  }
+  .carousel-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--border);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.15s;
+  }
+  .carousel-dot:hover { background: var(--fg-muted); }
+  .carousel-dot.active {
+    background: var(--accent);
+    transform: scale(1.25);
+  }
+
+  @media (max-width: 760px) {
+    .carousel-arrow { width: 44px; height: 44px; }
+    .carousel-arrow-prev { left: 8px; }
+    .carousel-arrow-next { right: 8px; }
+    .carousel-arrow { background: rgba(15, 23, 42, 0.7); }
+  }
+
+  /* BibTeX */
+  .bibtex {
+    background: var(--fg);
+    color: #e8eaef;
+    border-radius: var(--radius);
+    padding: 22px 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.86rem;
+    line-height: 1.65;
+    overflow-x: auto;
+    white-space: pre;
+  }
+
+  /* Footer */
+  footer {
+    padding: 28px 24px 40px;
+    text-align: center;
+    color: var(--fg-muted);
+    font-size: 0.85rem;
+  }
+  footer a { color: var(--fg-soft); }
+
+  /* Responsive */
+  @media (max-width: 760px) {
+    .hero h1 { font-size: 1.7rem; }
+    .grid-3, .highlights { grid-template-columns: 1fr; }
+    section { padding: 44px 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <h1><span class="product">ClothTransformer</span>: Unified Latent-Space<br />Transformers for Scalable Cloth Simulation</h1>
+    <p class="subtitle"><b>A single model for diverse cloth simulation scenes</b> &mdash; body-driven garments, robotic manipulation, and general collisions.</p>
+
+    <div class="authors">
+      {%- for a in page.authors -%}
+        {%- assign info = site.data.authors[a.name] -%}
+        <a href="{{ info.url | default: '#' }}">{{ a.name }}</a><span class="sup">{{ a.affil }}</span>{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    </div>
+    <div class="affiliations">
+      <span class="sup">1</span>S-Lab, Nanyang Technological University &nbsp;&middot;&nbsp;
+      <span class="sup">2</span>Feeling AI &nbsp;&middot;&nbsp;
+      <span class="sup">3</span>University of Oxford &nbsp;&middot;&nbsp;
+      <span class="sup">4</span>Nanyang Technological University &nbsp;&middot;&nbsp;
+      <span class="sup">5</span>Shanghai AI Laboratory
+      <div style="font-size:0.82rem;margin-top:6px;"><span class="sup">&dagger;</span>Corresponding author</div>
+    </div>
+
+    <div class="buttons">
+      <a class="btn" href="#" aria-disabled="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Paper (PDF)
+      </a>
+      <a class="btn" href="#" aria-disabled="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        arXiv
+      </a>
+      <a class="btn" href="#video">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+        Video
+      </a>
+      <a class="btn disabled" href="#" aria-disabled="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        Code (coming soon)
+      </a>
+      <a class="btn disabled" href="#" aria-disabled="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+        Data (coming soon)
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="teaser">
+  <img src="static/images/teaser.png" alt="ClothTransformer teaser figure" />
+  <p class="caption"><b>ClothTransformer</b> generalizes to unseen test cases across diverse scenarios. <i>Left two:</i> Diverse Object Collision &mdash; cloth falling onto unseen rigid objects (sword, character). <i>Middle two:</i> Human Garment &mdash; unseen body, garment, and animation combinations. <i>Right two:</i> Robotic Manipulation &mdash; unseen cloth meshes grasped by a robotic gripper. Notably, across all scenes, a single unified Transformer handles diverse cloth dynamics without per-scenario fine-tuning.</p>
+</div>
+
+<section id="abstract">
+  <div class="container">
+    <h2>Abstract</h2>
+    <p class="lead">Unified and scalable Transformers have recently achieved remarkable success in modeling diverse phenomena traditionally associated with computer graphics, such as 3D visual effects, rendering processes, and motion in videos. In this work, we take a step further by investigating whether modern Transformer techniques can tackle the challenging task of cloth simulation.</p>
+    <p class="lead">We present <b>ClothTransformer</b>, a framework that reformulates cloth simulation as autoregressive sequence modeling in a learned latent space. Existing neural cloth simulators are largely specialized to single scenarios, intrinsically coupled to the mesh discretization, and lack robust collision handling. Our approach addresses these limitations through three contributions: (1) a unified Transformer architecture that handles diverse scenarios &mdash; body-driven garments, robotic manipulation, and general collisions &mdash; under a single model and achieves approximately 4&ndash;9&times; lower error than prior state-of-the-art; (2) a scalable latent-space formulation that compresses arbitrary-resolution meshes into a fixed-size set of latent tokens, making temporal dynamics computation independent of mesh resolution; and (3) a diverse-scenario high-fidelity penetration-free dataset of ~493.4k frames spanning all three settings, which enables a differentiable Continuous Collision Detection (CCD) module to suppress penetration artifacts.</p>
+  </div>
+</section>
+
+<section id="video">
+  <div class="container">
+    <h2>Video</h2>
+    <div class="video-wrap">
+      <video controls autoplay muted loop playsinline poster="static/images/teaser.png">
+        <source src="static/videos/ct_authors.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+</section>
+
+<section id="scenarios" style="display:none;">
+  <div class="container">
+    <h2>One Model, Diverse Scenarios</h2>
+    <p class="lead" style="text-align:center;">A single unified Transformer handles diverse cloth dynamics without per-scenario specialization.</p>
+    <div class="grid-3">
+      <div class="card">
+        <img src="static/images/garment.png" alt="Human Garment" />
+        <div class="body">
+          <div class="label">Scenario 1</div>
+          <div class="name">Human Garment</div>
+          <p class="desc">Body-driven dressing on unseen body / garment / animation combinations.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="static/images/grasp.png" alt="Robotic Manipulation" />
+        <div class="body">
+          <div class="label">Scenario 2</div>
+          <div class="name">Robotic Manipulation</div>
+          <p class="desc">Unseen cloth meshes grasped and lifted by a robotic gripper.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="static/images/collision.png" alt="General Collision" />
+        <div class="body">
+          <div class="label">Scenario 3</div>
+          <div class="name">General Collision</div>
+          <p class="desc">Cloth colliding with unseen rigid objects, handled by continuous-collision detection.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contributions">
+  <div class="container">
+    <h2>Key Contributions</h2>
+    <div class="highlights">
+      <div class="highlight">
+        <div class="num">01 / Architecture</div>
+        <div class="title">Unified Transformer</div>
+        <p>A single Transformer handles diverse scenarios under one model, achieving 4&ndash;9&times; lower error than prior state-of-the-art across the board.</p>
+      </div>
+      <div class="highlight">
+        <div class="num">02 / Scalability</div>
+        <div class="title">Latent-Space Dynamics</div>
+        <p>Arbitrary-resolution meshes are compressed into a fixed-size set of latent tokens &mdash; temporal computation is decoupled from mesh resolution.</p>
+      </div>
+      <div class="highlight">
+        <div class="num">03 / Dataset</div>
+        <div class="title">Penetration-Free Data + CCD</div>
+        <p>A 493.4k-frame penetration-free dataset across all three settings, enabling a differentiable Continuous Collision Detection module that eliminates tunneling artifacts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="method">
+  <div class="container">
+    <h2>Unified Architecture</h2>
+    <p class="lead" style="text-align:center;">The architecture is <b>scenario-agnostic</b>: cross-attention compression handles arbitrary mesh sizes, the Transformer carries no scenario-specific priors, and collision objects are encoded as generic triangle tokens. A single model is trained jointly across all scenarios &mdash; no per-scenario adaptation.</p>
+    <figure class="arch-fig">
+      <img src="static/images/arch.svg" alt="ClothTransformer architecture: Spatial Encoder, Temporal Transformer, Spatial Decoder" />
+      <figcaption><b>Architecture overview.</b> The framework has three components: a <b>Spatial Encoder</b> (left) that compresses the history cloth mesh and lookahead collision geometry into a fixed-size set of latent tokens via cross-attention; a <b>Temporal Transformer</b> (middle) that evolves the latent state forward in time with block-causal masking; and a <b>Spatial Decoder</b> (right) that reconstructs the next-frame mesh by querying the predicted latents with rest-pose vertex tokens, followed by GNN refinement.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="comparison" style="display:none;">
+  <div class="container">
+    <h2>Comparison</h2>
+    <div class="video-wrap">
+      <video controls autoplay muted loop playsinline>
+        <source src="static/videos/ct_comparison.mp4" type="video/mp4" />
+      </video>
+    </div>
+  </div>
+</section>
+
+<section id="dataset">
+  <div class="container">
+    <h2>High Quality Penetration-Free Dataset</h2>
+    <p class="lead" style="text-align:center;">We construct a <b>~493.4k-frame penetration-free dataset</b> spanning all three scenarios. Every sequence is verified intersection-free, enabling training with a differentiable Continuous Collision Detection loss and CCD post-processing. (Use ← / → to switch between categories.)</p>
+
+    <div class="carousel" id="dataset-carousel">
+      <div class="carousel-stage-wrap">
+        <button class="carousel-arrow carousel-arrow-prev" id="dataset-prev" aria-label="Previous category">
+          <svg viewBox="0 0 24 24"><polyline points="15 6 9 12 15 18"/></svg>
+        </button>
+        <button class="carousel-arrow carousel-arrow-next" id="dataset-next" aria-label="Next category">
+          <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+        </button>
+      <div class="carousel-stage" id="dataset-stage">
+
+        <div class="carousel-slide active" data-title="Category 1 — Human Garment" data-caption="Body-driven garments across diverse body shapes, garment topologies, and animations. Each sequence is simulated with high-fidelity physics and verified intersection-free.">
+          <video muted autoplay loop playsinline>
+            <source src="static/videos/dataset_garment.mp4" type="video/mp4" />
+          </video>
+        </div>
+
+        <div class="carousel-slide" data-title="Category 2 — Robotic Manipulation" data-caption="Robotic grippers grasping and lifting cloth meshes with varying material properties and grasp poses. Each sequence is simulated with high-fidelity physics and verified intersection-free.">
+          <video muted loop playsinline>
+            <source src="static/videos/dataset_grasp.mp4" type="video/mp4" />
+          </video>
+        </div>
+
+        <div class="carousel-slide" data-title="Category 3 — General Collision" data-caption="Cloth falling onto diverse rigid objects with varied geometries and motions, capturing fast contact dynamics. Each sequence is simulated with high-fidelity physics and verified intersection-free.">
+          <video muted loop playsinline>
+            <source src="static/videos/dataset_collision.mp4" type="video/mp4" />
+          </video>
+        </div>
+
+      </div>
+      </div>
+
+      <div class="carousel-title" id="dataset-title"></div>
+      <div class="carousel-caption" id="dataset-caption"></div>
+      <div class="carousel-dots" id="dataset-dots"></div>
+    </div>
+  </div>
+</section>
+
+<section id="ccd">
+  <div class="container">
+    <h2>Differentiable CCD</h2>
+    <p class="lead" style="text-align:center;">We ablate three settings progressively: <b>w/ DCD</b> loss only, <b>+ CCD Loss</b> during training, and <b>+ CCD Post.</b> at inference. (Use ← / → to switch between cases.)</p>
+
+    <div class="carousel" id="ccd-carousel">
+      <div class="carousel-stage-wrap">
+        <button class="carousel-arrow carousel-arrow-prev" id="ccd-prev" aria-label="Previous case">
+          <svg viewBox="0 0 24 24"><polyline points="15 6 9 12 15 18"/></svg>
+        </button>
+        <button class="carousel-arrow carousel-arrow-next" id="ccd-next" aria-label="Next case">
+          <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+        </button>
+      <div class="carousel-stage" id="ccd-stage">
+
+        <div class="carousel-slide active" data-title="Case 1 — Front Flip (cloth–collision penetration)" data-caption="<b>Cloth–collision penetration during a fast front-flip.</b> DCD loss alone cannot fully resolve garment–body penetrations. CCD loss targets self-collision so it does not improve this case, but CCD post-processing eliminates the artifact.">
+          <div class="carousel-triptych">
+            <div class="carousel-cell">
+              <div class="col-label">w/ DCD</div>
+              <img src="static/images/ccd/flip_contact.png" alt="Front flip — w/ DCD" />
+            </div>
+            <div class="carousel-cell">
+              <div class="col-label">+ <b>CCD Loss</b></div>
+              <img src="static/images/ccd/flip_ccd_loss.png" alt="Front flip — + CCD Loss" />
+            </div>
+            <div class="carousel-cell">
+              <div class="col-label">+ <b>CCD Post.</b></div>
+              <img src="static/images/ccd/flip_ccd_post.png" alt="Front flip — + CCD Post" />
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-slide" data-title="Case 2 — Cloth on Angel (cloth–collision penetration)" data-caption="<b>Garment–body penetration on the angel character.</b> The DCD-trained baseline leaves visible contact artifacts. As with the flip case, CCD post-processing cleanly resolves the cloth–object penetration.">
+          <div class="carousel-triptych">
+            <div class="carousel-cell">
+              <div class="col-label">w/ DCD</div>
+              <img src="static/images/ccd/angel_contact.png" alt="Angel — w/ DCD" />
+            </div>
+            <div class="carousel-cell">
+              <div class="col-label">+ <b>CCD Loss</b></div>
+              <img src="static/images/ccd/angel_ccd_loss.png" alt="Angel — + CCD Loss" />
+            </div>
+            <div class="carousel-cell">
+              <div class="col-label">+ <b>CCD Post.</b></div>
+              <img src="static/images/ccd/angel_ccd_post.png" alt="Angel — + CCD Post" />
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-slide" data-title="Case 3 — Cloth on Stick (self-collision)" data-caption="<b>Self-collision near a thin stick.</b> Front (pink) and back (blue) faces are colored differently to make self-intersections legible. CCD loss substantially reduces self-penetrations; CCD post-processing eliminates the rest.">
+          <div class="carousel-triptych">
+            <div class="carousel-cell">
+              <div class="col-label">w/ DCD</div>
+              <img src="static/images/ccd/stick_contact.png" alt="Stick — w/ DCD" />
+            </div>
+            <div class="carousel-cell">
+              <div class="col-label">+ <b>CCD Loss</b></div>
+              <img src="static/images/ccd/stick_ccd_loss.png" alt="Stick — + CCD Loss" />
+            </div>
+            <div class="carousel-cell">
+              <div class="col-label">+ <b>CCD Post.</b></div>
+              <img src="static/images/ccd/stick_ccd_post.png" alt="Stick — + CCD Post" />
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-slide" data-title="Case 4 — Robotic Grasping (self-collision)" data-caption="<b>Cloth self-collision during robotic grasping.</b> Two-color faces (pink / blue) reveal where the cloth folds onto itself. CCD loss markedly reduces self-penetrations; CCD post-processing resolves the remainder.">
+          <div class="carousel-triptych">
+            <div class="carousel-cell">
+              <div class="col-label">w/ DCD</div>
+              <img src="static/images/ccd/grasp_contact.png" alt="Grasp — w/ DCD" />
+            </div>
+            <div class="carousel-cell">
+              <div class="col-label">+ <b>CCD Loss</b></div>
+              <img src="static/images/ccd/grasp_ccd_loss.png" alt="Grasp — + CCD Loss" />
+            </div>
+            <div class="carousel-cell">
+              <div class="col-label">+ <b>CCD Post.</b></div>
+              <img src="static/images/ccd/grasp_ccd_post.png" alt="Grasp — + CCD Post" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+      </div>
+
+      <div class="carousel-title" id="ccd-title"></div>
+      <div class="carousel-caption" id="ccd-caption"></div>
+      <div class="carousel-dots" id="ccd-dots"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initCarousel(prefix) {
+    const stage = document.getElementById(prefix + '-stage');
+    if (!stage) return;
+    const slides = stage.querySelectorAll('.carousel-slide');
+    const titleEl = document.getElementById(prefix + '-title');
+    const captionEl = document.getElementById(prefix + '-caption');
+    const dotsEl = document.getElementById(prefix + '-dots');
+    const prevBtn = document.getElementById(prefix + '-prev');
+    const nextBtn = document.getElementById(prefix + '-next');
+    let idx = 0;
+
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+      dot.addEventListener('click', () => show(i));
+      dotsEl.appendChild(dot);
+    });
+
+    function show(i) {
+      idx = (i + slides.length) % slides.length;
+      slides.forEach((s, k) => {
+        const active = k === idx;
+        s.classList.toggle('active', active);
+        const video = s.querySelector('video');
+        if (video) {
+          if (active) { video.currentTime = 0; video.play().catch(() => {}); }
+          else { video.pause(); }
+        }
+      });
+      dotsEl.querySelectorAll('.carousel-dot').forEach((d, k) => d.classList.toggle('active', k === idx));
+      if (titleEl) titleEl.textContent = slides[idx].dataset.title || '';
+      if (captionEl) captionEl.innerHTML = slides[idx].dataset.caption || '';
+    }
+
+    prevBtn.addEventListener('click', () => show(idx - 1));
+    nextBtn.addEventListener('click', () => show(idx + 1));
+
+    document.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      const rect = stage.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight && rect.bottom > 0;
+      if (!inView) return;
+      if (e.key === 'ArrowLeft') show(idx - 1);
+      if (e.key === 'ArrowRight') show(idx + 1);
+    });
+
+    show(0);
+  }
+
+  initCarousel('dataset');
+  initCarousel('ccd');
+</script>
+
+<section id="bibtex">
+  <div class="container">
+    <h2>BibTeX</h2>
+    <pre class="bibtex">@article{zhang2026clothtransformer,
+  title   = {ClothTransformer: Unified Latent-Space Transformers
+             for Scalable Cloth Simulation},
+  author  = {Zhang, Yu and Shao, Yidi and Ouyang, Wenqi and
+             Lan, Yushi and Liang, Zhexin and Wu, Chengrui and
+             Xu, Xudong and Pan, Xingang},
+  journal = {arXiv preprint},
+  year    = {2026}
+}</pre>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    &copy; 2026 ClothTransformer authors. Template inspired by <a href="https://nerfies.github.io/" target="_blank" rel="noopener">Nerfies</a>.
+  </div>
+</footer>
+
+</body>
+</html>

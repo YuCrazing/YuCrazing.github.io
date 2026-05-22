@@ -1,6 +1,16 @@
 # Publications
 # uncomment the urls if you wish to display them, and add your own URL
 
+- publication: "ClothTransformer: Unified Latent-Space Transformers for Scalable Cloth Simulation"
+  url: "/clothtransformer/"
+  project_url: "/clothtransformer/"
+  # arxiv_url: ""    # add when posted to arXiv
+  # code_url: ""     # add when code is released
+  authors: [Yu Zhang, Yidi Shao, Wenqi Ouyang, Yushi Lan, Zhexin Liang, Chengrui Wu, Xudong Xu, Xingang Pan]
+  img: "/clothtransformer/static/images/teaser.png"
+  journal: "arXiv preprint, 2026"
+  description: ""
+
 - publication: An Efficient Multilevel Preconditioned Nonlinear Conjugate Gradient Method for Incremental Potential Contact
   url: "https://arxiv.org/abs/2604.19892"
   arxiv_url: "https://arxiv.org/abs/2604.19892"
