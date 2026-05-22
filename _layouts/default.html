@@ -89,9 +89,9 @@
                 {%- assign suffix = "" -%}
                 {%- if name contains "*" -%}{%- assign suffix = "*" -%}{%- endif -%}
                 {%- assign info = site.data.authors[clean_name] -%}
-                {%- if info.bold -%}<b>{%- endif -%}
-                {%- if info.url -%}<a href="{{ info.url }}">{{ clean_name }}{{ suffix }}</a>{%- else -%}{{ clean_name }}{{ suffix }}{%- endif -%}
-                {%- if info.bold -%}</b>{%- endif -%}
+                {%- if info.bold -%}<b>{{ clean_name }}{{ suffix }}</b>
+                {%- elsif info.url -%}<a href="{{ info.url }}">{{ clean_name }}{{ suffix }}</a>
+                {%- else -%}{{ clean_name }}{{ suffix }}{%- endif -%}
                 {%- unless forloop.last -%}, {% endunless -%}
               {%- endfor -%}
             {%- else -%}
