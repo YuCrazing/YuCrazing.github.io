@@ -22,6 +22,7 @@
   description: ""
 
 - publication: 3DGS<sup>2</sup>&#58; Near Second-order Converging 3D Gaussian Splatting
+  hidden: true
   url: "https://2ndgs.github.io/2ndGS_project_page/"
   project_url: "https://2ndgs.github.io/2ndGS_project_page/"
   arxiv_url: "https://arxiv.org/abs/2501.13975"
