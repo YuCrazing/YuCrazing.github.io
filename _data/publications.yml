@@ -7,7 +7,7 @@
   # arxiv_url: ""    # add when posted to arXiv
   # code_url: ""     # add when code is released
   authors: [Yu Zhang, Yidi Shao, Wenqi Ouyang, Yushi Lan, Zhexin Liang, Chengrui Wu, Xudong Xu, Xingang Pan]
-  img: "/clothtransformer/static/images/teaser.png"
+  img: "/clothtransformer/static/images/teaser.webp"
   journal: "arXiv preprint, 2026"
   description: ""
 

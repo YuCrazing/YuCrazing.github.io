@@ -516,7 +516,7 @@ authors:
 </header>
 
 <div class="teaser">
-  <img src="static/images/teaser.png" alt="ClothTransformer teaser figure" />
+  <img src="static/images/teaser.webp" alt="ClothTransformer teaser figure" />
   <p class="caption"><b>ClothTransformer</b> generalizes to unseen test cases across diverse scenarios. <i>Left two:</i> Diverse Object Collision &mdash; cloth falling onto unseen rigid objects (sword, character). <i>Middle two:</i> Human Garment &mdash; unseen body, garment, and animation combinations. <i>Right two:</i> Robotic Manipulation &mdash; unseen cloth meshes grasped by a robotic gripper. Notably, across all scenes, a single unified Transformer handles diverse cloth dynamics without per-scenario fine-tuning.</p>
 </div>
 
@@ -532,7 +532,7 @@ authors:
   <div class="container">
     <h2>Video</h2>
     <div class="video-wrap">
-      <video controls autoplay muted loop playsinline poster="static/images/teaser.png">
+      <video controls autoplay muted loop playsinline poster="static/images/ct_authors_poster.webp">
         <source src="static/videos/ct_authors.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
@@ -634,19 +634,19 @@ authors:
       <div class="carousel-stage" id="dataset-stage">
 
         <div class="carousel-slide active" data-title="Category 1 — Human Garment" data-caption="Body-driven garments across diverse body shapes, garment topologies, and animations. Each sequence is simulated with high-fidelity physics and verified intersection-free.">
-          <video muted autoplay loop playsinline>
+          <video muted autoplay loop playsinline preload="auto">
             <source src="static/videos/dataset_garment.mp4" type="video/mp4" />
           </video>
         </div>
 
         <div class="carousel-slide" data-title="Category 2 — Robotic Manipulation" data-caption="Robotic grippers grasping and lifting cloth meshes with varying material properties and grasp poses. Each sequence is simulated with high-fidelity physics and verified intersection-free.">
-          <video muted loop playsinline>
+          <video muted autoplay loop playsinline preload="auto">
             <source src="static/videos/dataset_grasp.mp4" type="video/mp4" />
           </video>
         </div>
 
         <div class="carousel-slide" data-title="Category 3 — General Collision" data-caption="Cloth falling onto diverse rigid objects with varied geometries and motions, capturing fast contact dynamics. Each sequence is simulated with high-fidelity physics and verified intersection-free.">
-          <video muted loop playsinline>
+          <video muted autoplay loop playsinline preload="auto">
             <source src="static/videos/dataset_collision.mp4" type="video/mp4" />
           </video>
         </div>
