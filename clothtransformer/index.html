@@ -524,7 +524,7 @@ authors:
   <div class="container">
     <h2>Abstract</h2>
     <p class="lead">Unified and scalable Transformers have recently achieved remarkable success in modeling diverse phenomena traditionally associated with computer graphics, such as 3D visual effects, rendering processes, and motion in videos. In this work, we take a step further by investigating whether modern Transformer techniques can tackle the challenging task of cloth simulation.</p>
-    <p class="lead">We present <b>ClothTransformer</b>, a framework that reformulates cloth simulation as autoregressive sequence modeling in a learned latent space. Existing neural cloth simulators are largely specialized to single scenarios, intrinsically coupled to the mesh discretization, and lack robust collision handling. Our approach addresses these limitations through three contributions: (1) a unified Transformer architecture that handles diverse scenarios &mdash; body-driven garments, robotic manipulation, and general collisions &mdash; under a single model and achieves approximately 4&ndash;9&times; lower error than prior state-of-the-art; (2) a scalable latent-space formulation that compresses arbitrary-resolution meshes into a fixed-size set of latent tokens, making temporal dynamics computation independent of mesh resolution; and (3) a diverse-scenario high-fidelity penetration-free dataset of ~493.4k frames spanning all three settings, which enables a differentiable Continuous Collision Detection (CCD) module to suppress penetration artifacts.</p>
+    <p class="lead">We present <b>ClothTransformer</b>, a framework that reformulates cloth simulation as autoregressive sequence modeling in a learned latent space. Existing neural cloth simulators are largely specialized to single scenarios, intrinsically coupled to the mesh discretization, and lack robust collision handling. Our approach addresses these limitations through three contributions: (1) a unified Transformer architecture that handles diverse scenarios &mdash; body-driven garments, robotic manipulation, and general collisions &mdash; under a single model and achieves approximately 4&ndash;9&times; lower error than prior state-of-the-art methods; (2) a scalable latent-space formulation that compresses arbitrary-resolution meshes into a fixed-size set of latent tokens, making temporal dynamics computation independent of mesh resolution; and (3) a diverse-scenario high-fidelity penetration-free dataset of ~493.4k frames spanning all three settings, which enables a differentiable Continuous Collision Detection (CCD) module to suppress penetration artifacts.</p>
   </div>
 </section>
 
@@ -580,7 +580,7 @@ authors:
       <div class="highlight">
         <div class="num">01 / Architecture</div>
         <div class="title">Unified Transformer</div>
-        <p>A single Transformer handles diverse scenarios under one model, achieving 4&ndash;9&times; lower error than prior state-of-the-art across the board.</p>
+        <p>A single Transformer handles diverse scenarios under one model, achieving 4&ndash;9&times; lower error than prior state-of-the-art methods across the board.</p>
       </div>
       <div class="highlight">
         <div class="num">02 / Scalability</div>
