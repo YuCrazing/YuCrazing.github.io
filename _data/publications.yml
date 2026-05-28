@@ -4,8 +4,8 @@
 - publication: "ClothTransformer: Unified Latent-Space Transformers for Scalable Cloth Simulation"
   url: "/clothtransformer/"
   project_url: "/clothtransformer/"
-  # arxiv_url: ""    # add when posted to arXiv
-  # code_url: ""     # add when code is released
+  arxiv_url: "https://arxiv.org/abs/2605.27852"
+  code_url: "https://github.com/YuCrazing/ClothTransformer"
   authors: [Yu Zhang, Yidi Shao, Wenqi Ouyang, Yushi Lan, Zhexin Liang, Chengrui Wu, Xudong Xu, Xingang Pan]
   img: "/clothtransformer/static/images/teaser.webp"
   journal: "arXiv preprint, 2026"
