@@ -211,11 +211,12 @@
       {% if show_sections contains "awards" and site.data.awards %}
       <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
         <tr>
-          <td style="padding:2.5%;width:100%;vertical-align:middle"><h2>Awards</h2></td>
+          <td style="padding:2.5%;width:100%;vertical-align:middle"><h2>{{ page.awards_heading | default: "Awards" }}</h2></td>
         </tr>
       </table>
       <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
         {% for award in site.data.awards %}
+        {% if page.featured_awards_only and award.featured != true %}{% continue %}{% endif %}
         <tr>
           <td style="padding:0.5% 2.5%;width:100%;vertical-align:top">
             {{ award.award }}
