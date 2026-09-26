@@ -8,7 +8,7 @@
   code_url: "https://github.com/YuCrazing/ClothTransformer"
   authors: [Yu Zhang, Yidi Shao, Wenqi Ouyang, Yushi Lan, Zhexin Liang, Chengrui Wu, Xudong Xu, Xingang Pan]
   img: "/clothtransformer/static/images/teaser.webp"
-  journal: "arXiv preprint, 2026"
+  journal: "NeurIPS 2026"
   description: ""
 
 - publication: An Efficient Multilevel Preconditioned Nonlinear Conjugate Gradient Method for Incremental Potential Contact
