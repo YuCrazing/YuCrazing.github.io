@@ -6,7 +6,7 @@
   project_url: "/clothtransformer/"
   arxiv_url: "https://arxiv.org/abs/2605.27852"
   code_url: "https://github.com/YuCrazing/ClothTransformer"
-  data_url: "https://huggingface.co/datasets/YuCrazing1/ClothTransformer-dataset"
+  data_url: "https://huggingface.co/datasets/YuCrazing/ClothTransformer-dataset"
   authors: [Yu Zhang, Yidi Shao, Wenqi Ouyang, Yushi Lan, Zhexin Liang, Chengrui Wu, Xudong Xu, Xingang Pan]
   img: "/clothtransformer/static/images/teaser.webp"
   journal: "NeurIPS 2026"
