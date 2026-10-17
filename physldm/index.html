@@ -146,6 +146,7 @@
   <a href="#prediction">Prediction</a>
   <a href="#diff">Applications</a>
   <a href="#method">Method</a>
+  <a href="#generalization">Real-World Data</a>
   <a href="./videos.html">All Results</a>
   <a href="#bibtex">BibTeX</a>
 </nav>
@@ -349,6 +350,30 @@
       <img src="./static/images/arch.webp" alt="PhysLDM architecture: Spatial VAE, ST-VAE and latent diffusion model" loading="lazy">
     </div>
     <p class="media-caption"><strong>Overview of PhysLDM.</strong> The framework consists of three main components: (1) A <strong>Spatial VAE</strong> (top left) that encodes the per-frame canonical mesh into a compact set of resolution-independent latent tokens. (2) An <strong>ST-VAE</strong> (bottom) that compresses the temporal trajectory into a single joint latent <b><i style="color:#0A307C">Z</i></b>, which serves as the training target of the LDM. (3) An <strong>LDM</strong> (top right) that predicts the entire latent trajectory from the initial state in a single diffusion pass. <span class="sf">Dec</span>&thinsp;&lowast; denotes the frozen decoders, which decode the latent into the final full&nbsp;trajectory.</p>
+  </div>
+</section>
+
+<section class="section is-tight" id="generalization">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Constitutive-Model-Agnostic Supervision</h2>
+    <p class="block-intro">PhysLDM is trained with kinematic supervision only: no energy model or material law enters the data format, the losses, or the architecture. The ST-VAE therefore generalizes zero-shot across energy models (4.6&nbsp;mm reconstruction error under ARAP) and to real-world data (6.0&nbsp;mm reconstruction&nbsp;error).</p>
+    <div class="video-tabs" id="gen-tabs">
+      <div class="tabs is-toggle is-small is-centered">
+        <ul>
+          <li><a>ARAP</a></li>
+          <li class="is-active"><a>Real-World Data</a></li>
+        </ul>
+      </div>
+      <div class="tab-panel">
+        <div class="media-block"><video class="lazy" muted loop playsinline controls preload="none" data-src="./static/videos/gen_arap.mp4"></video></div>
+        <p class="media-caption">Ground truth (left) and zero-shot ST-VAE reconstruction (right) under an as-rigid-as-possible (ARAP) energy. The ST-VAE was trained only on Stable Neo-Hookean simulations, so this energy model never appears in&nbsp;training.</p>
+      </div>
+      <div class="tab-panel is-active">
+        <div class="media-block"><video class="lazy" muted loop playsinline controls preload="none" data-src="./static/videos/gen_real.mp4"></video></div>
+        <p class="media-caption"><strong>Seamless support for other data formats, such as surface meshes and point clouds.</strong> Our training data are tetrahedral meshes, but PhysLDM runs on these formats without any change to the model or the training code. Shown here are real captured point clouds from PhysTwin: tracked points (left) and zero-shot ST-VAE reconstruction (right). There is no mesh and no explicit energy model, and the objects are manipulated by a human hand instead of being thrown onto the&nbsp;ground.</p>
+      </div>
+    </div>
+    <p class="more-link"><a href="./videos.html#generalization">All constitutive-model-agnostic videos &rarr;</a></p>
   </div>
 </section>
 

@@ -97,6 +97,10 @@
         <li><a href="#diff-task1">Task 1: Material estimation</a></li>
         <li><a href="#diff-task2">Task 2: Designing the throw</a></li>
       </ol></li>
+      <li><a href="#generalization">Constitutive-Model-Agnostic Supervision</a><ol>
+        <li><a href="#gen-arap">ARAP</a></li>
+        <li><a href="#gen-real">Real-world data</a></li>
+      </ol></li>
     </ol>
   </div>
 </section>
@@ -169,6 +173,18 @@
     <p class="media-caption">Which throw reveals the stiffness best? We maximize the sensitivity of the predicted trajectory to the stiffness over the release velocity. The objective is itself a derivative, so its gradient is second-order; PhysLDM provides it directly through automatic differentiation. Replayed in the ground-truth simulator, the optimized throw makes the rigid motion 13&times; more sensitive to the stiffness. DiffIPC offers only first-order derivatives, and Newton/Warp does not produce a usable gradient on this&nbsp;scene.</p>
   </div>
 </section>
+<section class="section is-tight" id="generalization">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Constitutive-Model-Agnostic Supervision</h2>
+    <h3 class="title is-5 result-heading" id="gen-arap">16. ARAP</h3>
+    <div class="media-block"><video class="lazy" data-autoplay="0" muted playsinline controls preload="metadata" data-src="./static/videos/gen_arap.mp4"></video></div>
+    <p class="media-caption">Ground truth (left) and zero-shot ST-VAE reconstruction (right) under an as-rigid-as-possible (ARAP) energy. The ST-VAE was trained only on Stable Neo-Hookean simulations, so this energy model never appears in&nbsp;training.</p>
+    <h3 class="title is-5 result-heading" id="gen-real">17. Real-world data</h3>
+    <div class="media-block"><video class="lazy" data-autoplay="0" muted playsinline controls preload="metadata" data-src="./static/videos/gen_real.mp4"></video></div>
+    <p class="media-caption"><strong>Seamless support for other data formats, such as surface meshes and point clouds.</strong> Our training data are tetrahedral meshes, but PhysLDM runs on these formats without any change to the model or the training code. Shown here are real captured point clouds from PhysTwin: tracked points (left) and zero-shot ST-VAE reconstruction (right). There is no mesh and no explicit energy model, and the objects are manipulated by a human hand instead of being thrown onto the&nbsp;ground.</p>
+  </div>
+</section>
+
 
 <footer class="footer">
   <div class="container">
