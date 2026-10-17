@@ -1,6 +1,17 @@
 # Publications
 # uncomment the urls if you wish to display them, and add your own URL
 
+- publication: "PhysLDM: Latent Diffusion for High-Fidelity Deformable Simulation"
+  url: "/physldm/"
+  project_url: "/physldm/"
+  arxiv_url: "https://arxiv.org/abs/2610.07609"
+  # code_url: "https://github.com/YuCrazing/PhysLDM"   # hidden for now (2026-10-17)
+  # demo_url: "https://huggingface.co/spaces/YuCrazing/PhysLDM"   # hidden for now (2026-10-17)
+  authors: [Yu Zhang, Xudong Xu, Xingang Pan]
+  img: "images/publications/physldm/teaser.webp"
+  journal: "arXiv preprint, 2026"
+  description: ""
+
 - publication: "ClothTransformer: Unified Latent-Space Transformers for Scalable Cloth Simulation"
   url: "/clothtransformer/"
   project_url: "/clothtransformer/"
